@@ -17,7 +17,7 @@ import themeObject from './utility/theme';
 import Navbar from './components/Navbar/Navbar';
 import AuthRoute from './components/AuthRoute/AuthRoute';
 
-import GroupsDisplay from './pages/GroupsDisplay/GroupsDisplay';
+import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 // import User from './Pages/User/User';
@@ -45,7 +45,7 @@ function App() {
           <Navbar />
           <div className="container">
             <Switch>
-              <Route exact path="/" component={GroupsDisplay} />
+              <Route exact path="/" component={Home} />
 
               <AuthRoute exact path="/login" component={Login} />
               <AuthRoute exact path="/signup" component={Signup} />

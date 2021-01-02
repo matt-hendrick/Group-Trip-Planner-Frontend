@@ -3,8 +3,8 @@ import Grid from '@material-ui/core/Grid';
 
 import { useSelector } from 'react-redux';
 
-import GroupProfileCard from '../../components/GroupProfileCard/GroupProfileCard';
-import GroupProfileCardSkeleton from '../../components/GroupProfileCard/GroupProfileCardSkeleton';
+import GroupProfileCard from '../GroupProfileCard/GroupProfileCard';
+import GroupProfileCardSkeleton from '../GroupProfileCard/GroupProfileCardSkeleton';
 
 function GroupsDisplay() {
   const groups = useSelector((state) => state.user.groups);
