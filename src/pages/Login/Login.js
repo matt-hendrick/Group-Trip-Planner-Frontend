@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 // import AppIcon from '../../images/TripMenuLogo.png';
 
 // Redux
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { loginUser } from '../../redux/actions/userActions';
 
 // MUI Stuff
@@ -23,11 +22,11 @@ function Login(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const loading = useSelector((state) => state.ui.loading);
+  const errors = useSelector((state) => state.ui.errors);
+  const dispatch = useDispatch();
+
   const classes = useStyles();
-  const {
-    onLoginUser,
-    UI: { loading, errors },
-  } = props;
 
   const emailChangedHandler = (event) => {
     const updatedEmail = event.target.value;
@@ -42,7 +41,7 @@ function Login(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const userData = { email, password };
-    onLoginUser(userData, props.history);
+    dispatch(loginUser(userData, props.history));
   };
 
   return (
@@ -118,21 +117,4 @@ function Login(props) {
   );
 }
 
-Login.propTypes = {
-  onLoginUser: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
-  UI: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  user: state.user,
-  UI: state.UI,
-});
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onLoginUser: (userData, history) => dispatch(loginUser(userData, history)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login;

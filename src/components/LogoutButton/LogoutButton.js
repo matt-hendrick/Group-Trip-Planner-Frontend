@@ -2,7 +2,7 @@ import React from 'react';
 
 // Redux
 import { logoutUser } from '../../redux/actions/userActions';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 // Components
 import MyButton from '../MyButton/MyButton';
@@ -10,11 +10,11 @@ import MyButton from '../MyButton/MyButton';
 // MUI Icons
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-function LogoutButton(props) {
-  const { onLogoutUser } = props;
+function LogoutButton() {
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
-    onLogoutUser();
+    dispatch(logoutUser());
   };
 
   return (
@@ -24,10 +24,4 @@ function LogoutButton(props) {
   );
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onLogoutUser: () => dispatch(logoutUser()),
-  };
-};
-
-export default connect(null, mapDispatchToProps)(LogoutButton);
+export default LogoutButton;

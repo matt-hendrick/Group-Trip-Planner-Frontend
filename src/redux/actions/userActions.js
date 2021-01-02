@@ -44,10 +44,10 @@ export const logoutUser = () => (dispatch) => {
   dispatch({ type: SET_UNAUTHENTICATED });
 };
 
-export const getOwnUserDetails = (userHandle) => (dispatch) => {
+export const getOwnUserDetails = () => (dispatch) => {
   dispatch({ type: LOADING_USER });
   axios
-    .get(`/users/${userHandle}`)
+    .get(`/user`)
     .then((res) => {
       dispatch({
         type: SET_USER,

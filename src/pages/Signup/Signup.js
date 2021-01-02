@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 // import AppIcon from '../../images/TripMenuLogo.png';
 
 // Redux
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { signupUser } from '../../redux/actions/userActions';
 
 // MUI Stuff
@@ -25,12 +24,11 @@ function Signup(props) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [handle, setHandle] = useState('');
 
-  const classes = useStyles();
+  const loading = useSelector((state) => state.ui.loading);
+  const errors = useSelector((state) => state.ui.errors);
+  const dispatch = useDispatch();
 
-  const {
-    onSignupUser,
-    UI: { loading, errors },
-  } = props;
+  const classes = useStyles();
 
   const emailChangedHandler = (event) => {
     const updatedEmail = event.target.value;
@@ -55,7 +53,7 @@ function Signup(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const newUserData = { email, password, confirmPassword, handle };
-    onSignupUser(newUserData, props.history);
+    dispatch(signupUser(newUserData, props.history));
   };
 
   return (
@@ -155,22 +153,4 @@ function Signup(props) {
   );
 }
 
-Signup.propTypes = {
-  signupUser: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
-  UI: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  user: state.user,
-  UI: state.UI,
-});
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onSignupUser: (userData, history) =>
-      dispatch(signupUser(userData, history)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Signup);
+export default Signup;
