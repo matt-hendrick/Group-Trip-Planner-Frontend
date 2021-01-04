@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux';
 import GroupProfileCard from '../GroupProfileCard/GroupProfileCard';
 import GroupProfileCardSkeleton from '../GroupProfileCard/GroupProfileCardSkeleton';
 
+import UserProfile from '../UserProfile/UserProfile';
+
 function GroupsDisplay() {
   const groups = useSelector((state) => state.user.groups);
   const loading = useSelector((state) => state.ui.loading);
@@ -25,8 +27,7 @@ function GroupsDisplay() {
         {recentPosts}
       </Grid>
       <Grid item sm={4} xs={12}>
-        {/* <Profile /> */}
-        User Profile
+        <UserProfile />
       </Grid>
     </Grid>
   );
