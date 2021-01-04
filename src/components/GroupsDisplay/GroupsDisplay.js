@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getOwnUserDetails } from '../../redux/actions/userActions';
 
 import GroupProfileCard from '../GroupProfileCard/GroupProfileCard';
 import GroupProfileCardSkeleton from '../GroupProfileCard/GroupProfileCardSkeleton';
 
 import UserProfile from '../UserProfile/UserProfile';
+import CreateGroup from './CreateGroup';
 
 function GroupsDisplay() {
   const groups = useSelector((state) => state.user.groups);
   const loading = useSelector((state) => state.ui.loading);
+  const dispatch = useDispatch();
 
-  let recentPosts =
+  useEffect(() => {
+    dispatch(getOwnUserDetails());
+  }, [loading]);
+
+  let groupList =
     !loading && groups ? (
       groups.map((group) => (
         <GroupProfileCard key={group.groupID} group={group} />
@@ -24,7 +31,8 @@ function GroupsDisplay() {
   return (
     <Grid container spacing={1}>
       <Grid item sm={8} xs={12}>
-        {recentPosts}
+        {groupList}
+        <CreateGroup />
       </Grid>
       <Grid item sm={4} xs={12}>
         <UserProfile />
