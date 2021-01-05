@@ -1,6 +1,7 @@
 import {
   SET_GROUPS,
   SET_GROUP,
+  SET_TRIP,
   LOADING_DATA,
   CREATE_GROUP,
   CREATE_TRIP,
@@ -9,6 +10,7 @@ import {
 const initialState = {
   groups: [],
   group: {},
+  trip: {},
   loading: false,
 };
 
@@ -29,6 +31,11 @@ const dataReducer = (state = initialState, action) => {
       return {
         ...state,
         group: action.payload,
+      };
+    case SET_TRIP:
+      return {
+        ...state,
+        trip: action.payload,
       };
     case CREATE_GROUP:
       return {

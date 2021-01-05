@@ -9,10 +9,12 @@ import GroupProfileCardSkeleton from '../GroupProfileCard/GroupProfileCardSkelet
 
 import UserProfile from '../UserProfile/UserProfile';
 import CreateGroup from './CreateGroup';
+import Header from '../Header/Header';
 
 function GroupsDisplay() {
   const groups = useSelector((state) => state.user.groups);
   const loading = useSelector((state) => state.ui.loading);
+  const userHandle = useSelector((state) => state.user.credentials.handle);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,6 +33,7 @@ function GroupsDisplay() {
   return (
     <Grid container spacing={1}>
       <Grid item sm={8} xs={12}>
+        <Header headerTitle={`${userHandle}'s Groups`} />
         {groupList}
         <CreateGroup />
       </Grid>

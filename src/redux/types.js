@@ -11,6 +11,7 @@ export const STOP_LOADING_UI = 'STOP_LOADING_UI';
 // Data reducer types
 export const SET_GROUPS = 'SET_GROUPS';
 export const SET_GROUP = 'SET_GROUP';
+export const SET_TRIP = 'SET_TRIP';
 export const CREATE_GROUP = 'CREATE_GROUP';
 export const CREATE_TRIP = 'CREATE_TRIP';
 export const LOADING_DATA = 'LOADING_DATA';

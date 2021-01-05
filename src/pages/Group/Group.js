@@ -9,6 +9,7 @@ import TripProfileCardSkeleton from '../../components/TripProfileCard/TripProfil
 
 import UserProfile from '../../components/UserProfile/UserProfile';
 import CreateTrip from '../../components/TripProfileCard/CreateTrip';
+import Header from '../../components/Header/Header';
 
 function Group() {
   const group = useSelector((state) => state.data.group);
@@ -34,6 +35,7 @@ function Group() {
   return (
     <Grid container spacing={1}>
       <Grid item sm={8} xs={12}>
+        <Header headerTitle={group.groupName} />
         {TripList}
         <CreateTrip groupID={groupID} />
       </Grid>

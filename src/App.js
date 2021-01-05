@@ -21,6 +21,7 @@ import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import Group from './pages/Group/Group';
+import Trip from './pages/Trip/Trip';
 
 const theme = createMuiTheme(themeObject);
 
@@ -49,7 +50,11 @@ function App() {
               <AuthRoute exact path="/login" component={Login} />
               <AuthRoute exact path="/signup" component={Signup} />
               <Route exact path="/groups/:groupID" component={Group} />
-              {/* <Route exact path="/groups/:groupID/trips/:tripID" component={Trip} /> */}
+              <Route
+                exact
+                path="/groups/:groupID/trips/:tripID"
+                component={Trip}
+              />
             </Switch>
           </div>
         </Router>

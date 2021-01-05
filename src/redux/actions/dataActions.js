@@ -1,6 +1,7 @@
 import {
   SET_GROUPS,
   SET_GROUP,
+  SET_TRIP,
   LOADING_DATA,
   LOADING_UI,
   STOP_LOADING_UI,
@@ -29,6 +30,19 @@ export const getGroup = (groupID) => (dispatch) => {
     .get(`/groups/${groupID}`)
     .then((res) => {
       dispatch({ type: SET_GROUP, payload: res.data });
+      dispatch({ type: STOP_LOADING_UI });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const getTrip = (groupID, tripID) => (dispatch) => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .get(`/groups/${groupID}/trips/${tripID}`)
+    .then((res) => {
+      dispatch({ type: SET_TRIP, payload: res.data });
       dispatch({ type: STOP_LOADING_UI });
     })
     .catch((err) => {
