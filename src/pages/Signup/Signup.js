@@ -60,7 +60,7 @@ function Signup(props) {
     <Grid container className={classes.form}>
       <Grid item sm />
       <Grid item sm>
-        {/* <img src={AppIcon} alt="Trip Menu Logo" className={classes.image} /> */}
+        {/* <img src={AppIcon} alt="Trip Menu Logo" className={classes.logoImage} /> */}
         <Typography variant="h2" className={classes.pageTitle}>
           Sign Up
         </Typography>

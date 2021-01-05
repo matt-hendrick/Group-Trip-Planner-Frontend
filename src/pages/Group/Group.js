@@ -8,8 +8,10 @@ import TripProfileCard from '../../components/TripProfileCard/TripProfileCard';
 import TripProfileCardSkeleton from '../../components/TripProfileCard/TripProfileCardSkeleton';
 
 import UserProfile from '../../components/UserProfile/UserProfile';
+import GroupProfile from '../../components/GroupProfile/GroupProfile';
 import CreateTrip from '../../components/TripProfileCard/CreateTrip';
 import Header from '../../components/Header/Header';
+import InviteUser from '../../components/InviteUser/InviteUser';
 
 function Group() {
   const group = useSelector((state) => state.data.group);
@@ -40,7 +42,9 @@ function Group() {
         <CreateTrip groupID={groupID} />
       </Grid>
       <Grid item sm={4} xs={12}>
+        <GroupProfile />
         <UserProfile />
+        <InviteUser groupID={groupID} />
       </Grid>
     </Grid>
   );

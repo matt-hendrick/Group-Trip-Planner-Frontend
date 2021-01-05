@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function UserProfileSkeleton() {
+function GroupProfileSkeleton() {
   const classes = useStyles();
   return (
     <Paper className={classes.paper}>
@@ -26,11 +26,13 @@ function UserProfileSkeleton() {
           <hr />
           <div className={classes.fullLine} />
           <hr />
-          <CalendarToday color="primary" /> Joined date
+          <div className={classes.fullLine} />
+          <hr />
+          <CalendarToday color="primary" /> Created date
         </div>
       </div>
     </Paper>
   );
 }
 
-export default UserProfileSkeleton;
+export default GroupProfileSkeleton;

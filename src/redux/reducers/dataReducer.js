@@ -5,6 +5,7 @@ import {
   LOADING_DATA,
   CREATE_GROUP,
   CREATE_TRIP,
+  INVITE_USER,
 } from '../types';
 
 const initialState = {
@@ -50,6 +51,10 @@ const dataReducer = (state = initialState, action) => {
           trips: [action.payload, ...state.group.trips],
         },
       };
+    // case INVITE_USER:
+    //   return {
+    //     ...state,
+    //   };
     default:
       return state;
   }

@@ -14,4 +14,5 @@ export const SET_GROUP = 'SET_GROUP';
 export const SET_TRIP = 'SET_TRIP';
 export const CREATE_GROUP = 'CREATE_GROUP';
 export const CREATE_TRIP = 'CREATE_TRIP';
+export const INVITE_USER = 'INVITE_USER';
 export const LOADING_DATA = 'LOADING_DATA';

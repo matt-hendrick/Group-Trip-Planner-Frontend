@@ -4,7 +4,9 @@ import Grid from '@material-ui/core/Grid';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTrip } from '../../redux/actions/dataActions';
 
+import UserProfile from '../../components/UserProfile/UserProfile';
 import Header from '../../components/Header/Header';
+import MapDisplay from '../../components/MapDisplay/MapDisplay';
 
 function Trip() {
   const trip = useSelector((state) => state.data.trip);
@@ -19,7 +21,12 @@ function Trip() {
     dispatch(getTrip(groupID, tripID));
   }, [dispatch, groupID, tripID]);
 
-  let Map = !loading && trip ? <div>Map</div> : <div>Map Skeleton</div>;
+  let Map =
+    !loading && trip ? (
+      <MapDisplay destination={trip.destination} />
+    ) : (
+      <div>Map Skeleton</div>
+    );
 
   return (
     <Grid container spacing={1}>
@@ -29,7 +36,7 @@ function Trip() {
         <div>Comments</div>
       </Grid>
       <Grid item sm={4} xs={12}>
-        <div>Lists</div>
+        <UserProfile />
       </Grid>
     </Grid>
   );
