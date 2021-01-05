@@ -12,4 +12,5 @@ export const STOP_LOADING_UI = 'STOP_LOADING_UI';
 export const SET_GROUPS = 'SET_GROUPS';
 export const SET_GROUP = 'SET_GROUP';
 export const CREATE_GROUP = 'CREATE_GROUP';
+export const CREATE_TRIP = 'CREATE_TRIP';
 export const LOADING_DATA = 'LOADING_DATA';

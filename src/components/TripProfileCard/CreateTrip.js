@@ -6,7 +6,7 @@ import MyButton from '../MyButton/MyButton';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { createGroup, clearErrors } from '../../redux/actions/dataActions';
+import { createTrip, clearErrors } from '../../redux/actions/dataActions';
 
 //MUI
 import Button from '@material-ui/core/Button';
@@ -35,11 +35,13 @@ const useStyles = makeStyles({
   },
 });
 
-function CreateGroup() {
+function CreateTrip(props) {
   const [open, setOpen] = useState(false);
-  const [groupName, setGroupName] = useState('');
+  const [tripName, setTripName] = useState('');
 
   const classes = useStyles();
+
+  const { groupID } = props;
 
   const loading = useSelector((state) => state.ui.loading);
   const errors = useSelector((state) => state.ui.errors);
@@ -47,7 +49,7 @@ function CreateGroup() {
 
   useEffect(() => {
     if (!errors && !loading) {
-      setGroupName('');
+      setTripName('');
       setOpen(false);
     }
   }, [loading, errors]);
@@ -61,20 +63,20 @@ function CreateGroup() {
     setOpen(false);
   };
 
-  const changeGroupName = (event) => {
-    const updatedGroupName = event.target.value;
-    setGroupName(updatedGroupName);
+  const changeTripName = (event) => {
+    const updatedTripName = event.target.value;
+    setTripName(updatedTripName);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(createGroup({ groupName }));
+    dispatch(createTrip(groupID, { tripName }));
   };
 
   return (
     <Fragment>
-      <MyButton tip="Create a new group!" onClick={handleOpen}>
-        <span>Create a new group! </span>
+      <MyButton tip="Create a new trip!" onClick={handleOpen}>
+        <span>Create a new trip! </span>
         {/* <AddIcon /> */}
       </MyButton>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
@@ -85,20 +87,20 @@ function CreateGroup() {
         >
           <CloseIcon />
         </MyButton>
-        <DialogTitle>Create a new group</DialogTitle>
+        <DialogTitle>Create a new trip</DialogTitle>
         <DialogContent>
           <form onSubmit={handleSubmit}>
             <TextField
-              name="Group Name"
+              name="Trip Name"
               type="text"
-              label="Group Name"
+              label="Trip Name"
               multiline
               rows="3"
-              placeholder="Create a new group"
-              error={errors.groupName ? true : false}
-              helperText={errors.groupName}
+              placeholder="Create a new trip"
+              error={errors.tripName ? true : false}
+              helperText={errors.tripName}
               className={classes.textField}
-              onChange={changeGroupName}
+              onChange={changeTripName}
               fullWidth
             />
             <Button
@@ -123,4 +125,4 @@ function CreateGroup() {
   );
 }
 
-export default CreateGroup;
+export default CreateTrip;

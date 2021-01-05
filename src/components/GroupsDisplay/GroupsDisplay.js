@@ -17,7 +17,7 @@ function GroupsDisplay() {
 
   useEffect(() => {
     dispatch(getOwnUserDetails());
-  }, [loading]);
+  }, [loading, dispatch]);
 
   let groupList =
     !loading && groups ? (

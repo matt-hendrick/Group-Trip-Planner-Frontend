@@ -5,6 +5,7 @@ import {
   LOADING_UI,
   STOP_LOADING_UI,
   CREATE_GROUP,
+  CREATE_TRIP,
   SET_ERRORS,
   CLEAR_ERRORS,
 } from '../types';
@@ -41,6 +42,21 @@ export const createGroup = (newGroup) => (dispatch) => {
     .post('/groups', newGroup)
     .then((res) => {
       dispatch({ type: CREATE_GROUP, payload: res.data });
+      dispatch(clearErrors());
+      dispatch({ type: STOP_LOADING_UI });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: SET_ERRORS, payload: err.response.data });
+    });
+};
+
+export const createTrip = (groupID, newTrip) => (dispatch) => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .post(`/groups/${groupID}/trips`, newTrip)
+    .then((res) => {
+      dispatch({ type: CREATE_TRIP, payload: res.data });
       dispatch(clearErrors());
       dispatch({ type: STOP_LOADING_UI });
     })

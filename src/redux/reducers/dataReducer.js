@@ -1,4 +1,10 @@
-import { SET_GROUPS, SET_GROUP, LOADING_DATA, CREATE_GROUP } from '../types';
+import {
+  SET_GROUPS,
+  SET_GROUP,
+  LOADING_DATA,
+  CREATE_GROUP,
+  CREATE_TRIP,
+} from '../types';
 
 const initialState = {
   groups: [],
@@ -28,6 +34,14 @@ const dataReducer = (state = initialState, action) => {
       return {
         ...state,
         groups: [action.payload, ...state.groups],
+      };
+    case CREATE_TRIP:
+      return {
+        ...state,
+        group: {
+          ...state.group,
+          trips: [action.payload, ...state.group.trips],
+        },
       };
     default:
       return state;

@@ -3,23 +3,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ProfileCard from '../ProfileCard/ProfileCard';
+
 function GroupProfileCard(props) {
   const {
-    group: { groupName, groupID, createdAt, members },
+    groupID,
+    trip: { tripName, tripID, createdAt, destination, mapZoomLevel },
   } = props;
 
   return (
     <ProfileCard
-      name={groupName}
-      link={`/groups/${groupID}`}
+      name={tripName}
+      link={`/groups/${groupID}/trips/${tripID}`}
       createdAt={createdAt}
-      members={members}
     />
   );
 }
 
 GroupProfileCard.propTypes = {
-  group: PropTypes.object.isRequired,
+  groupID: PropTypes.string.isRequired,
+  trip: PropTypes.object.isRequired,
 };
 
 export default GroupProfileCard;
