@@ -4,12 +4,12 @@ import Grid from '@material-ui/core/Grid';
 import { useSelector, useDispatch } from 'react-redux';
 import { getGroup } from '../../redux/actions/dataActions';
 
-import TripProfileCard from '../../components/TripProfileCard/TripProfileCard';
-import TripProfileCardSkeleton from '../../components/TripProfileCard/TripProfileCardSkeleton';
+import TripSnippet from '../../components/TripSnippet/TripSnippet';
+import TripSnippetSkeleton from '../../components/TripSnippet/TripSnippetSkeleton';
 
 import UserProfile from '../../components/UserProfile/UserProfile';
 import GroupProfile from '../../components/GroupProfile/GroupProfile';
-import CreateTrip from '../../components/TripProfileCard/CreateTrip';
+import CreateTrip from '../../components/TripSnippet/CreateTrip';
 import Header from '../../components/Header/Header';
 import InviteUser from '../../components/InviteUser/InviteUser';
 
@@ -28,10 +28,10 @@ function Group() {
   let TripList =
     !loading && group ? (
       group.trips?.map((trip) => (
-        <TripProfileCard key={trip.tripID} trip={trip} groupID={groupID} />
+        <TripSnippet key={trip.tripID} trip={trip} groupID={groupID} />
       ))
     ) : (
-      <TripProfileCardSkeleton />
+      <TripSnippetSkeleton />
     );
 
   return (

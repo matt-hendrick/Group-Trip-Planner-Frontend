@@ -20,19 +20,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles({
   ...theme.classes,
-  submitButton: {
-    position: 'relative',
-    float: 'right',
-    marginTop: 10,
-  },
-  progressSpinner: {
-    position: 'absolute',
-  },
-  closeButton: {
-    position: 'absolute',
-    left: '91%',
-    top: '6%',
-  },
 });
 
 function CreateTrip(props) {

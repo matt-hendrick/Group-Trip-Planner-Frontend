@@ -4,8 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import { useSelector, useDispatch } from 'react-redux';
 import { getOwnUserDetails } from '../../redux/actions/userActions';
 
-import GroupProfileCard from '../GroupProfileCard/GroupProfileCard';
-import GroupProfileCardSkeleton from '../GroupProfileCard/GroupProfileCardSkeleton';
+import GroupSnippet from '../GroupSnippet/GroupSnippet';
+import GroupSnippetSkeleton from '../GroupSnippet/GroupSnippetSkeleton';
 
 import UserProfile from '../UserProfile/UserProfile';
 import CreateGroup from './CreateGroup';
@@ -23,11 +23,9 @@ function GroupsDisplay() {
 
   let groupList =
     !loading && groups ? (
-      groups.map((group) => (
-        <GroupProfileCard key={group.groupID} group={group} />
-      ))
+      groups.map((group) => <GroupSnippet key={group.groupID} group={group} />)
     ) : (
-      <GroupProfileCardSkeleton />
+      <GroupSnippetSkeleton />
     );
 
   return (

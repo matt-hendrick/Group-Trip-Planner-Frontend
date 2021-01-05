@@ -135,6 +135,19 @@ const theme = {
       backgroundColor: 'rgba(0,0,0, 0.6)',
       marginBottom: 10,
     },
+    submitButton: {
+      position: 'relative',
+      float: 'right',
+      marginTop: 10,
+    },
+    progressSpinner: {
+      position: 'absolute',
+    },
+    closeButton: {
+      position: 'absolute',
+      left: '91%',
+      top: '6%',
+    },
   },
 };
 
