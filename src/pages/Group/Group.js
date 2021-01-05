@@ -20,7 +20,7 @@ function Group() {
 
   useEffect(() => {
     dispatch(getGroup(groupID));
-  }, [dispatch]);
+  }, [dispatch, groupID]);
 
   let TripList =
     !loading && group ? (

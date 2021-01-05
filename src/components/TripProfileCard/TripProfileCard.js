@@ -7,7 +7,12 @@ import ProfileCard from '../ProfileCard/ProfileCard';
 function GroupProfileCard(props) {
   const {
     groupID,
-    trip: { tripName, tripID, createdAt, destination, mapZoomLevel },
+    trip: {
+      tripName,
+      tripID,
+      createdAt,
+      // destination, mapZoomLevel
+    },
   } = props;
 
   return (

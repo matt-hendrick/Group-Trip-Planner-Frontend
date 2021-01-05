@@ -45,7 +45,7 @@ function UserProfile() {
               color="primary"
               variant="h5"
             >
-              @{handle}
+              {handle}
             </MuiLink>
             <hr />
             <CalendarToday color="primary" />{' '}
