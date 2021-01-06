@@ -39,7 +39,7 @@ function ProfileCard(props) {
           {name}
         </Typography>
         <Typography variant="body2" color="textSecondary">
-          {dayjs(createdAt).fromNow()}
+          Created {dayjs(createdAt).fromNow()}
         </Typography>
         {members ? (
           <Typography variant="body1">Members: {members.join(', ')}</Typography>

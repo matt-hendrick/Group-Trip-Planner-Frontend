@@ -87,7 +87,7 @@ export const inviteUser = (groupID, recipient) => (dispatch) => {
   axios
     .post(`/groups/${groupID}/invite`, recipient)
     .then((res) => {
-      // dispatch({ type: INVITE_USER, payload: res.data });
+      dispatch({ type: INVITE_USER, payload: recipient.recipient });
       dispatch(clearErrors());
       dispatch({ type: STOP_LOADING_UI });
     })

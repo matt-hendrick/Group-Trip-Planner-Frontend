@@ -13,6 +13,7 @@ const initialState = {
   group: {},
   trip: {},
   loading: false,
+  invitedUsers: [],
 };
 
 const dataReducer = (state = initialState, action) => {
@@ -51,10 +52,14 @@ const dataReducer = (state = initialState, action) => {
           trips: [action.payload, ...state.group.trips],
         },
       };
-    // case INVITE_USER:
-    //   return {
-    //     ...state,
-    //   };
+    case INVITE_USER:
+      return {
+        ...state,
+        group: {
+          ...state.group,
+          pendingInvites: [action.payload, ...state.group.pendingInvites],
+        },
+      };
     default:
       return state;
   }

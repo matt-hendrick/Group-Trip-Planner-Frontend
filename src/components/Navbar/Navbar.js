@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import MyButton from '../MyButton/MyButton';
 import LogoutButton from '../LogoutButton/LogoutButton';
 // import CreatePost from '../Post/CreatePost';
-// import Notifications from '../Notifications/Notifications';
+import Invites from '../Invites/Invites';
 
 // MUI stuff
 import AppBar from '@material-ui/core/AppBar';
@@ -27,14 +27,8 @@ function Navbar() {
                 <HomeIcon />
               </MyButton>
             </Link>
+            <Invites />
             <LogoutButton />
-
-            {/* <Notifications /> */}
-
-            {/* <Button color="inherit" component={Link} to="/posts">
-              Posts
-            </Button> */}
-            {/* <Notifications /> */}
           </Fragment>
         ) : (
           <Fragment>
