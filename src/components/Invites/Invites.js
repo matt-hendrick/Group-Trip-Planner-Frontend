@@ -1,8 +1,8 @@
 import React, { useState, Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import PropTypes from 'prop-types';
+
+import MyButton from '../MyButton/MyButton';
 
 // MUI stuff
 import Menu from '@material-ui/core/Menu';
@@ -13,14 +13,14 @@ import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
 // Icons
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ChatIcon from '@material-ui/icons/Chat';
 import GroupIcon from '@material-ui/icons/GroupAdd';
+import ThumbsUpIcon from '@material-ui/icons/ThumbUp';
+import ThumbsDownIcon from '@material-ui/icons/ThumbDown';
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { acceptInvite, rejectInvite } from '../../redux/actions/userActions';
 
-function Invites(props) {
+function Invites() {
   const [anchorElement, setAnchorElement] = useState(null);
 
   const invites = useSelector((state) => state.user.invites);
@@ -75,12 +75,18 @@ function Invites(props) {
             <Typography color="inherit" variant="body1">
               {invite.sender} invited you to {invite.groupName} ({time})
             </Typography>
-            <button onClick={() => handleAccept(groupID, inviteID)}>
-              Accept
-            </button>
-            <button onClick={() => handleReject(groupID, inviteID)}>
-              Reject
-            </button>
+            <MyButton
+              tip="Accept"
+              onClick={() => handleAccept(groupID, inviteID)}
+            >
+              <ThumbsUpIcon color="primary" />
+            </MyButton>
+            <MyButton
+              tip="Reject"
+              onClick={() => handleReject(groupID, inviteID)}
+            >
+              <ThumbsDownIcon color="secondary" />
+            </MyButton>
           </MenuItem>
         );
       })
