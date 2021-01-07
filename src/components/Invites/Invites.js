@@ -33,14 +33,14 @@ function Invites() {
     setAnchorElement(null);
   };
 
-  const handleAccept = (groupID, inviteID) => {
-    dispatch(acceptInvite(groupID, inviteID));
-    console.log('ran accept', groupID, inviteID);
+  const handleAccept = (tripID, inviteID) => {
+    dispatch(acceptInvite(tripID, inviteID));
+    console.log('ran accept', tripID, inviteID);
     handleClose();
   };
 
-  const handleReject = (groupID, inviteID) => {
-    dispatch(rejectInvite(groupID, inviteID));
+  const handleReject = (tripID, inviteID) => {
+    dispatch(rejectInvite(tripID, inviteID));
     console.log('ran reject');
     handleClose();
   };
@@ -65,7 +65,7 @@ function Invites() {
           <GroupIcon color="secondary" style={{ marginRight: 10 }} />
         );
         const inviteID = invite.inviteID;
-        const groupID = invite.groupID;
+        const tripID = invite.tripID;
         return (
           <MenuItem
             key={invite.createdAt}
@@ -73,17 +73,17 @@ function Invites() {
           >
             {icon}
             <Typography color="inherit" variant="body1">
-              {invite.sender} invited you to {invite.groupName} ({time})
+              {invite.sender} invited you to {invite.tripName} ({time})
             </Typography>
             <MyButton
               tip="Accept"
-              onClick={() => handleAccept(groupID, inviteID)}
+              onClick={() => handleAccept(tripID, inviteID)}
             >
               <ThumbsUpIcon color="primary" />
             </MyButton>
             <MyButton
               tip="Reject"
-              onClick={() => handleReject(groupID, inviteID)}
+              onClick={() => handleReject(tripID, inviteID)}
             >
               <ThumbsDownIcon color="secondary" />
             </MyButton>

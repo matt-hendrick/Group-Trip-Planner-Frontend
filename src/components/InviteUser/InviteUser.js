@@ -29,7 +29,7 @@ function InviteUser(props) {
 
   const classes = useStyles();
 
-  const { groupID } = props;
+  const { tripID } = props;
 
   const loading = useSelector((state) => state.ui.loading);
   const errors = useSelector((state) => state.ui.errors);
@@ -58,13 +58,13 @@ function InviteUser(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(inviteUser(groupID, { recipient }));
+    dispatch(inviteUser(tripID, { recipient }));
   };
 
   return (
     <Fragment>
-      <MyButton tip="Invite a user to the group!" onClick={handleOpen}>
-        <span>Invite a user to the group! </span>
+      <MyButton tip="Invite a user to the trip!" onClick={handleOpen}>
+        <span>Invite a user to the trip! </span>
         {/* <AddIcon /> */}
       </MyButton>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
@@ -75,7 +75,7 @@ function InviteUser(props) {
         >
           <CloseIcon />
         </MyButton>
-        <DialogTitle>Invite a user to the group</DialogTitle>
+        <DialogTitle>Invite a user to the trip</DialogTitle>
         <DialogContent>
           <form onSubmit={handleSubmit}>
             <TextField
@@ -85,8 +85,8 @@ function InviteUser(props) {
               multiline
               rows="3"
               placeholder="Enter the user's handle"
-              error={errors.error ? true : false}
-              helperText={errors.error}
+              error={errors.invite ? true : false}
+              helperText={errors.invite}
               className={classes.textField}
               onChange={changeRecipient}
               fullWidth
@@ -114,7 +114,7 @@ function InviteUser(props) {
 }
 
 InviteUser.propTypes = {
-  groupID: PropTypes.string.isRequired,
+  tripID: PropTypes.string.isRequired,
 };
 
 export default InviteUser;

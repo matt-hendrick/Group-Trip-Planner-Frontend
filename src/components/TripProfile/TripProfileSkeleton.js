@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function GroupProfileSkeleton() {
+function TripProfileSkeleton() {
   const classes = useStyles();
   return (
     <Paper className={classes.paper}>
@@ -35,4 +35,4 @@ function GroupProfileSkeleton() {
   );
 }
 
-export default GroupProfileSkeleton;
+export default TripProfileSkeleton;

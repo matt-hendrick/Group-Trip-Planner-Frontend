@@ -5,8 +5,8 @@ import {
   LOADING_UI,
   SET_UNAUTHENTICATED,
   LOADING_USER,
-  ACCEPT_INVITE,
-  REJECT_INVITE,
+  // ACCEPT_INVITE,
+  // REJECT_INVITE,
   STOP_LOADING_UI,
 } from '../types';
 import axios from 'axios';
@@ -60,10 +60,10 @@ export const getOwnUserDetails = () => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const acceptInvite = (groupID, inviteID) => (dispatch) => {
+export const acceptInvite = (tripID, inviteID) => (dispatch) => {
   dispatch({ type: LOADING_UI });
   axios
-    .post(`/groups/${groupID}/invite/${inviteID}`)
+    .post(`/trips/${tripID}/invite/${inviteID}`)
     .then((res) => {
       // dispatch({ type: ACCEPT_INVITE, payload: inviteID });
       dispatch(clearErrors());
@@ -75,10 +75,10 @@ export const acceptInvite = (groupID, inviteID) => (dispatch) => {
     });
 };
 
-export const rejectInvite = (groupID, inviteID) => (dispatch) => {
+export const rejectInvite = (tripID, inviteID) => (dispatch) => {
   dispatch({ type: LOADING_UI });
   axios
-    .delete(`/groups/${groupID}/invite/${inviteID}`)
+    .delete(`/trips/${tripID}/invite/${inviteID}`)
     .then((res) => {
       // dispatch({ type: REJECT_INVITE, payload: inviteID });
       dispatch(clearErrors());

@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 
 import ProfileCard from '../ProfileCard/ProfileCard';
 
-function GroupProfileCard(props) {
+function TripSnippet(props) {
   const {
-    groupID,
     trip: {
       tripName,
       tripID,
       createdAt,
+      members,
       // destination, mapZoomLevel
     },
   } = props;
@@ -18,15 +18,15 @@ function GroupProfileCard(props) {
   return (
     <ProfileCard
       name={tripName}
-      link={`/groups/${groupID}/trips/${tripID}`}
+      link={`/trips/${tripID}`}
       createdAt={createdAt}
+      members={members}
     />
   );
 }
 
-GroupProfileCard.propTypes = {
-  groupID: PropTypes.string.isRequired,
+TripSnippet.propTypes = {
   trip: PropTypes.object.isRequired,
 };
 
-export default GroupProfileCard;
+export default TripSnippet;

@@ -22,13 +22,11 @@ const useStyles = makeStyles({
   ...theme.classes,
 });
 
-function CreateTrip(props) {
+function CreateTrip() {
   const [open, setOpen] = useState(false);
   const [tripName, setTripName] = useState('');
 
   const classes = useStyles();
-
-  const { groupID } = props;
 
   const loading = useSelector((state) => state.ui.loading);
   const errors = useSelector((state) => state.ui.errors);
@@ -57,7 +55,7 @@ function CreateTrip(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(createTrip(groupID, { tripName }));
+    dispatch(createTrip({ tripName }));
   };
 
   return (

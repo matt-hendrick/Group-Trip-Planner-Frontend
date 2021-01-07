@@ -7,6 +7,8 @@ import { getTrip } from '../../redux/actions/dataActions';
 import UserProfile from '../../components/UserProfile/UserProfile';
 import Header from '../../components/Header/Header';
 import MapDisplay from '../../components/MapDisplay/MapDisplay';
+import TripProfile from '../../components/TripProfile/TripProfile';
+import InviteUser from '../../components/InviteUser/InviteUser';
 
 function Trip() {
   const trip = useSelector((state) => state.data.trip);
@@ -15,11 +17,10 @@ function Trip() {
 
   const path = window.location.pathname;
   const tripID = path.substring(path.lastIndexOf('/') + 1);
-  const groupID = path.split('/')[2];
 
   useEffect(() => {
-    dispatch(getTrip(groupID, tripID));
-  }, [dispatch, groupID, tripID]);
+    dispatch(getTrip(tripID));
+  }, [dispatch, tripID]);
 
   let Map =
     !loading && trip ? (
@@ -36,7 +37,9 @@ function Trip() {
         <div>Comments</div>
       </Grid>
       <Grid item sm={4} xs={12}>
-        <UserProfile />
+        <TripProfile />
+        <InviteUser tripID={tripID} />
+        {/* <UserProfile /> */}
       </Grid>
     </Grid>
   );

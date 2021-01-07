@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import dayjs from 'dayjs';
-import GroupProfileSkeleton from './GroupProfileSkeleton';
+import TripProfileSkeleton from './TripProfileSkeleton';
 // MUI stuff
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
@@ -14,15 +14,13 @@ const useStyles = makeStyles((theme) => ({
   ...theme.classes,
 }));
 
-function UserProfile() {
+function TripProfile() {
   const classes = useStyles();
 
   const loading = useSelector((state) => state.user.loading);
-  const createdAt = useSelector((state) => state.data.group.createdAt);
-  const members = useSelector((state) => state.data.group.members);
-  const pendingInvites = useSelector(
-    (state) => state.data.group.pendingInvites
-  );
+  const createdAt = useSelector((state) => state.data.trip.createdAt);
+  const members = useSelector((state) => state.data.trip.members);
+  const pendingInvites = useSelector((state) => state.data.trip.pendingInvites);
 
   let profileDisplay =
     !loading && createdAt ? (
@@ -48,10 +46,10 @@ function UserProfile() {
         </div>
       </Paper>
     ) : (
-      <GroupProfileSkeleton />
+      <TripProfileSkeleton />
     );
 
   return profileDisplay;
 }
 
-export default UserProfile;
+export default TripProfile;
