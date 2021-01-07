@@ -3,6 +3,8 @@ import {
   SET_TRIP,
   LOADING_DATA,
   CREATE_TRIP,
+  SUBMIT_COMMENT,
+  DELETE_COMMENT,
   INVITE_USER,
 } from '../types';
 
@@ -35,6 +37,22 @@ const dataReducer = (state = initialState, action) => {
         ...state,
 
         trips: [action.payload, ...state.trips],
+      };
+    case SUBMIT_COMMENT:
+      return {
+        ...state,
+        trip: {
+          ...state.trip,
+          comments: [action.payload, ...state.trip.comments],
+        },
+      };
+    case DELETE_COMMENT:
+      let deleteIndex = state.trip.comments.findIndex(
+        (comments) => comments.commentsID === action.payload
+      );
+      state.trip.comments.splice(deleteIndex, 1);
+      return {
+        ...state,
       };
     case INVITE_USER:
       return {

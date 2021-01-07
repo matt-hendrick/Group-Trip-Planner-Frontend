@@ -4,6 +4,8 @@ import {
   LOADING_UI,
   STOP_LOADING_UI,
   CREATE_TRIP,
+  SUBMIT_COMMENT,
+  DELETE_COMMENT,
   INVITE_USER,
   SET_ERRORS,
   CLEAR_ERRORS,
@@ -49,6 +51,25 @@ export const createTrip = (newTrip) => (dispatch) => {
       console.log(err);
       dispatch({ type: SET_ERRORS, payload: err.response.data });
     });
+};
+
+export const submitComment = (tripID, newComment) => (dispatch) => {
+  axios
+    .post(`/trips/${tripID}/comment`, newComment)
+    .then((res) => {
+      dispatch({ type: SUBMIT_COMMENT, payload: res.data });
+      dispatch(clearErrors());
+    })
+    .catch((err) => dispatch({ type: SET_ERRORS, payload: err.response.data }));
+};
+
+export const deleteComment = (tripID, commentID) => (dispatch) => {
+  axios
+    .delete(`/trips/${tripID}/comments/${commentID}`)
+    .then(() => {
+      dispatch({ type: DELETE_COMMENT, payload: commentID });
+    })
+    .catch((err) => console.log(err));
 };
 
 export const inviteUser = (tripID, recipient) => (dispatch) => {

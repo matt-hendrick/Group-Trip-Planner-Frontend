@@ -14,5 +14,7 @@ export const STOP_LOADING_UI = 'STOP_LOADING_UI';
 export const SET_TRIPS = 'SET_TRIPS';
 export const SET_TRIP = 'SET_TRIP';
 export const CREATE_TRIP = 'CREATE_TRIP';
+export const SUBMIT_COMMENT = 'SUBMIT_COMMENT';
+export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const INVITE_USER = 'INVITE_USER';
 export const LOADING_DATA = 'LOADING_DATA';

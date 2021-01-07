@@ -97,7 +97,7 @@ const theme = {
       },
     },
     deleteButton: {
-      position: 'absolute',
+      position: 'relative',
       left: '90%',
       top: '10%',
     },
@@ -112,6 +112,10 @@ const theme = {
       width: '100%',
       flexDirection: 'column',
       padding: 25,
+    },
+    content: {
+      padding: 25,
+      objectFit: 'cover',
     },
     cover: {
       minWidth: 200,
@@ -147,6 +151,22 @@ const theme = {
       position: 'absolute',
       left: '91%',
       top: '6%',
+    },
+    commentImage: {
+      maxWidth: '100%',
+      height: 100,
+      objectFit: 'cover',
+      borderRadius: '50%',
+    },
+    commentData: {
+      marginLeft: 20,
+      marginRight: 20,
+      padding: 10,
+    },
+    header: {
+      marginBottom: 10,
+      padding: 10,
+      textAlign: 'center',
     },
   },
 };

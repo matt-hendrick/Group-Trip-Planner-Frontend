@@ -1,15 +1,24 @@
 import React from 'react';
-
+import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
+import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+
+const useStyles = makeStyles((theme) => ({
+  ...theme.classes,
+}));
 
 function Header(props) {
   const { headerTitle } = props;
+
+  const classes = useStyles();
   return (
-    <Typography variant="h5" color="textSecondary">
-      {headerTitle}
-    </Typography>
+    <Paper className={classes.header}>
+      <Typography variant="h5" color="primary">
+        {headerTitle}
+      </Typography>
+    </Paper>
   );
 }
 

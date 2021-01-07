@@ -7,9 +7,11 @@ import { getTrip } from '../../redux/actions/dataActions';
 // import UserProfile from '../../components/UserProfile/UserProfile';
 import Header from '../../components/Header/Header';
 import MapDisplay from '../../components/MapDisplay/MapDisplay';
-import MapSkeleton from '../../components/MapDisplay/MapSkeleton';
+import Skeleton from '@material-ui/lab/Skeleton';
 import TripProfile from '../../components/TripProfile/TripProfile';
 import InviteUser from '../../components/InviteUser/InviteUser';
+import Comments from '../../components/Comments/Comments';
+import CommentForm from '../../components/Comments/CommentForm';
 
 function Trip() {
   const trip = useSelector((state) => state.data.trip);
@@ -27,7 +29,7 @@ function Trip() {
     !loading && trip ? (
       <MapDisplay destination={trip.destination} />
     ) : (
-      <MapSkeleton />
+      <Skeleton variant="rect" width="60vw" height="67vh" />
     );
 
   return (
@@ -35,7 +37,8 @@ function Trip() {
       <Grid item sm={8} xs={12}>
         <Header headerTitle={trip.tripName} />
         {Map}
-        <div>Comments</div>
+        <Comments comments={trip.comments} />
+        <CommentForm tripID={tripID} />
       </Grid>
       <Grid item sm={4} xs={12}>
         <TripProfile />
