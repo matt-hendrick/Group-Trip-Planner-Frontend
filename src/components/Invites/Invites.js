@@ -35,13 +35,11 @@ function Invites() {
 
   const handleAccept = (tripID, inviteID) => {
     dispatch(acceptInvite(tripID, inviteID));
-    console.log('ran accept', tripID, inviteID);
     handleClose();
   };
 
   const handleReject = (tripID, inviteID) => {
     dispatch(rejectInvite(tripID, inviteID));
-    console.log('ran reject');
     handleClose();
   };
 
@@ -51,19 +49,19 @@ function Invites() {
   if (invites && invites.length > 0) {
     invitesIcon = (
       <Badge badgeContent={invites.length} color="secondary">
-        <NotificationsIcon />
+        <GroupIcon />
       </Badge>
     );
   } else {
-    invitesIcon = <NotificationsIcon />;
+    invitesIcon = <GroupIcon />;
   }
   let invitesDisplay =
     invites && invites.length > 0 ? (
       invites.map((invite) => {
         const time = dayjs(invite.createdAt).fromNow();
-        const icon = (
-          <GroupIcon color="secondary" style={{ marginRight: 10 }} />
-        );
+        // const icon = (
+        //   <GroupIcon color="secondary" style={{ marginRight: 10 }} />
+        // );
         const inviteID = invite.inviteID;
         const tripID = invite.tripID;
         return (
@@ -71,7 +69,7 @@ function Invites() {
             key={invite.createdAt}
             //   onClick={handleClose}
           >
-            {icon}
+            {/* {icon} */}
             <Typography color="inherit" variant="body1">
               {invite.sender} invited you to {invite.tripName} ({time})
             </Typography>

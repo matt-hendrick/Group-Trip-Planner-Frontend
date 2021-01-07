@@ -53,7 +53,6 @@ export const createTrip = (newTrip) => (dispatch) => {
 
 export const inviteUser = (tripID, recipient) => (dispatch) => {
   dispatch({ type: LOADING_UI });
-  console.log(recipient);
   axios
     .post(`/trips/${tripID}/invite`, recipient)
     .then((res) => {
