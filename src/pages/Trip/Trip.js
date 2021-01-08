@@ -4,12 +4,10 @@ import Grid from '@material-ui/core/Grid';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTrip } from '../../redux/actions/dataActions';
 
-// import UserProfile from '../../components/UserProfile/UserProfile';
 import Header from '../../components/Header/Header';
 import MapDisplay from '../../components/MapDisplay/MapDisplay';
 import Skeleton from '@material-ui/lab/Skeleton';
 import TripProfile from '../../components/TripProfile/TripProfile';
-import InviteUser from '../../components/InviteUser/InviteUser';
 import Comments from '../../components/Comments/Comments';
 import CommentForm from '../../components/Comments/CommentForm';
 
@@ -29,7 +27,7 @@ function Trip() {
     !loading && trip ? (
       <MapDisplay destination={trip.destination} />
     ) : (
-      <Skeleton variant="rect" width="60vw" height="67vh" />
+      <Skeleton variant="rect" width="100%" height="40vh" />
     );
 
   return (
@@ -42,8 +40,6 @@ function Trip() {
       </Grid>
       <Grid item sm={4} xs={12}>
         <TripProfile />
-        <InviteUser tripID={tripID} />
-        {/* <UserProfile /> */}
       </Grid>
     </Grid>
   );

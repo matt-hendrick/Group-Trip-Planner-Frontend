@@ -60,10 +60,14 @@ function CreateTrip() {
 
   return (
     <Fragment>
-      <MyButton tip="Create a new trip!" onClick={handleOpen}>
-        <span>Create a new trip! </span>
-        {/* <AddIcon /> */}
-      </MyButton>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleOpen}
+        className={classes.centeredButton}
+      >
+        Create a new trip!
+      </Button>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <MyButton
           tip="Close"

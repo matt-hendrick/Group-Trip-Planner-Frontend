@@ -63,10 +63,14 @@ function InviteUser(props) {
 
   return (
     <Fragment>
-      <MyButton tip="Invite a user to the trip!" onClick={handleOpen}>
-        <span>Invite a user to the trip! </span>
-        {/* <AddIcon /> */}
-      </MyButton>
+      <Button
+        onClick={handleOpen}
+        variant="contained"
+        color="primary"
+        className={classes.centeredButton}
+      >
+        Invite a user to the trip!
+      </Button>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <MyButton
           tip="Close"

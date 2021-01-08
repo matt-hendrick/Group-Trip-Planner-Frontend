@@ -12,8 +12,7 @@ const useStyles = makeStyles((theme) => ({
 function MapDisplay(props) {
   const classes = useStyles();
   let leafletDisplay = null;
-  let mapKey = null;
-  let coordinates = ['40.7812', '-73.9665'];
+  let coordinates = ['38.9072', '-77.0369'];
   const { destination } = props;
 
   if (!destination) {

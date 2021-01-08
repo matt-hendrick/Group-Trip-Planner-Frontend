@@ -32,30 +32,28 @@ function Comments(props) {
         const { body, createdAt, userHandle } = comment;
         return (
           <Fragment key={createdAt}>
-            <Grid container>
-              <Grid item xs={12}>
-                <Paper className={classes.commentData}>
-                  <Typography
-                    variant="h5"
-                    component={Link}
-                    to={`/users/${userHandle}`}
-                    color="primary"
-                  >
-                    {userHandle}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
-                  </Typography>
-                  <hr className={classes.invisibleSeparator} />
-                  <Typography variant="body1">{body}</Typography>
-                  {authenticated && handle === comment.userHandle ? (
-                    <DeleteComment
-                      tripID={tripID}
-                      commentID={comment.commentID}
-                    />
-                  ) : null}
-                </Paper>
-              </Grid>
+            <Grid item xs={12}>
+              <Paper className={classes.commentData}>
+                <Typography
+                  variant="h5"
+                  component={Link}
+                  to={`/users/${userHandle}`}
+                  color="primary"
+                >
+                  {userHandle}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
+                </Typography>
+                <hr className={classes.invisibleSeparator} />
+                <Typography variant="body1">{body}</Typography>
+                {authenticated && handle === comment.userHandle ? (
+                  <DeleteComment
+                    tripID={tripID}
+                    commentID={comment.commentID}
+                  />
+                ) : null}
+              </Paper>
             </Grid>
             {index !== comments.length - 1 && (
               <hr className={classes.visibleSeparator} />

@@ -89,7 +89,7 @@ function Invites() {
         );
       })
     ) : (
-      <MenuItem onClick={handleClose}>You have no invites yet</MenuItem>
+      <MenuItem onClick={handleClose}>You have no trip invites</MenuItem>
     );
 
   return (

@@ -1,14 +1,18 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import dayjs from 'dayjs';
+
+//Redux
+import { useSelector } from 'react-redux';
+
 import TripProfileSkeleton from './TripProfileSkeleton';
+import InviteUser from '../InviteUser/InviteUser';
+
 // MUI stuff
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 // Icons
 import CalendarToday from '@material-ui/icons/CalendarToday';
-//Redux
-import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   ...theme.classes,
@@ -21,6 +25,7 @@ function TripProfile() {
   const createdAt = useSelector((state) => state.data.trip.createdAt);
   const members = useSelector((state) => state.data.trip.members);
   const pendingInvites = useSelector((state) => state.data.trip.pendingInvites);
+  const tripID = useSelector((state) => state.data.trip.tripID);
 
   let profileDisplay =
     !loading && createdAt ? (
@@ -43,6 +48,8 @@ function TripProfile() {
             <CalendarToday color="primary" />{' '}
             <span>Created on {dayjs(createdAt).format('MMM YYYY')}</span>
           </div>
+          <hr />
+          <InviteUser tripID={tripID} />
         </div>
       </Paper>
     ) : (

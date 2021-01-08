@@ -99,10 +99,9 @@ const theme = {
     deleteButton: {
       position: 'relative',
       left: '90%',
-      top: '10%',
     },
     map: {
-      height: '67vh',
+      height: '40vh',
     },
     card: {
       display: 'flex',
@@ -143,6 +142,14 @@ const theme = {
       position: 'relative',
       float: 'right',
       marginTop: 10,
+    },
+    centeredButton: {
+      display: 'block',
+      margin: '0 auto',
+    },
+    inviteButton: {
+      position: 'relative',
+      left: '10%',
     },
     progressSpinner: {
       position: 'absolute',
