@@ -68,7 +68,7 @@ function CommentForm(props) {
           Submit
         </Button>
       </form>
-      <hr className={classes.visibleSeparator} />
+      {/* <hr className={classes.visibleSeparator} /> */}
     </Grid>
   ) : null;
   return commentsDisplay;

@@ -106,6 +106,7 @@ function Login(props) {
             )}
           </Button>
           <br />
+          <br />
           <small>
             Don't have an account? Click <Link to="/signup">here</Link> to sign
             up.

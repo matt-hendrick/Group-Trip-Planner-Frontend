@@ -142,6 +142,7 @@ function Signup(props) {
             )}
           </Button>
           <br />
+          <br />
           <small>
             Already have an account? Click <Link to="/login">here</Link> to
             login.

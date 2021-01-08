@@ -25,6 +25,7 @@ const theme = {
     },
     pageTitle: {
       margin: '10px auto 10px auto',
+      color: '#00bcd4',
     },
     textField: {
       margin: '10px auto 10px auto',
