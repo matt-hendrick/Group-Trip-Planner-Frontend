@@ -3,6 +3,7 @@ import {
   SET_TRIP,
   LOADING_DATA,
   CREATE_TRIP,
+  DELETE_TRIP,
   SUBMIT_COMMENT,
   DELETE_COMMENT,
   INVITE_USER,
@@ -38,6 +39,14 @@ const dataReducer = (state = initialState, action) => {
 
         trips: [action.payload, ...state.trips],
       };
+    case DELETE_TRIP:
+      let deleteTripIndex = state.trips.findIndex(
+        (trip) => trip.tripID === action.payload
+      );
+      state.trips.splice(deleteTripIndex, 1);
+      return {
+        ...state,
+      };
     case SUBMIT_COMMENT:
       return {
         ...state,
@@ -47,10 +56,10 @@ const dataReducer = (state = initialState, action) => {
         },
       };
     case DELETE_COMMENT:
-      let deleteIndex = state.trip.comments.findIndex(
-        (comments) => comments.commentsID === action.payload
+      let deleteCommentIndex = state.trip.comments.findIndex(
+        (comment) => comment.commentID === action.payload
       );
-      state.trip.comments.splice(deleteIndex, 1);
+      state.trip.comments.splice(deleteCommentIndex, 1);
       return {
         ...state,
       };

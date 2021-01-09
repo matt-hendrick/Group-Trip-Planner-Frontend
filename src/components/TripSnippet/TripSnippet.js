@@ -10,17 +10,12 @@ import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 
-const useStyles = makeStyles(() => ({
-  card: {
-    position: 'relative',
-    display: 'flex',
-    marginBottom: 20,
-  },
-  content: {
-    padding: 25,
-    objectFit: 'cover',
-  },
+import DeleteTrip from './DeleteTrip';
+
+const useStyles = makeStyles((theme) => ({
+  ...theme.classes,
 }));
 
 function TripSnippet(props) {
@@ -52,9 +47,18 @@ function TripSnippet(props) {
         <Typography variant="body2" color="textSecondary">
           Created {dayjs(createdAt).fromNow()}
         </Typography>
-        {members ? (
-          <Typography variant="body1">Members: {members.join(', ')}</Typography>
-        ) : null}
+        <Grid container>
+          <Grid item xs={11}>
+            {members ? (
+              <Typography variant="body1">
+                Members: {members.join(', ')}
+              </Typography>
+            ) : null}
+          </Grid>
+          <Grid item xs={1}>
+            <DeleteTrip tripID={tripID} />
+          </Grid>
+        </Grid>
       </CardContent>
     </Card>
   );

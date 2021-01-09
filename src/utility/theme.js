@@ -91,16 +91,6 @@ const theme = {
         },
       },
     },
-    buttons: {
-      textAlign: 'center',
-      '& a': {
-        margin: '20px 10px',
-      },
-    },
-    deleteButton: {
-      position: 'relative',
-      left: '100%',
-    },
     map: {
       height: '40vh',
     },
@@ -114,6 +104,7 @@ const theme = {
       padding: 25,
     },
     content: {
+      width: '88%',
       padding: 25,
       objectFit: 'cover',
     },
@@ -138,6 +129,15 @@ const theme = {
       width: '50%',
       backgroundColor: 'rgba(0,0,0, 0.6)',
       marginBottom: 10,
+    },
+    buttons: {
+      textAlign: 'center',
+      '& a': {
+        margin: '20px 10px',
+      },
+    },
+    deleteButton: {
+      left: '100%',
     },
     submitButton: {
       position: 'relative',

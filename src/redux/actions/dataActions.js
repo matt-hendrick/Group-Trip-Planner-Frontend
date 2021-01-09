@@ -4,6 +4,7 @@ import {
   LOADING_UI,
   STOP_LOADING_UI,
   CREATE_TRIP,
+  DELETE_TRIP,
   SUBMIT_COMMENT,
   DELETE_COMMENT,
   INVITE_USER,
@@ -51,6 +52,15 @@ export const createTrip = (newTrip) => (dispatch) => {
       console.log(err);
       dispatch({ type: SET_ERRORS, payload: err.response.data });
     });
+};
+
+export const deleteTrip = (tripID) => (dispatch) => {
+  axios
+    .delete(`/trips/${tripID}`)
+    .then(() => {
+      dispatch({ type: DELETE_TRIP, payload: tripID });
+    })
+    .catch((err) => console.log(err));
 };
 
 export const submitComment = (tripID, newComment) => (dispatch) => {

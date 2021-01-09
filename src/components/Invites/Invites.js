@@ -12,7 +12,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
 // Icons
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import GroupIcon from '@material-ui/icons/GroupAdd';
 import ThumbsUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbsDownIcon from '@material-ui/icons/ThumbDown';
