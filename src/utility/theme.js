@@ -138,6 +138,11 @@ const theme = {
     },
     deleteButton: {
       left: '90%',
+      padding: '5px',
+    },
+    itineraryDeleteButton: {
+      left: '70%',
+      padding: '0px',
     },
     submitButton: {
       position: 'relative',
@@ -188,6 +193,7 @@ const theme = {
       padding: '.5em .8em .5em .5em',
       marginBottom: '1em',
       backgroundColor: '#fff',
+      maxWidth: '100%',
     },
   },
 };

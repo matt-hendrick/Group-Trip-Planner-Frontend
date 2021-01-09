@@ -41,7 +41,7 @@ function Trip() {
       </Grid>
       <Grid item sm={4} xs={12}>
         <TripProfile />
-        <ItineraryList itinerary={trip.itineraryitems} />
+        <ItineraryList tripID={tripID} itinerary={trip.itineraryitems} />
       </Grid>
     </Grid>
   );

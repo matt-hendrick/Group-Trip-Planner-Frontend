@@ -5,8 +5,10 @@ import {
   STOP_LOADING_UI,
   CREATE_TRIP,
   DELETE_TRIP,
-  SUBMIT_COMMENT,
+  CREATE_COMMENT,
   DELETE_COMMENT,
+  CREATE_ITINERARY_ITEM,
+  DELETE_ITINERARY_ITEM,
   INVITE_USER,
   SET_ERRORS,
   CLEAR_ERRORS,
@@ -65,11 +67,11 @@ export const deleteTrip = (tripID) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const submitComment = (tripID, newComment) => (dispatch) => {
+export const createComment = (tripID, newComment) => (dispatch) => {
   axios
     .post(`/trips/${tripID}/comment`, newComment)
     .then((res) => {
-      dispatch({ type: SUBMIT_COMMENT, payload: res.data });
+      dispatch({ type: CREATE_COMMENT, payload: res.data });
       dispatch(clearErrors());
     })
     .catch((err) => dispatch({ type: SET_ERRORS, payload: err.response.data }));
@@ -81,6 +83,29 @@ export const deleteComment = (tripID, commentID) => (dispatch) => {
     .delete(`/trips/${tripID}/comments/${commentID}`)
     .then(() => {
       dispatch({ type: DELETE_COMMENT, payload: commentID });
+      dispatch({ type: STOP_LOADING_UI });
+    })
+    .catch((err) => console.log(err));
+};
+
+export const createItineraryItem = (tripID, newItineraryItem) => (dispatch) => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .post(`/trips/${tripID}/itineraryitems`, newItineraryItem)
+    .then((res) => {
+      dispatch({ type: CREATE_ITINERARY_ITEM, payload: res.data });
+      dispatch(clearErrors());
+      dispatch({ type: STOP_LOADING_UI });
+    })
+    .catch((err) => dispatch({ type: SET_ERRORS, payload: err.response.data }));
+};
+
+export const deleteItineraryItem = (tripID, itineraryItemID) => (dispatch) => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .delete(`/trips/${tripID}/itineraryitems/${itineraryItemID}`)
+    .then(() => {
+      dispatch({ type: DELETE_ITINERARY_ITEM, payload: itineraryItemID });
       dispatch({ type: STOP_LOADING_UI });
     })
     .catch((err) => console.log(err));

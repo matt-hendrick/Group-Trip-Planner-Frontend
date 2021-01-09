@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { submitComment } from '../../redux/actions/dataActions';
+import { createComment } from '../../redux/actions/dataActions';
 
 // MUI
 import Button from '@material-ui/core/Button';
@@ -41,7 +41,7 @@ function CommentForm(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(submitComment(tripID, { body }));
+    dispatch(createComment(tripID, { body }));
     setSubmitted(true);
   };
 
@@ -74,7 +74,7 @@ function CommentForm(props) {
   return commentsDisplay;
 }
 
-submitComment.propTypes = {
+createComment.propTypes = {
   tripID: PropTypes.string.isRequired,
 };
 

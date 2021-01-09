@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import Header from '../Header/Header';
+import CreateItineraryItem from './CreateItineraryItem';
+import DeleteItineraryItem from './DeleteItineraryItem';
+
+// MUI
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
   ...theme.classes,
@@ -14,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 function ItineraryList(props) {
   const classes = useStyles();
 
-  const { itinerary } = props;
+  const { tripID, itinerary } = props;
 
   const [itineraryItems, updateItineraryItems] = useState();
 
@@ -33,44 +38,53 @@ function ItineraryList(props) {
   };
 
   return (
-    <div>
-      <header>
-        <Header headerTitle="Itinerary" />
-        <DragDropContext onDragEnd={handleOnDragEnd}>
-          <Droppable droppableId="itineraryList">
-            {(provided) => (
-              <ul
-                className={classes.itineraryList}
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-              >
-                {itineraryItems?.map(({ itineraryItemID, body }, index) => {
-                  return (
-                    <Draggable
-                      key={itineraryItemID}
-                      draggableId={itineraryItemID}
-                      index={index}
-                    >
-                      {(provided) => (
-                        <li
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          className={classes.itineraryListItem}
-                        >
-                          <Typography>{body}</Typography>
-                        </li>
-                      )}
-                    </Draggable>
-                  );
-                })}
-                {provided.placeholder}
-              </ul>
-            )}
-          </Droppable>
-        </DragDropContext>
-      </header>
-    </div>
+    <Fragment>
+      <Header headerTitle="Itinerary" />
+      <DragDropContext onDragEnd={handleOnDragEnd}>
+        <Droppable droppableId="itineraryList">
+          {(provided) => (
+            <ul
+              className={classes.itineraryList}
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {itineraryItems?.map(({ itineraryItemID, body }, index) => {
+                return (
+                  <Draggable
+                    key={itineraryItemID}
+                    draggableId={itineraryItemID}
+                    index={index}
+                  >
+                    {(provided) => (
+                      <li
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        className={classes.itineraryListItem}
+                      >
+                        <Grid container>
+                          <Grid item xs={10}>
+                            <Typography>{body}</Typography>
+                          </Grid>
+                          <Grid item xs={1}>
+                            <DeleteItineraryItem
+                              tripID={tripID}
+                              itineraryItemID={itineraryItemID}
+                            />
+                          </Grid>
+                        </Grid>
+                      </li>
+                    )}
+                  </Draggable>
+                );
+              })}
+              {provided.placeholder}
+            </ul>
+          )}
+        </Droppable>
+      </DragDropContext>
+      <CreateItineraryItem tripID={tripID} />
+    </Fragment>
   );
 }
 

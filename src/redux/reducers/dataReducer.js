@@ -4,8 +4,10 @@ import {
   LOADING_DATA,
   CREATE_TRIP,
   DELETE_TRIP,
-  SUBMIT_COMMENT,
+  CREATE_COMMENT,
   DELETE_COMMENT,
+  CREATE_ITINERARY_ITEM,
+  DELETE_ITINERARY_ITEM,
   INVITE_USER,
 } from '../types';
 
@@ -47,7 +49,7 @@ const dataReducer = (state = initialState, action) => {
       return {
         ...state,
       };
-    case SUBMIT_COMMENT:
+    case CREATE_COMMENT:
       return {
         ...state,
         trip: {
@@ -60,6 +62,22 @@ const dataReducer = (state = initialState, action) => {
         (comment) => comment.commentID === action.payload
       );
       state.trip.comments.splice(deleteCommentIndex, 1);
+      return {
+        ...state,
+      };
+    case CREATE_ITINERARY_ITEM:
+      return {
+        ...state,
+        trip: {
+          ...state.trip,
+          itineraryitems: [action.payload, ...state.trip.itineraryitems],
+        },
+      };
+    case DELETE_ITINERARY_ITEM:
+      let deleteItineraryItemIndex = state.trip.itineraryitems.findIndex(
+        (itineraryitem) => itineraryitem.itineraryItemID === action.payload
+      );
+      state.trip.itineraryitems.splice(deleteItineraryItemIndex, 1);
       return {
         ...state,
       };
