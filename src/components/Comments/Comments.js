@@ -35,7 +35,7 @@ function Comments(props) {
             <Grid item xs={12}>
               <Paper className={classes.commentData}>
                 <Typography
-                  variant="h5"
+                  variant="body1"
                   component={Link}
                   to={`/users/${userHandle}`}
                   color="primary"
