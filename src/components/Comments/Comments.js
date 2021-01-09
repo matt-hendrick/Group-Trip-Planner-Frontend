@@ -46,13 +46,19 @@ function Comments(props) {
                   {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
                 </Typography>
                 <hr className={classes.invisibleSeparator} />
-                <Typography variant="body1">{body}</Typography>
-                {authenticated && handle === comment.userHandle ? (
-                  <DeleteComment
-                    tripID={tripID}
-                    commentID={comment.commentID}
-                  />
-                ) : null}
+                <Grid container>
+                  <Grid item xs={9}>
+                    <Typography variant="body1">{body}</Typography>
+                  </Grid>
+                  {authenticated && handle === comment.userHandle ? (
+                    <Grid item xs={2}>
+                      <DeleteComment
+                        tripID={tripID}
+                        commentID={comment.commentID}
+                      />
+                    </Grid>
+                  ) : null}
+                </Grid>
               </Paper>
             </Grid>
             {index !== comments.length - 1 && (

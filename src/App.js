@@ -21,6 +21,7 @@ import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import Trip from './pages/Trip/Trip';
+import Map from './components/Map/Map';
 
 const theme = createMuiTheme(themeObject);
 
@@ -49,6 +50,7 @@ function App() {
               <AuthRoute exact path="/login" component={Login} />
               <AuthRoute exact path="/signup" component={Signup} />
               <Route exact path="/trips/:tripID" component={Trip} />
+              <Route exact path="/map" component={Map} />
             </Switch>
           </div>
         </Router>

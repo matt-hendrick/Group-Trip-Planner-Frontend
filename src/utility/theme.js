@@ -99,7 +99,7 @@ const theme = {
     },
     deleteButton: {
       position: 'relative',
-      left: '90%',
+      left: '100%',
     },
     map: {
       height: '40vh',
