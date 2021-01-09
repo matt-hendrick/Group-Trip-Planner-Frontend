@@ -10,6 +10,7 @@ import Skeleton from '@material-ui/lab/Skeleton';
 import TripProfile from '../../components/TripProfile/TripProfile';
 import Comments from '../../components/Comments/Comments';
 import CommentForm from '../../components/Comments/CommentForm';
+import ItineraryList from '../../components/Itinerary/ItineraryList';
 
 function Trip() {
   const trip = useSelector((state) => state.data.trip);
@@ -40,6 +41,7 @@ function Trip() {
       </Grid>
       <Grid item sm={4} xs={12}>
         <TripProfile />
+        <ItineraryList itinerary={trip.itineraryitems} />
       </Grid>
     </Grid>
   );

@@ -104,7 +104,7 @@ const theme = {
       padding: 25,
     },
     content: {
-      width: '88%',
+      width: '85%',
       padding: 25,
       objectFit: 'cover',
     },
@@ -137,7 +137,7 @@ const theme = {
       },
     },
     deleteButton: {
-      left: '100%',
+      left: '90%',
     },
     submitButton: {
       position: 'relative',
@@ -175,6 +175,19 @@ const theme = {
       marginBottom: 10,
       padding: 10,
       textAlign: 'center',
+    },
+    itineraryList: {
+      listStyle: 'none',
+      paddingLeft: 0,
+    },
+    itineraryListItem: {
+      display: 'flex',
+      alignItems: 'center',
+      border: 'solid 2px #d0d0d0',
+      borderRadius: '.2em',
+      padding: '.5em .8em .5em .5em',
+      marginBottom: '1em',
+      backgroundColor: '#fff',
     },
   },
 };

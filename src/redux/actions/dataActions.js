@@ -55,10 +55,12 @@ export const createTrip = (newTrip) => (dispatch) => {
 };
 
 export const deleteTrip = (tripID) => (dispatch) => {
+  dispatch({ type: LOADING_UI });
   axios
     .delete(`/trips/${tripID}`)
     .then(() => {
       dispatch({ type: DELETE_TRIP, payload: tripID });
+      dispatch({ type: STOP_LOADING_UI });
     })
     .catch((err) => console.log(err));
 };
@@ -74,10 +76,12 @@ export const submitComment = (tripID, newComment) => (dispatch) => {
 };
 
 export const deleteComment = (tripID, commentID) => (dispatch) => {
+  dispatch({ type: LOADING_UI });
   axios
     .delete(`/trips/${tripID}/comments/${commentID}`)
     .then(() => {
       dispatch({ type: DELETE_COMMENT, payload: commentID });
+      dispatch({ type: STOP_LOADING_UI });
     })
     .catch((err) => console.log(err));
 };
