@@ -11,6 +11,7 @@ import {
   DELETE_ITINERARY_ITEM,
   INVITE_USER,
   SET_COORDINATES,
+  SET_MAP_ZOOM_LEVEL,
   SET_ERRORS,
   CLEAR_ERRORS,
 } from '../types';
@@ -127,9 +128,30 @@ export const inviteUser = (tripID, recipient) => (dispatch) => {
     });
 };
 
-export const getCoordinatesFromGeocodeAPI = (value) => (dispatch) => {
-  console.log('ran redux');
-  dispatch({ type: SET_COORDINATES, payload: value.center });
+export const setTripCoordinates = (tripID, coordinates) => (dispatch) => {
+  axios
+    .post(`/trips/${tripID}`, { destination: coordinates })
+    .then((res) => {
+      dispatch({ type: SET_COORDINATES, payload: coordinates });
+      dispatch(clearErrors());
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: SET_ERRORS, payload: err.response.data });
+    });
+};
+
+export const setTripMapZoomLevel = (tripID, mapZoomLevel) => (dispatch) => {
+  axios
+    .post(`/trips/${tripID}`, { mapZoomLevel })
+    .then((res) => {
+      dispatch({ type: SET_MAP_ZOOM_LEVEL, payload: mapZoomLevel });
+      dispatch(clearErrors());
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: SET_ERRORS, payload: err.response.data });
+    });
 };
 
 export const clearErrors = () => (dispatch) => {

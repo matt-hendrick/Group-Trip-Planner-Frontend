@@ -10,6 +10,7 @@ import {
   DELETE_ITINERARY_ITEM,
   INVITE_USER,
   SET_COORDINATES,
+  SET_MAP_ZOOM_LEVEL,
 } from '../types';
 
 const initialState = {
@@ -17,7 +18,7 @@ const initialState = {
   trip: {},
   loading: false,
   invitedUsers: [],
-  coordinates: [-122.4376, 37.7577],
+  coordinates: [],
 };
 
 const dataReducer = (state = initialState, action) => {
@@ -94,7 +95,18 @@ const dataReducer = (state = initialState, action) => {
     case SET_COORDINATES:
       return {
         ...state,
-        coordinates: action.payload,
+        trip: {
+          ...state.trip,
+          destination: action.payload,
+        },
+      };
+    case SET_MAP_ZOOM_LEVEL:
+      return {
+        ...state,
+        trip: {
+          ...state.trip,
+          mapZoomLevel: action.payload,
+        },
       };
     default:
       return state;

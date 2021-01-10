@@ -5,19 +5,48 @@ import ReactMapGL from 'react-map-gl';
 import { useSelector } from 'react-redux';
 
 function Map() {
-  const coordinates = useSelector((state) => state.data.coordinates);
+  const destination = useSelector((state) => state.data.trip.destination);
+  const mapZoomLevel = useSelector((state) => state.data.trip.mapZoomLevel);
 
-  const [viewport, setViewport] = useState({
-    zoom: 8,
-  });
+  const [viewport, setViewport] = useState({});
+
+  console.log(typeof mapZoomLevel);
 
   useEffect(() => {
-    setViewport({
-      ...viewport,
-      latitude: coordinates[1],
-      longitude: coordinates[0],
-    });
-  }, [coordinates]);
+    if (destination) {
+      if (mapZoomLevel) {
+        setViewport({
+          ...viewport,
+          latitude: destination[1],
+          longitude: destination[0],
+          zoom: mapZoomLevel,
+        });
+      } else {
+        setViewport({
+          ...viewport,
+          latitude: destination[1],
+          longitude: destination[0],
+          zoom: 9,
+        });
+      }
+    } else if (!destination) {
+      if (mapZoomLevel) {
+        setViewport({
+          ...viewport,
+          latitude: 40.7648,
+          longitude: -73.9808,
+          zoom: mapZoomLevel,
+        });
+      } else {
+        setViewport({
+          ...viewport,
+          latitude: 40.7648,
+          longitude: -73.9808,
+          zoom: 9,
+        });
+      }
+    }
+  }, [destination, mapZoomLevel]);
 
   return (
     <ReactMapGL

@@ -3,10 +3,7 @@ import axios from 'axios';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  setErrors,
-  getCoordinatesFromGeocodeAPI,
-} from '../../redux/actions/dataActions';
+import { setErrors, setTripCoordinates } from '../../redux/actions/dataActions';
 
 // MUI
 import TextField from '@material-ui/core/TextField';
@@ -21,7 +18,7 @@ function MapboxGeolocationForm(props) {
   const [options, setOptions] = useState([]);
   const loading = open && options.length === 0;
 
-  const coordinates = useSelector((state) => state.data.coordinates);
+  const tripID = useSelector((state) => state.data.trip.tripID);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,12 +30,10 @@ function MapboxGeolocationForm(props) {
     }
 
     const requestDataFromAPI = () => {
-      console.log('ran');
       if (userLocationQuery?.length > 3) {
         axios
           .post('/geocode', { address: userLocationQuery })
           .then((data) => {
-            console.log('response', data);
             response = data.data.features;
 
             if (active && response) {
@@ -89,7 +84,7 @@ function MapboxGeolocationForm(props) {
         setOpen(false);
       }}
       onChange={(option, value) =>
-        dispatch(getCoordinatesFromGeocodeAPI(value))
+        dispatch(setTripCoordinates(tripID, value.center))
       }
       getOptionLabel={(option) => option.place_name}
       options={options}

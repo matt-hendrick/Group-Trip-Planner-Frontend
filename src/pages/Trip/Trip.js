@@ -16,6 +16,7 @@ import TripProfile from '../../components/TripProfile/TripProfile';
 import ItineraryList from '../../components/Itinerary/ItineraryList';
 // import Comments from '../../components/Comments/Comments';
 // import CommentForm from '../../components/Comments/CommentForm';
+import ZoomButton from '../../components/Map/ZoomButton';
 
 const useStyles = makeStyles((theme) => ({
   ...theme.classes,
@@ -25,6 +26,7 @@ function Trip() {
   const classes = useStyles();
 
   const trip = useSelector((state) => state.data.trip);
+  const coordinates = useSelector((state) => state.data.coordinates);
   const loading = useSelector((state) => state.ui.loading);
   const dispatch = useDispatch();
 
@@ -36,9 +38,9 @@ function Trip() {
   }, [dispatch, tripID]);
 
   let mapDisplay =
-    !loading && trip ? (
+    !loading && coordinates ? (
       <div className={classes.map}>
-        <Map destination={trip.destination} />
+        <Map />
       </div>
     ) : (
       <Skeleton variant="rect" width="100%" height="40vh" />
@@ -49,7 +51,15 @@ function Trip() {
       <Grid item sm={8} xs={12}>
         <Header headerTitle={trip.tripName} />
         {mapDisplay}
-        <MapboxGeolocationForm />
+        <Grid container>
+          <Grid item sm={11} xs={11}>
+            <MapboxGeolocationForm style={{ width: '90%' }} />
+          </Grid>
+          <Grid item sm={1} xs={1}>
+            <ZoomButton zoomType="plus" tripID={tripID} />
+            <ZoomButton zoomType="minus" tripID={tripID} />
+          </Grid>
+        </Grid>
         {/* <Comments comments={trip.comments} />
         <CommentForm tripID={tripID} /> */}
       </Grid>

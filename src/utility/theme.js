@@ -144,6 +144,9 @@ const theme = {
       left: '70%',
       padding: '0px',
     },
+    zoomButton: {
+      padding: '0px',
+    },
     submitButton: {
       position: 'relative',
       float: 'right',
