@@ -92,7 +92,7 @@ const theme = {
       },
     },
     map: {
-      height: '40vh',
+      height: '50vh',
     },
     card: {
       display: 'flex',

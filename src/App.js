@@ -22,7 +22,7 @@ import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import Trip from './pages/Trip/Trip';
 import Map from './components/Map/Map';
-// import ItineraryList from './components/Itinerary/ItineraryList';
+import MapboxGeolocationForm from './components/Map/MapboxGeolocationForm';
 
 const theme = createMuiTheme(themeObject);
 
@@ -52,7 +52,7 @@ function App() {
               <AuthRoute exact path="/signup" component={Signup} />
               <Route exact path="/trips/:tripID" component={Trip} />
               <Route exact path="/map" component={Map} />
-              {/* <Route exact path="/itinerary" component={ItineraryList} /> */}
+              <Route exact path="/form" component={MapboxGeolocationForm} />
             </Switch>
           </div>
         </Router>

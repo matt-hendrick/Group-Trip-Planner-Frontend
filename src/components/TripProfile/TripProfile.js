@@ -45,8 +45,8 @@ function TripProfile() {
               </Typography>
             ) : null}
             <hr />
-            <CalendarToday color="primary" />{' '}
-            <span>Created on {dayjs(createdAt).format('MMM YYYY')}</span>
+            <CalendarToday color="primary" />
+            <span>Created on {dayjs(createdAt).format('MMM DD YYYY')}</span>
           </div>
           <hr />
           <InviteUser tripID={tripID} />

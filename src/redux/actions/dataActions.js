@@ -10,6 +10,7 @@ import {
   CREATE_ITINERARY_ITEM,
   DELETE_ITINERARY_ITEM,
   INVITE_USER,
+  SET_COORDINATES,
   SET_ERRORS,
   CLEAR_ERRORS,
 } from '../types';
@@ -126,6 +127,15 @@ export const inviteUser = (tripID, recipient) => (dispatch) => {
     });
 };
 
+export const getCoordinatesFromGeocodeAPI = (value) => (dispatch) => {
+  console.log('ran redux');
+  dispatch({ type: SET_COORDINATES, payload: value.center });
+};
+
 export const clearErrors = () => (dispatch) => {
   dispatch({ type: CLEAR_ERRORS });
+};
+
+export const setErrors = () => (dispatch) => {
+  dispatch({ type: SET_ERRORS });
 };

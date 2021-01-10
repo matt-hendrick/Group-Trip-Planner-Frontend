@@ -9,6 +9,7 @@ import {
   CREATE_ITINERARY_ITEM,
   DELETE_ITINERARY_ITEM,
   INVITE_USER,
+  SET_COORDINATES,
 } from '../types';
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
   trip: {},
   loading: false,
   invitedUsers: [],
+  coordinates: [-122.4376, 37.7577],
 };
 
 const dataReducer = (state = initialState, action) => {
@@ -88,6 +90,11 @@ const dataReducer = (state = initialState, action) => {
           ...state.trip,
           pendingInvites: [action.payload, ...state.trip.pendingInvites],
         },
+      };
+    case SET_COORDINATES:
+      return {
+        ...state,
+        coordinates: action.payload,
       };
     default:
       return state;
