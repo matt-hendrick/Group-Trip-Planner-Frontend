@@ -94,7 +94,7 @@ function MapboxGeolocationForm(props) {
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Destination Selector"
+          label="Change Map Center"
           variant="outlined"
           margin="normal"
           onChange={(event) => userLocationQueryChangedHandler(event)}

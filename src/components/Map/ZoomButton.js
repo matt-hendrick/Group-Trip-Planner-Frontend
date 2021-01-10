@@ -25,8 +25,7 @@ function ZoomButton(props) {
   const dispatch = useDispatch();
 
   const handleZoom = () => {
-    console.log('ran');
-    if (zoomType === 'plus' && mapZoomLevel < 22) {
+    if (zoomType === 'plus' && mapZoomLevel < 19) {
       const updatedMapZoomLevel = (mapZoomLevel += 1);
       dispatch(setTripMapZoomLevel(tripID, updatedMapZoomLevel));
     } else if (zoomType === 'minus' && mapZoomLevel > 1) {
