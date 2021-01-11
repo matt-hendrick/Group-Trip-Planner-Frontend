@@ -69,7 +69,7 @@ function InviteUser(props) {
         color="primary"
         className={classes.centeredButton}
       >
-        Invite a user to the trip!
+        Invite a user to the trip
       </Button>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <MyButton

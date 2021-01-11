@@ -168,7 +168,7 @@ const theme = {
     },
     closeButton: {
       position: 'absolute',
-      left: '91%',
+      left: '89%',
       top: '6%',
     },
     commentImage: {

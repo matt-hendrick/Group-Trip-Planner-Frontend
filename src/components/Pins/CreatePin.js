@@ -136,7 +136,7 @@ function CreatePin() {
         onClick={handleOpen}
         className={classes.centeredButton}
       >
-        Add a new pin!
+        Add a new pin
       </Button>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <MyButton

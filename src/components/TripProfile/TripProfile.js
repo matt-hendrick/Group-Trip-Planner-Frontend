@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 import { useSelector } from 'react-redux';
 
 import TripProfileSkeleton from './TripProfileSkeleton';
-import InviteUser from '../InviteUser/InviteUser';
+import InviteUserButton from '../Invites/InviteUserButton';
 
 // MUI stuff
 import Typography from '@material-ui/core/Typography';
@@ -49,7 +49,7 @@ function TripProfile() {
             <span>Created on {dayjs(createdAt).format('MMM DD YYYY')}</span>
           </div>
           <hr />
-          <InviteUser tripID={tripID} />
+          <InviteUserButton tripID={tripID} />
         </div>
       </Paper>
     ) : (
