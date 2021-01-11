@@ -17,6 +17,7 @@ import ItineraryList from '../../components/Itinerary/ItineraryList';
 // import Comments from '../../components/Comments/Comments';
 // import CommentForm from '../../components/Comments/CommentForm';
 import ZoomButton from '../../components/Map/ZoomButton';
+import CreatePin from '../../components/Pins/CreatePin';
 
 const useStyles = makeStyles((theme) => ({
   ...theme.classes,
@@ -60,6 +61,7 @@ function Trip() {
             <ZoomButton zoomType="minus" tripID={tripID} />
           </Grid>
         </Grid>
+        <CreatePin />
         {/* <Comments comments={trip.comments} />
         <CommentForm tripID={tripID} /> */}
       </Grid>

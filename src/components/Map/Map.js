@@ -33,7 +33,7 @@ function Map() {
           zoom: 9,
         });
       }
-    } else if (!destination) {
+    } else {
       if (mapZoomLevel) {
         setViewport({
           ...viewport,
@@ -61,9 +61,6 @@ function Map() {
       height="100%"
       width="100%"
     >
-      <Marker anchor="bottom" latitude={40.7648} longitude={-73.9808}>
-        <RoomIcon color="primary" />
-      </Marker>
       <Pins pins={pins} />
     </ReactMapGL>
   );

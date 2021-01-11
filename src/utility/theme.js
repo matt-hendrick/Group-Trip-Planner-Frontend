@@ -147,6 +147,9 @@ const theme = {
     zoomButton: {
       padding: '0px',
     },
+    marker: {
+      padding: '0px',
+    },
     submitButton: {
       position: 'relative',
       float: 'right',

@@ -1,10 +1,7 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import dayjs from 'dayjs';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-
-import { useSelector } from 'react-redux';
 
 import { Marker } from 'react-map-gl';
 
@@ -26,16 +23,21 @@ function Pins(props) {
 
   let pinsDisplay = pins
     ? pins.map((pin, index) => {
-        const { body, createdAt, location, userHandle } = pin;
+        const { comment, address, createdAt, coordinates, userHandle } = pin;
+        const toolTip = comment
+          ? `"${comment}" at ${address} by ${userHandle} - ${dayjs(
+              createdAt
+            ).fromNow()}`
+          : `${address} by ${userHandle} - ${dayjs(createdAt).fromNow()}`;
         return (
           <Marker
             anchor="bottom"
-            latitude={location[1]}
-            longitude={location[0]}
+            latitude={coordinates[1]}
+            longitude={coordinates[0]}
             key={createdAt}
           >
-            <MyButton tip={body}>
-              <RoomIcon color="primary" />
+            <MyButton tip={toolTip} tipClassName={classes.marker}>
+              <RoomIcon color="primary" style={{ fontSize: 30 }} />
             </MyButton>
           </Marker>
         );

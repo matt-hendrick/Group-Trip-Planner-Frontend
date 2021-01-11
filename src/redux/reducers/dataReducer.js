@@ -6,6 +6,7 @@ import {
   DELETE_TRIP,
   CREATE_COMMENT,
   DELETE_COMMENT,
+  CREATE_PIN,
   CREATE_ITINERARY_ITEM,
   DELETE_ITINERARY_ITEM,
   INVITE_USER,
@@ -67,6 +68,14 @@ const dataReducer = (state = initialState, action) => {
       state.trip.comments.splice(deleteCommentIndex, 1);
       return {
         ...state,
+      };
+    case CREATE_PIN:
+      return {
+        ...state,
+        trip: {
+          ...state.trip,
+          pins: [action.payload, ...state.trip.pins],
+        },
       };
     case CREATE_ITINERARY_ITEM:
       return {

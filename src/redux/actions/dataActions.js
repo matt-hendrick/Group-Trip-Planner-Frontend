@@ -7,6 +7,7 @@ import {
   DELETE_TRIP,
   CREATE_COMMENT,
   DELETE_COMMENT,
+  CREATE_PIN,
   CREATE_ITINERARY_ITEM,
   DELETE_ITINERARY_ITEM,
   INVITE_USER,
@@ -88,6 +89,19 @@ export const deleteComment = (tripID, commentID) => (dispatch) => {
       dispatch({ type: STOP_LOADING_UI });
     })
     .catch((err) => console.log(err));
+};
+
+export const createPin = (tripID, newPin) => (dispatch) => {
+  dispatch({ type: LOADING_UI });
+  console.log(newPin);
+  axios
+    .post(`/trips/${tripID}/pin`, newPin)
+    .then((res) => {
+      dispatch({ type: CREATE_PIN, payload: res.data });
+      dispatch({ type: STOP_LOADING_UI });
+      dispatch(clearErrors());
+    })
+    .catch((err) => dispatch({ type: SET_ERRORS, payload: err.response.data }));
 };
 
 export const createItineraryItem = (tripID, newItineraryItem) => (dispatch) => {
