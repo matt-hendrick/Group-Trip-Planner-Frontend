@@ -18,7 +18,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import CloseIcon from '@material-ui/icons/Close';
-import AddBoxIcon from '@material-ui/icons/AddBox';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles({
@@ -65,14 +64,16 @@ function CreateItineraryItem(props) {
 
   return (
     <Fragment>
-      <MyButton
-        tip="Add new itinerary item"
+      <Button
+        // tip="Add new itinerary item"
         onClick={handleOpen}
-        tipClassName={classes.deleteButton}
+        className={classes.centeredButton}
+        variant="contained"
+        color="primary"
       >
-        {/* Add new itinerary item */}
-        <AddBoxIcon color="primary" />
-      </MyButton>
+        Add new itinerary item
+        {/* <AddBoxIcon color="primary" /> */}
+      </Button>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <MyButton
           tip="Close"

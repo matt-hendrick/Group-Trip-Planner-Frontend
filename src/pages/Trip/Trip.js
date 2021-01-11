@@ -18,6 +18,7 @@ import ItineraryList from '../../components/Itinerary/ItineraryList';
 // import CommentForm from '../../components/Comments/CommentForm';
 import ZoomButton from '../../components/Map/ZoomButton';
 import CreatePin from '../../components/Pins/CreatePin';
+import MapCenterButton from '../../components/Map/MapCenterButton';
 
 const useStyles = makeStyles((theme) => ({
   ...theme.classes,
@@ -53,15 +54,18 @@ function Trip() {
         <Header headerTitle={trip.tripName} />
         {mapDisplay}
         <Grid container>
-          <Grid item sm={11} xs={11}>
-            <MapboxGeolocationForm style={{ width: '90%' }} />
+          <Grid item sm={5} xs={5}>
+            <MapCenterButton />{' '}
+          </Grid>
+          <Grid item sm={5} xs={5}>
+            <CreatePin />
           </Grid>
           <Grid item sm={1} xs={1}>
             <ZoomButton zoomType="plus" tripID={tripID} />
             <ZoomButton zoomType="minus" tripID={tripID} />
           </Grid>
         </Grid>
-        <CreatePin />
+
         {/* <Comments comments={trip.comments} />
         <CommentForm tripID={tripID} /> */}
       </Grid>

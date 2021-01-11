@@ -12,7 +12,7 @@ import Autocomplete, {
 } from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-function MapboxGeolocationForm(props) {
+function MapboxGeolocationForm() {
   const [userLocationQuery, setUserLocationQuery] = useState(null);
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState([]);
@@ -89,7 +89,7 @@ function MapboxGeolocationForm(props) {
       getOptionLabel={(option) => option.place_name}
       options={options}
       loading={loading}
-      loadingText="Search a destination"
+      loadingText="Searching location"
       noOptionsText="No results found. Try clearing the text and re-searching."
       renderInput={(params) => (
         <TextField

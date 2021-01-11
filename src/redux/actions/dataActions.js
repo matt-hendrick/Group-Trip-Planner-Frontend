@@ -143,11 +143,13 @@ export const inviteUser = (tripID, recipient) => (dispatch) => {
 };
 
 export const setTripCoordinates = (tripID, coordinates) => (dispatch) => {
+  dispatch({ type: LOADING_UI });
   axios
     .post(`/trips/${tripID}`, { destination: coordinates })
     .then((res) => {
       dispatch({ type: SET_COORDINATES, payload: coordinates });
       dispatch(clearErrors());
+      dispatch({ type: STOP_LOADING_UI });
     })
     .catch((err) => {
       console.log(err);
