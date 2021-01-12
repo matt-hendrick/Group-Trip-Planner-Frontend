@@ -56,8 +56,6 @@ function CreatePin() {
     }
   }, [loading, errors]);
 
-  console.log('ran', pinInfo);
-
   useEffect(() => {
     let active = true;
     let response = null;
@@ -193,7 +191,6 @@ function CreatePin() {
               type="text"
               label="Add a comment to the pin (optional)"
               multiline
-              rows="3"
               placeholder="Add a comment to the pin (optional)"
               error={errors.error ? true : false}
               helperText={errors.error}

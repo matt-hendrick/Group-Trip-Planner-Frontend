@@ -144,7 +144,7 @@ const theme = {
       left: '70%',
       padding: '0px',
     },
-    zoomButton: {
+    noPaddingButton: {
       padding: '0px',
     },
     marker: {

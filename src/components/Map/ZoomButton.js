@@ -39,7 +39,7 @@ function ZoomButton(props) {
       tip={zoomType === 'plus' ? 'Zoom In' : 'Zoom Out'}
       onClick={handleZoom}
       color={zoomType === 'plus' ? 'primary' : 'secondary'}
-      tipClassName={classes.zoomButton}
+      tipClassName={classes.noPaddingButton}
     >
       {zoomType === 'plus' ? <ZoomInIcon /> : <ZoomOutIcon />}
     </MyButton>

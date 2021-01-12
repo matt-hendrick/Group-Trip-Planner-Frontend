@@ -83,8 +83,6 @@ function CreateTrip() {
               name="Trip Name"
               type="text"
               label="Trip Name"
-              multiline
-              rows="3"
               placeholder="Create a new trip"
               error={errors.tripName ? true : false}
               helperText={errors.tripName}

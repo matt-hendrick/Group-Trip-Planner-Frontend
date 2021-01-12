@@ -90,7 +90,6 @@ function CreateItineraryItem(props) {
               type="text"
               label="New itinerary item"
               multiline
-              rows="3"
               placeholder="Add a new item to your itinerary"
               error={errors.body ? true : false}
               helperText={errors.body}

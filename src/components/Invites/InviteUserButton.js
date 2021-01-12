@@ -86,8 +86,6 @@ function InviteUser(props) {
               name="Invite User"
               type="text"
               label="Invite User"
-              multiline
-              rows="3"
               placeholder="Enter the user's handle"
               error={errors.invite ? true : false}
               helperText={errors.invite}

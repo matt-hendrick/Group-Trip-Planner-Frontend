@@ -10,6 +10,7 @@ import {
   CREATE_PIN,
   CREATE_ITINERARY_ITEM,
   DELETE_ITINERARY_ITEM,
+  EDIT_ITINERARY_ITEM,
   INVITE_USER,
   SET_COORDINATES,
   SET_MAP_ZOOM_LEVEL,
@@ -125,6 +126,26 @@ export const deleteItineraryItem = (tripID, itineraryItemID) => (dispatch) => {
       dispatch({ type: STOP_LOADING_UI });
     })
     .catch((err) => console.log(err));
+};
+
+export const editItineraryItem = (
+  tripID,
+  itineraryItemID,
+  newItineraryItem
+) => (dispatch) => {
+  dispatch({ type: LOADING_UI });
+  const editItemInfo = { newItineraryItem, itineraryItemID };
+  axios
+    .post(
+      `/trips/${tripID}/itineraryitems/${itineraryItemID}`,
+      newItineraryItem
+    )
+    .then((res) => {
+      dispatch({ type: EDIT_ITINERARY_ITEM, payload: editItemInfo });
+      dispatch(clearErrors());
+      dispatch({ type: STOP_LOADING_UI });
+    })
+    .catch((err) => dispatch({ type: SET_ERRORS, payload: err.response.data }));
 };
 
 export const inviteUser = (tripID, recipient) => (dispatch) => {

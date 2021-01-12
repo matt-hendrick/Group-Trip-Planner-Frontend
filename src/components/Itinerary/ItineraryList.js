@@ -7,6 +7,8 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Header from '../Header/Header';
 import CreateItineraryItem from './CreateItineraryItem';
 import DeleteItineraryItem from './DeleteItineraryItem';
+import EditItineraryItem from './EditItineraryItem';
+// import ItineraryDateTimePicker from './ItineraryDateTimePicker';
 
 // MUI
 import Typography from '@material-ui/core/Typography';
@@ -65,6 +67,13 @@ function ItineraryList(props) {
                         <Grid container>
                           <Grid item xs={10}>
                             <Typography>{body}</Typography>
+                          </Grid>
+                          <Grid item xs={1}>
+                            <EditItineraryItem
+                              tripID={tripID}
+                              itineraryItemID={itineraryItemID}
+                              itineraryBody={body}
+                            />
                           </Grid>
                           <Grid item xs={1}>
                             <DeleteItineraryItem
