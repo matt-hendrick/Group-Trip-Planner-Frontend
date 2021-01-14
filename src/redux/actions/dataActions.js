@@ -5,6 +5,7 @@ import {
   STOP_LOADING_UI,
   CREATE_TRIP,
   DELETE_TRIP,
+  EDIT_TRIP_NAME,
   CREATE_COMMENT,
   DELETE_COMMENT,
   CREATE_PIN,
@@ -73,6 +74,46 @@ export const deleteTrip = (tripID) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
+export const editTripName = (tripID, tripName) => (dispatch) => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .post(`/trips/${tripID}`, tripName)
+    .then((res) => {
+      dispatch({ type: EDIT_TRIP_NAME, payload: tripName.tripName });
+      dispatch(clearErrors());
+      dispatch({ type: STOP_LOADING_UI });
+    })
+    .catch((err) => dispatch({ type: SET_ERRORS, payload: err.response.data }));
+};
+
+export const setTripCoordinates = (tripID, coordinates) => (dispatch) => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .post(`/trips/${tripID}`, { destination: coordinates })
+    .then((res) => {
+      dispatch({ type: SET_COORDINATES, payload: coordinates });
+      dispatch(clearErrors());
+      dispatch({ type: STOP_LOADING_UI });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: SET_ERRORS, payload: err.response.data });
+    });
+};
+
+export const setTripMapZoomLevel = (tripID, mapZoomLevel) => (dispatch) => {
+  axios
+    .post(`/trips/${tripID}`, { mapZoomLevel })
+    .then((res) => {
+      dispatch({ type: SET_MAP_ZOOM_LEVEL, payload: mapZoomLevel });
+      dispatch(clearErrors());
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: SET_ERRORS, payload: err.response.data });
+    });
+};
+
 export const createComment = (tripID, newComment) => (dispatch) => {
   axios
     .post(`/trips/${tripID}/comment`, newComment)
@@ -110,7 +151,7 @@ export const createPin = (tripID, newPin) => (dispatch) => {
 export const createItineraryItem = (tripID, newItineraryItem) => (dispatch) => {
   dispatch({ type: LOADING_UI });
   axios
-    .post(`/trips/${tripID}/itineraryitems`, newItineraryItem)
+    .post(`/trips/${tripID}/itineraryitem`, newItineraryItem)
     .then((res) => {
       dispatch({ type: CREATE_ITINERARY_ITEM, payload: res.data });
       dispatch(clearErrors());
@@ -181,34 +222,6 @@ export const inviteUser = (tripID, recipient) => (dispatch) => {
       dispatch({ type: INVITE_USER, payload: recipient.recipient });
       dispatch(clearErrors());
       dispatch({ type: STOP_LOADING_UI });
-    })
-    .catch((err) => {
-      console.log(err);
-      dispatch({ type: SET_ERRORS, payload: err.response.data });
-    });
-};
-
-export const setTripCoordinates = (tripID, coordinates) => (dispatch) => {
-  dispatch({ type: LOADING_UI });
-  axios
-    .post(`/trips/${tripID}`, { destination: coordinates })
-    .then((res) => {
-      dispatch({ type: SET_COORDINATES, payload: coordinates });
-      dispatch(clearErrors());
-      dispatch({ type: STOP_LOADING_UI });
-    })
-    .catch((err) => {
-      console.log(err);
-      dispatch({ type: SET_ERRORS, payload: err.response.data });
-    });
-};
-
-export const setTripMapZoomLevel = (tripID, mapZoomLevel) => (dispatch) => {
-  axios
-    .post(`/trips/${tripID}`, { mapZoomLevel })
-    .then((res) => {
-      dispatch({ type: SET_MAP_ZOOM_LEVEL, payload: mapZoomLevel });
-      dispatch(clearErrors());
     })
     .catch((err) => {
       console.log(err);

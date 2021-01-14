@@ -15,6 +15,7 @@ export const SET_TRIPS = 'SET_TRIPS';
 export const SET_TRIP = 'SET_TRIP';
 export const CREATE_TRIP = 'CREATE_TRIP';
 export const DELETE_TRIP = 'DELETE_TRIP';
+export const EDIT_TRIP_NAME = 'EDIT_TRIP_NAME';
 export const CREATE_COMMENT = 'CREATE_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const CREATE_PIN = 'CREATE_PIN';

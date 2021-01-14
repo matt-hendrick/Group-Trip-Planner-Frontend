@@ -41,7 +41,7 @@ function List(props) {
             createdAt,
             userHandle,
             listType,
-            link,
+            // link,
             listItemID,
           } = list;
           if (tabType === listType) {

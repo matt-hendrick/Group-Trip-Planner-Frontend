@@ -187,6 +187,14 @@ const theme = {
       padding: 10,
       textAlign: 'center',
     },
+    tripHeader: {
+      marginBottom: 10,
+      padding: 10,
+      display: 'flex',
+    },
+    tripHeaderText: {
+      textAlign: 'center',
+    },
     itineraryList: {
       listStyle: 'none',
       paddingLeft: 0,

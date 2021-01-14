@@ -4,6 +4,7 @@ import {
   LOADING_DATA,
   CREATE_TRIP,
   DELETE_TRIP,
+  EDIT_TRIP_NAME,
   CREATE_COMMENT,
   DELETE_COMMENT,
   CREATE_PIN,
@@ -55,6 +56,30 @@ const dataReducer = (state = initialState, action) => {
       state.trips.splice(deleteTripIndex, 1);
       return {
         ...state,
+      };
+    case EDIT_TRIP_NAME:
+      return {
+        ...state,
+        trip: {
+          ...state.trip,
+          tripName: action.payload,
+        },
+      };
+    case SET_COORDINATES:
+      return {
+        ...state,
+        trip: {
+          ...state.trip,
+          destination: action.payload,
+        },
+      };
+    case SET_MAP_ZOOM_LEVEL:
+      return {
+        ...state,
+        trip: {
+          ...state.trip,
+          mapZoomLevel: action.payload,
+        },
       };
     case CREATE_COMMENT:
       return {
@@ -128,22 +153,6 @@ const dataReducer = (state = initialState, action) => {
         trip: {
           ...state.trip,
           pendingInvites: [action.payload, ...state.trip.pendingInvites],
-        },
-      };
-    case SET_COORDINATES:
-      return {
-        ...state,
-        trip: {
-          ...state.trip,
-          destination: action.payload,
-        },
-      };
-    case SET_MAP_ZOOM_LEVEL:
-      return {
-        ...state,
-        trip: {
-          ...state.trip,
-          mapZoomLevel: action.payload,
         },
       };
     default:

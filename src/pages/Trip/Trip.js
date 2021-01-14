@@ -9,8 +9,8 @@ import { getTrip } from '../../redux/actions/dataActions';
 // MUI
 import Grid from '@material-ui/core/Grid';
 import Skeleton from '@material-ui/lab/Skeleton';
+import Paper from '@material-ui/core/Paper';
 
-import Header from '../../components/Header/Header';
 import Map from '../../components/Map/Map';
 import TripProfile from '../../components/TripProfile/TripProfile';
 import ItineraryList from '../../components/Itinerary/ItineraryList';
@@ -18,6 +18,8 @@ import ZoomButton from '../../components/Map/ZoomButton';
 import CreatePin from '../../components/Pins/CreatePin';
 import MapCenterButton from '../../components/Map/MapCenterButton';
 import Lists from '../../components/Lists/Lists';
+import EditTripNameButton from '../../components/TripSnippet/EditTripNameButton';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   ...theme.classes,
@@ -53,30 +55,47 @@ function Trip() {
     <Fragment>
       <Grid container spacing={1}>
         <Grid item sm={8} xs={12}>
-          <Header headerTitle={trip.tripName} />
-          {mapDisplay}
-          <Grid container>
-            <Grid item sm={5} xs={5}>
-              <MapCenterButton />{' '}
+          <Grid>
+            <Paper className={classes.tripHeader}>
+              <Grid xs={11}>
+                <Typography
+                  variant="h5"
+                  color="primary"
+                  className={classes.tripHeaderText}
+                >
+                  {trip.tripName}
+                </Typography>
+              </Grid>
+              <Grid xs={1}>
+                <EditTripNameButton
+                  tripID={tripID}
+                  tripName={trip.tripName}
+                  className={classes.editTripNameButton}
+                />
+              </Grid>
+            </Paper>
+            {mapDisplay}
+            <Grid container>
+              <Grid item sm={5} xs={5}>
+                <MapCenterButton />{' '}
+              </Grid>
+              <Grid item sm={5} xs={5}>
+                <CreatePin />
+              </Grid>
+              <Grid item sm={1} xs={1}>
+                <ZoomButton zoomType="plus" tripID={tripID} />
+                <ZoomButton zoomType="minus" tripID={tripID} />
+              </Grid>
             </Grid>
-            <Grid item sm={5} xs={5}>
-              <CreatePin />
-            </Grid>
-            <Grid item sm={1} xs={1}>
-              <ZoomButton zoomType="plus" tripID={tripID} />
-              <ZoomButton zoomType="minus" tripID={tripID} />
-            </Grid>
+          </Grid>
+          <br />
+          <Grid>
+            <Lists />
           </Grid>
         </Grid>
         <Grid item sm={4} xs={12}>
           <TripProfile />
           <ItineraryList tripID={tripID} itinerary={trip.itineraryitems} />
-        </Grid>
-      </Grid>
-      <br />
-      <Grid container>
-        <Grid item sm={8} xs={12}>
-          <Lists />
         </Grid>
       </Grid>
     </Fragment>

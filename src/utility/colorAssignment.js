@@ -17,7 +17,7 @@ function colorAssignment(currentUserHandle, members, userHandle) {
     red['A700'],
   ];
   const currentUserIndex = members.indexOf(currentUserHandle);
-  let membersList = members;
+  let membersList = [...members];
   if (membersList.includes(currentUserHandle))
     membersList.splice(currentUserIndex, 1);
   if (userHandle !== currentUserHandle) {
