@@ -138,10 +138,10 @@ const theme = {
     },
     deleteButton: {
       left: '90%',
-      padding: '5px',
+      padding: '0px',
     },
     itineraryDeleteButton: {
-      left: '70%',
+      left: '50%',
       padding: '0px',
     },
     noPaddingButton: {

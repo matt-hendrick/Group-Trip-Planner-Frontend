@@ -11,6 +11,8 @@ import {
   CREATE_ITINERARY_ITEM,
   DELETE_ITINERARY_ITEM,
   EDIT_ITINERARY_ITEM,
+  CREATE_LIST_ITEM,
+  DELETE_LIST_ITEM,
   INVITE_USER,
   SET_COORDINATES,
   SET_MAP_ZOOM_LEVEL,
@@ -146,6 +148,29 @@ export const editItineraryItem = (
       dispatch({ type: STOP_LOADING_UI });
     })
     .catch((err) => dispatch({ type: SET_ERRORS, payload: err.response.data }));
+};
+
+export const createListItem = (tripID, newListItem) => (dispatch) => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .post(`/trips/${tripID}/listitem`, newListItem)
+    .then((res) => {
+      dispatch({ type: CREATE_LIST_ITEM, payload: res.data });
+      dispatch(clearErrors());
+      dispatch({ type: STOP_LOADING_UI });
+    })
+    .catch((err) => dispatch({ type: SET_ERRORS, payload: err.response.data }));
+};
+
+export const deleteListItem = (tripID, listItemID) => (dispatch) => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .delete(`/trips/${tripID}/listitems/${listItemID}`)
+    .then(() => {
+      dispatch({ type: DELETE_LIST_ITEM, payload: listItemID });
+      dispatch({ type: STOP_LOADING_UI });
+    })
+    .catch((err) => console.log(err));
 };
 
 export const inviteUser = (tripID, recipient) => (dispatch) => {

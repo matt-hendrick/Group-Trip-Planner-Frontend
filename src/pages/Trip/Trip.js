@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 // Redux
@@ -11,14 +11,12 @@ import Skeleton from '@material-ui/lab/Skeleton';
 
 import Header from '../../components/Header/Header';
 import Map from '../../components/Map/Map';
-import MapboxGeolocationForm from '../../components/Map/MapboxGeolocationForm';
 import TripProfile from '../../components/TripProfile/TripProfile';
 import ItineraryList from '../../components/Itinerary/ItineraryList';
-// import Comments from '../../components/Comments/Comments';
-// import CommentForm from '../../components/Comments/CommentForm';
 import ZoomButton from '../../components/Map/ZoomButton';
 import CreatePin from '../../components/Pins/CreatePin';
 import MapCenterButton from '../../components/Map/MapCenterButton';
+import Lists from '../../components/Lists/Lists';
 
 const useStyles = makeStyles((theme) => ({
   ...theme.classes,
@@ -49,31 +47,36 @@ function Trip() {
     );
 
   return (
-    <Grid container spacing={1}>
-      <Grid item sm={8} xs={12}>
-        <Header headerTitle={trip.tripName} />
-        {mapDisplay}
-        <Grid container>
-          <Grid item sm={5} xs={5}>
-            <MapCenterButton />{' '}
-          </Grid>
-          <Grid item sm={5} xs={5}>
-            <CreatePin />
-          </Grid>
-          <Grid item sm={1} xs={1}>
-            <ZoomButton zoomType="plus" tripID={tripID} />
-            <ZoomButton zoomType="minus" tripID={tripID} />
+    <Fragment>
+      <Grid container spacing={1}>
+        <Grid item sm={8} xs={12}>
+          <Header headerTitle={trip.tripName} />
+          {mapDisplay}
+          <Grid container>
+            <Grid item sm={5} xs={5}>
+              <MapCenterButton />{' '}
+            </Grid>
+            <Grid item sm={5} xs={5}>
+              <CreatePin />
+            </Grid>
+            <Grid item sm={1} xs={1}>
+              <ZoomButton zoomType="plus" tripID={tripID} />
+              <ZoomButton zoomType="minus" tripID={tripID} />
+            </Grid>
           </Grid>
         </Grid>
-
-        {/* <Comments comments={trip.comments} />
-        <CommentForm tripID={tripID} /> */}
+        <Grid item sm={4} xs={12}>
+          <TripProfile />
+          <ItineraryList tripID={tripID} itinerary={trip.itineraryitems} />
+        </Grid>
       </Grid>
-      <Grid item sm={4} xs={12}>
-        <TripProfile />
-        <ItineraryList tripID={tripID} itinerary={trip.itineraryitems} />
+      <br />
+      <Grid container>
+        <Grid item sm={8} xs={12}>
+          <Lists />
+        </Grid>
       </Grid>
-    </Grid>
+    </Fragment>
   );
 }
 

@@ -11,8 +11,6 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
-import DeleteComment from './DeleteComment';
-
 const useStyles = makeStyles((theme) => ({
   ...theme.classes,
 }));
@@ -50,14 +48,14 @@ function Comments(props) {
                   <Grid item xs={9}>
                     <Typography variant="body1">{body}</Typography>
                   </Grid>
-                  {authenticated && handle === comment.userHandle ? (
+                  {/* {authenticated && handle === comment.userHandle ? (
                     <Grid item xs={2}>
                       <DeleteComment
                         tripID={tripID}
                         commentID={comment.commentID}
                       />
                     </Grid>
-                  ) : null}
+                  ) : null} */}
                 </Grid>
               </Paper>
             </Grid>

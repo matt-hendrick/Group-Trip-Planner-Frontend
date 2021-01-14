@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import ReactMapGL, { Marker } from 'react-map-gl';
+import ReactMapGL from 'react-map-gl';
 
 // Redux
 import { useSelector } from 'react-redux';
-
-// MUI
-import RoomIcon from '@material-ui/icons/Room';
 
 import Pins from '../Pins/Pins';
 

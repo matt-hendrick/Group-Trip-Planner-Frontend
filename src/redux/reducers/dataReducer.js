@@ -10,6 +10,8 @@ import {
   CREATE_ITINERARY_ITEM,
   DELETE_ITINERARY_ITEM,
   EDIT_ITINERARY_ITEM,
+  CREATE_LIST_ITEM,
+  DELETE_LIST_ITEM,
   INVITE_USER,
   SET_COORDINATES,
   SET_MAP_ZOOM_LEVEL,
@@ -101,6 +103,22 @@ const dataReducer = (state = initialState, action) => {
       );
       state.trip.itineraryitems[editItineraryItemIndex] =
         action.payload.newItineraryItem;
+      return {
+        ...state,
+      };
+    case CREATE_LIST_ITEM:
+      return {
+        ...state,
+        trip: {
+          ...state.trip,
+          listItems: [action.payload, ...state.trip.listItems],
+        },
+      };
+    case DELETE_LIST_ITEM:
+      let deleteListItemIndex = state.trip.listItems.findIndex(
+        (listItem) => listItem.listItemID === action.payload
+      );
+      state.trip.listItems.splice(deleteListItemIndex, 1);
       return {
         ...state,
       };
