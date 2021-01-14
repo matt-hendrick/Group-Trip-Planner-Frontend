@@ -30,8 +30,6 @@ function DeleteListItem(props) {
 
   const { tripID, listItemID } = props;
 
-  console.log(listItemID);
-
   const handleOpen = () => {
     setOpen(true);
   };

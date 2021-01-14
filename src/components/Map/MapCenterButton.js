@@ -32,7 +32,6 @@ const useStyles = makeStyles({
 
 function MapCenterButton() {
   const [open, setOpen] = useState(false);
-  const [comment, setComment] = useState('');
   const [userLocationQuery, setUserLocationQuery] = useState(null);
   const [location, setLocation] = useState(null);
   const [autocompleteOpen, setAutocompleteOpen] = useState(false);
@@ -49,7 +48,6 @@ function MapCenterButton() {
 
   useEffect(() => {
     if (!errors && !loading) {
-      setComment('');
       setUserLocationQuery();
       setLocation();
       setOpen(false);

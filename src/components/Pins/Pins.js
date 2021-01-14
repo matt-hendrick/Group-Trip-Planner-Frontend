@@ -5,8 +5,13 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { Marker } from 'react-map-gl';
 
+// Redux
+import { useSelector } from 'react-redux';
+
 // MUI
 import RoomIcon from '@material-ui/icons/Room';
+
+import colorAssignment from '../../utility/colorAssignment';
 
 import MyButton from '../MyButton/MyButton';
 
@@ -21,6 +26,11 @@ function Pins(props) {
 
   const { pins } = props;
 
+  const currentUserHandle = useSelector(
+    (state) => state.user.credentials.handle
+  );
+  const members = useSelector((state) => state.data.trip.members);
+
   let pinsDisplay = pins
     ? pins.map((pin, index) => {
         const { comment, address, createdAt, coordinates, userHandle } = pin;
@@ -29,6 +39,11 @@ function Pins(props) {
               createdAt
             ).fromNow()}`
           : `${address} by ${userHandle} - ${dayjs(createdAt).fromNow()}`;
+        const userColor = colorAssignment(
+          currentUserHandle,
+          members,
+          userHandle
+        );
         return (
           <Marker
             anchor="bottom"
@@ -37,7 +52,11 @@ function Pins(props) {
             key={createdAt}
           >
             <MyButton tip={toolTip} tipClassName={classes.marker}>
-              <RoomIcon color="primary" style={{ fontSize: 30 }} />
+              {userColor === 'primary' || userColor === 'secondary' ? (
+                <RoomIcon color={userColor} style={{ fontSize: 30 }} />
+              ) : (
+                <RoomIcon style={{ color: userColor, fontSize: 30 }} />
+              )}
             </MyButton>
           </Marker>
         );

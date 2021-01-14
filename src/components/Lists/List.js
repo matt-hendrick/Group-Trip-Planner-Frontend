@@ -14,6 +14,8 @@ import Typography from '@material-ui/core/Typography';
 import CreateListItem from './CreateListItem';
 import DeleteListItem from './DeleteListItem';
 
+import colorAssignment from '../../utility/colorAssignment';
+
 const useStyles = makeStyles((theme) => ({
   ...theme.classes,
 }));
@@ -25,6 +27,10 @@ function List(props) {
 
   const listItems = useSelector((state) => state.data.trip.listItems);
   const tripID = useSelector((state) => state.data.trip.tripID);
+  const currentUserHandle = useSelector(
+    (state) => state.user.credentials.handle
+  );
+  const members = useSelector((state) => state.data.trip.members);
 
   let listItemsDisplay = listItems ? (
     <Fragment>
@@ -39,18 +45,34 @@ function List(props) {
             listItemID,
           } = list;
           if (tabType === listType) {
+            const userColor = colorAssignment(
+              currentUserHandle,
+              members,
+              userHandle
+            );
             return (
               <Fragment key={createdAt}>
                 <Grid item xs={12}>
                   <Paper className={classes.listData}>
-                    <Typography
-                      variant="body1"
-                      component={Link}
-                      to={`/users/${userHandle}`}
-                      color="primary"
-                    >
-                      {userHandle}
-                    </Typography>
+                    {userColor === 'primary' || userColor === 'secondary' ? (
+                      <Typography
+                        variant="body1"
+                        component={Link}
+                        to={`/users/${userHandle}`}
+                        color={userColor}
+                      >
+                        {userHandle}
+                      </Typography>
+                    ) : (
+                      <Typography
+                        variant="body1"
+                        component={Link}
+                        to={`/users/${userHandle}`}
+                        style={{ color: userColor }}
+                      >
+                        {userHandle}
+                      </Typography>
+                    )}
                     <Typography variant="body2" color="textSecondary">
                       {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
                     </Typography>
