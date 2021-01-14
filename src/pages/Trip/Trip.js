@@ -1,5 +1,6 @@
 import React, { useEffect, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Redirect } from 'react-router-dom';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -28,6 +29,8 @@ function Trip() {
   const trip = useSelector((state) => state.data.trip);
   const coordinates = useSelector((state) => state.data.coordinates);
   const loading = useSelector((state) => state.ui.loading);
+  const authenticated = useSelector((state) => state.user.authenticated);
+
   const dispatch = useDispatch();
 
   const path = window.location.pathname;
@@ -46,7 +49,7 @@ function Trip() {
       <Skeleton variant="rect" width="100%" height="40vh" />
     );
 
-  return (
+  const tripDisplay = (
     <Fragment>
       <Grid container spacing={1}>
         <Grid item sm={8} xs={12}>
@@ -78,6 +81,8 @@ function Trip() {
       </Grid>
     </Fragment>
   );
+
+  return authenticated ? tripDisplay : <Redirect to="/login" />;
 }
 
 export default Trip;

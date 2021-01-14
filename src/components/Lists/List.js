@@ -105,7 +105,7 @@ function List(props) {
                 )}
               </Fragment>
             );
-          }
+          } else return null;
         })}
       </Grid>
       <CreateListItem tripID={tripID} listType={tabType} />

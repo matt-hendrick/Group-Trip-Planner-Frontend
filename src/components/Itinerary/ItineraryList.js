@@ -82,7 +82,7 @@ function ItineraryList(props) {
                           className={classes.itineraryListItem}
                         >
                           <Grid container>
-                            <Grid item xs={12}>
+                            <Grid item xs={11}>
                               {userColor === 'primary' ||
                               userColor === 'secondary' ? (
                                 <Typography
@@ -104,7 +104,7 @@ function ItineraryList(props) {
                                 </Typography>
                               )}
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={11}>
                               <Typography>{body}</Typography>
                             </Grid>
                             {/* <Grid item xs={1}>
