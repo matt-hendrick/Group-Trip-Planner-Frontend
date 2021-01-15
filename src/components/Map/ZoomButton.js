@@ -47,7 +47,6 @@ function ZoomButton(props) {
 }
 
 ZoomButton.propTypes = {
-  buttonType: PropTypes.string.isRequired,
   zoomType: PropTypes.string.isRequired,
 };
 

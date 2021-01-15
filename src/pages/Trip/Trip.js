@@ -57,7 +57,7 @@ function Trip() {
         <Grid item sm={8} xs={12}>
           <Grid>
             <Paper className={classes.tripHeader}>
-              <Grid xs={11}>
+              <Grid item xs={11}>
                 <Typography
                   variant="h5"
                   color="primary"
@@ -66,7 +66,7 @@ function Trip() {
                   {trip.tripName}
                 </Typography>
               </Grid>
-              <Grid xs={1}>
+              <Grid item xs={1}>
                 <EditTripNameButton
                   tripID={tripID}
                   tripName={trip.tripName}

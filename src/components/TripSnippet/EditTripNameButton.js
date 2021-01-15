@@ -100,7 +100,7 @@ function EditTripName(props) {
 
 EditTripName.propTypes = {
   tripID: PropTypes.string.isRequired,
-  tripName: PropTypes.string.isRequired,
+  tripName: PropTypes.string,
 };
 
 export default EditTripName;

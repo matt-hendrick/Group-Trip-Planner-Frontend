@@ -91,7 +91,6 @@ export const rejectInvite = (tripID, inviteID) => (dispatch) => {
 };
 
 export const setAuthorizationHeader = (token) => {
-  console.log(token);
   const FBIdToken = `Bearer ${token}`;
   localStorage.setItem('FBIdToken', FBIdToken);
   axios.defaults.headers.common['Authorization'] = FBIdToken;

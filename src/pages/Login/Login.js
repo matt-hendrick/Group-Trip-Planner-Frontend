@@ -46,7 +46,7 @@ function Login(props) {
 
   return (
     <Grid container className={classes.form}>
-      <Grid item sm={4} xs={0} />
+      <Grid item sm={4} xs={false} />
       <Grid item sm={4} xs={12}>
         {/* <img src={AppIcon} alt="Trip Menu Logo" className={classes.logoImage} /> */}
         <Typography variant="h2" className={classes.pageTitle}>
@@ -113,7 +113,7 @@ function Login(props) {
           </small>
         </form>
       </Grid>
-      <Grid item sm={4} xs={0} />
+      <Grid item sm={4} xs={false} />
     </Grid>
   );
 }
