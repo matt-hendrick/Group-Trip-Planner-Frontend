@@ -44,6 +44,7 @@ function Pins(props) {
           members,
           userHandle
         );
+        let size = 20;
         return (
           <Marker
             anchor="bottom"
@@ -53,9 +54,21 @@ function Pins(props) {
           >
             <MyButton tip={toolTip} tipClassName={classes.marker}>
               {userColor === 'primary' || userColor === 'secondary' ? (
-                <RoomIcon color={userColor} style={{ fontSize: 30 }} />
+                <RoomIcon
+                  color={userColor}
+                  style={{
+                    fontSize: 30,
+                    transform: `translate(${-size / 2}px,${-size}px)`,
+                  }}
+                />
               ) : (
-                <RoomIcon style={{ color: userColor, fontSize: 30 }} />
+                <RoomIcon
+                  style={{
+                    color: userColor,
+                    fontSize: 30,
+                    transform: `translate(${-size / 2}px,${-size}px)`,
+                  }}
+                />
               )}
             </MyButton>
           </Marker>

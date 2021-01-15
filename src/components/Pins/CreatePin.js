@@ -112,9 +112,11 @@ function CreatePin() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const coordinates = pinInfo.center;
-    const address = pinInfo.place_name;
-    dispatch(createPin(tripID, { comment, coordinates, address }));
+    if (pinInfo?.center) {
+      const coordinates = pinInfo.center;
+      const address = pinInfo.place_name;
+      dispatch(createPin(tripID, { comment, coordinates, address }));
+    }
   };
 
   const userLocationQueryChangedHandler = (event) => {

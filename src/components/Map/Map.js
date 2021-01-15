@@ -16,35 +16,35 @@ function Map() {
   useEffect(() => {
     if (destination) {
       if (mapZoomLevel) {
-        setViewport({
+        setViewport((viewport) => ({
           ...viewport,
           latitude: destination[1],
           longitude: destination[0],
           zoom: mapZoomLevel,
-        });
+        }));
       } else {
-        setViewport({
+        setViewport((viewport) => ({
           ...viewport,
           latitude: destination[1],
           longitude: destination[0],
           zoom: 9,
-        });
+        }));
       }
     } else {
       if (mapZoomLevel) {
-        setViewport({
+        setViewport((viewport) => ({
           ...viewport,
           latitude: 40.7648,
           longitude: -73.9808,
           zoom: mapZoomLevel,
-        });
+        }));
       } else {
-        setViewport({
+        setViewport((viewport) => ({
           ...viewport,
           latitude: 40.7648,
           longitude: -73.9808,
           zoom: 9,
-        });
+        }));
       }
     }
   }, [destination, mapZoomLevel]);
