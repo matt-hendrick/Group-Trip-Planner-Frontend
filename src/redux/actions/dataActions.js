@@ -137,7 +137,6 @@ export const deleteComment = (tripID, commentID) => (dispatch) => {
 
 export const createPin = (tripID, newPin) => (dispatch) => {
   dispatch({ type: LOADING_UI });
-  console.log(newPin);
   axios
     .post(`/trips/${tripID}/pin`, newPin)
     .then((res) => {

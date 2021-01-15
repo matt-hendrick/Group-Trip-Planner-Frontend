@@ -171,16 +171,8 @@ const theme = {
       left: '89%',
       top: '6%',
     },
-    commentImage: {
-      maxWidth: '100%',
-      height: 100,
-      objectFit: 'cover',
-      borderRadius: '50%',
-    },
-    commentData: {
-      marginLeft: 20,
-      marginRight: 20,
-      padding: 10,
+    listData: {
+      paddingLeft: 10,
     },
     header: {
       marginBottom: 10,
