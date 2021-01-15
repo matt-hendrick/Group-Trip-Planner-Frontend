@@ -81,12 +81,14 @@ function List(props) {
                       <Grid item xs={9}>
                         <Typography variant="body1">{body}</Typography>
                       </Grid>
-                      <Grid item xs={2}>
-                        <DeleteListItem
-                          tripID={tripID}
-                          listItemID={listItemID}
-                        />
-                      </Grid>
+                      {currentUserHandle === userHandle ? (
+                        <Grid item xs={2}>
+                          <DeleteListItem
+                            tripID={tripID}
+                            listItemID={listItemID}
+                          />
+                        </Grid>
+                      ) : null}
                     </Grid>
                     {/* {link ? (
                     <Typography
