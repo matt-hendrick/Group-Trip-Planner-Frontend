@@ -49,6 +49,10 @@ function Map() {
     }
   }, [destination, mapZoomLevel]);
 
+  const pinsDisplay = React.useMemo(() => {
+    return <Pins pins={pins} />;
+  }, [pins]);
+
   return (
     <ReactMapGL
       {...viewport}
@@ -58,7 +62,7 @@ function Map() {
       height="100%"
       width="100%"
     >
-      <Pins pins={pins} />
+      {pinsDisplay}
     </ReactMapGL>
   );
 }
