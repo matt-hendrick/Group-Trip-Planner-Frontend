@@ -7,21 +7,21 @@ import uiReducer from './reducers/uiReducer';
 
 const initialState = {};
 
-const middleware = [thunk];
-
 const reducers = combineReducers({
   user: userReducer,
   data: dataReducer,
   ui: uiReducer,
 });
 
+const composeEnhancers =
+  process.env.NODE_ENV === 'development'
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    : null || compose;
+
 const store = createStore(
   reducers,
   initialState,
-  compose(
-    applyMiddleware(...middleware),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
+  composeEnhancers(applyMiddleware(thunk))
 );
 
 export default store;
