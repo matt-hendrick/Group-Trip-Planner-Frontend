@@ -27,7 +27,7 @@ function List(props) {
 
   const listItems = useSelector((state) => state.data.trip.listItems);
   const tripID = useSelector((state) => state.data.trip.tripID);
-  const currentUserHandle = useSelector(
+  const loggedInUserHandle = useSelector(
     (state) => state.user.credentials.handle
   );
   const members = useSelector((state) => state.data.trip.members);
@@ -35,18 +35,21 @@ function List(props) {
   let listItemsDisplay = listItems ? (
     <Fragment>
       <Grid container>
-        {listItems.map((list, index) => {
-          const {
-            body,
-            createdAt,
-            userHandle,
-            listType,
-            // link,
-            listItemID,
-          } = list;
-          if (tabType === listType) {
+        {listItems
+          .filter(function (list) {
+            return tabType === list.listType;
+          })
+          .map((list, index) => {
+            const {
+              body,
+              createdAt,
+              userHandle,
+              listType,
+              // link,
+              listItemID,
+            } = list;
             const userColor = colorAssignment(
-              currentUserHandle,
+              loggedInUserHandle,
               members,
               userHandle
             );
@@ -81,7 +84,7 @@ function List(props) {
                       <Grid item xs={9}>
                         <Typography variant="body1">{body}</Typography>
                       </Grid>
-                      {currentUserHandle === userHandle ? (
+                      {loggedInUserHandle === userHandle ? (
                         <Grid item xs={2}>
                           <DeleteListItem
                             tripID={tripID}
@@ -107,8 +110,7 @@ function List(props) {
                 )}
               </Fragment>
             );
-          } else return null;
-        })}
+          })}
       </Grid>
       <CreateListItem tripID={tripID} listType={tabType} />
     </Fragment>

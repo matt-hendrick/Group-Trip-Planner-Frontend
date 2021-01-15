@@ -29,7 +29,7 @@ function ItineraryList(props) {
 
   const { tripID, itinerary } = props;
 
-  const currentUserHandle = useSelector(
+  const loggedInUserHandle = useSelector(
     (state) => state.user.credentials.handle
   );
   const members = useSelector((state) => state.data.trip.members);
@@ -44,9 +44,13 @@ function ItineraryList(props) {
     if (!result.destination) return;
 
     const items = Array.from(itineraryItems);
+    console.log(items, result.destination.index);
     const [reorderedItem] = items.splice(result.source.index, 1);
+    console.log(reorderedItem);
+    reorderedItem.index = result.destination.index;
+    console.log('reorder', reorderedItem);
     items.splice(result.destination.index, 0, reorderedItem);
-
+    console.log(items);
     updateItineraryItems(items);
   };
 
@@ -64,7 +68,7 @@ function ItineraryList(props) {
               {itineraryItems?.map(
                 ({ itineraryItemID, body, userHandle }, index) => {
                   const userColor = colorAssignment(
-                    currentUserHandle,
+                    loggedInUserHandle,
                     members,
                     userHandle
                   );
@@ -114,7 +118,7 @@ function ItineraryList(props) {
                                 itineraryBody={body}
                               />
                             </Grid> */}
-                            {currentUserHandle === userHandle ? (
+                            {loggedInUserHandle === userHandle ? (
                               <Grid item xs={1}>
                                 <DeleteItineraryItem
                                   tripID={tripID}

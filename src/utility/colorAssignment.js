@@ -5,7 +5,7 @@ import red from '@material-ui/core/colors/red';
 import yellow from '@material-ui/core/colors/yellow';
 import teal from '@material-ui/core/colors/teal';
 
-function colorAssignment(currentUserHandle, members, userHandle) {
+function colorAssignment(loggedInUserHandle, members, userHandle) {
   let color = 'primary';
   const colorArray = [
     'secondary',
@@ -16,11 +16,11 @@ function colorAssignment(currentUserHandle, members, userHandle) {
     teal['A700'],
     red['A700'],
   ];
-  const currentUserIndex = members.indexOf(currentUserHandle);
+  const currentUserIndex = members.indexOf(loggedInUserHandle);
   let membersList = [...members];
-  if (membersList.includes(currentUserHandle))
+  if (membersList.includes(loggedInUserHandle))
     membersList.splice(currentUserIndex, 1);
-  if (userHandle !== currentUserHandle) {
+  if (userHandle !== loggedInUserHandle) {
     const otherUserIndex = membersList.indexOf(userHandle);
     if (otherUserIndex < 7) {
       color = colorArray[otherUserIndex];

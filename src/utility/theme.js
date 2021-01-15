@@ -147,9 +147,6 @@ const theme = {
     noPaddingButton: {
       padding: '0px',
     },
-    marker: {
-      padding: '0px',
-    },
     submitButton: {
       position: 'relative',
       float: 'right',

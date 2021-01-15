@@ -26,7 +26,7 @@ function Pins(props) {
 
   const { pins } = props;
 
-  const currentUserHandle = useSelector(
+  const loggedInUserHandle = useSelector(
     (state) => state.user.credentials.handle
   );
   const members = useSelector((state) => state.data.trip.members);
@@ -40,7 +40,7 @@ function Pins(props) {
             ).fromNow()}`
           : `${address} by ${userHandle} - ${dayjs(createdAt).fromNow()}`;
         const userColor = colorAssignment(
-          currentUserHandle,
+          loggedInUserHandle,
           members,
           userHandle
         );
@@ -52,7 +52,7 @@ function Pins(props) {
             longitude={coordinates[0]}
             key={createdAt}
           >
-            <MyButton tip={toolTip} tipClassName={classes.marker}>
+            <MyButton tip={toolTip} tipClassName={classes.noPaddingButton}>
               {userColor === 'primary' || userColor === 'secondary' ? (
                 <RoomIcon
                   color={userColor}
