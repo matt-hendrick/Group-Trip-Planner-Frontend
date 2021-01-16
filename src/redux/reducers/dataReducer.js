@@ -10,7 +10,7 @@ import {
   CREATE_PIN,
   CREATE_ITINERARY_ITEM,
   DELETE_ITINERARY_ITEM,
-  EDIT_ITINERARY_ITEM,
+  EDIT_ITINERARY_ORDER,
   CREATE_LIST_ITEM,
   DELETE_LIST_ITEM,
   INVITE_USER,
@@ -121,15 +121,13 @@ const dataReducer = (state = initialState, action) => {
       return {
         ...state,
       };
-    case EDIT_ITINERARY_ITEM:
-      let editItineraryItemIndex = state.trip.itineraryitems.findIndex(
-        (itineraryitem) =>
-          itineraryitem.itineraryItemID === action.payload.itineraryItemID
-      );
-      state.trip.itineraryitems[editItineraryItemIndex] =
-        action.payload.newItineraryItem;
+    case EDIT_ITINERARY_ORDER:
       return {
         ...state,
+        trip: {
+          ...state.trip,
+          itineraryOrder: action.payload,
+        },
       };
     case CREATE_LIST_ITEM:
       return {

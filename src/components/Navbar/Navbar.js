@@ -21,7 +21,6 @@ function Navbar() {
       <Toolbar className="nav-container">
         {authenticated ? (
           <Fragment>
-            {/* <CreatePost /> */}
             <Link to="/">
               <MyButton tip="Home">
                 <HomeIcon />
@@ -32,9 +31,6 @@ function Navbar() {
           </Fragment>
         ) : (
           <Fragment>
-            {/* <Button color="inherit" component={Link} to="/">
-              Home
-            </Button> */}
             <Button color="inherit" component={Link} to="/login">
               Login
             </Button>

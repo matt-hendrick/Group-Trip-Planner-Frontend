@@ -95,7 +95,11 @@ function Trip() {
         </Grid>
         <Grid item sm={4} xs={12}>
           <TripProfile />
-          <ItineraryList tripID={tripID} itinerary={trip.itineraryitems} />
+          <ItineraryList
+            tripID={tripID}
+            itinerary={trip.itineraryitems}
+            reorderedItinerary={trip.reorderedItinerary}
+          />
         </Grid>
       </Grid>
     </Fragment>

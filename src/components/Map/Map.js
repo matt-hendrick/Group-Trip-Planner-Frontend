@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import ReactMapGL from 'react-map-gl';
 
 // Redux
@@ -49,7 +49,7 @@ function Map() {
     }
   }, [destination, mapZoomLevel]);
 
-  const pinsDisplay = React.useMemo(() => {
+  const pinsDisplay = useMemo(() => {
     return <Pins pins={pins} />;
   }, [pins]);
 
