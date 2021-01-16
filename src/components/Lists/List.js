@@ -11,6 +11,7 @@ import { likeListItem, unlikeListItem } from '../../redux/actions/dataActions';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import Tooltip from '@material-ui/core/Tooltip';
 import ThumbsUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbsUpOutlined from '@material-ui/icons/ThumbUpOutlined';
 
@@ -116,7 +117,10 @@ function List(props) {
                         <Typography variant="body1">{body}</Typography>
                       </Grid>
                       <Grid item xs={2} sm={1}>
-                        {likeButton} {likes.length}
+                        {likeButton}{' '}
+                        <Tooltip title={likes.join(', ')}>
+                          <span>{likes.length}</span>
+                        </Tooltip>
                       </Grid>
                       {loggedInUserHandle === userHandle ? (
                         <Grid item xs={1}>

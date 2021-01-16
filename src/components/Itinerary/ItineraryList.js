@@ -147,7 +147,7 @@ function ItineraryList(props) {
             : []
         }
       />
-      {itineraryItems && Object.keys(itineraryItems).length !== 0 ? (
+      {itineraryItems && Object.keys(itineraryItems).length > 1 ? (
         <div>
           <br />
           <SaveItineraryOrderButton

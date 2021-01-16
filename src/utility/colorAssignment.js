@@ -4,6 +4,10 @@ import indigo from '@material-ui/core/colors/indigo';
 import red from '@material-ui/core/colors/red';
 import yellow from '@material-ui/core/colors/yellow';
 import teal from '@material-ui/core/colors/teal';
+import blue from '@material-ui/core/colors/blue';
+import pink from '@material-ui/core/colors/pink';
+import grey from '@material-ui/core/colors/grey';
+import brown from '@material-ui/core/colors/brown';
 
 function colorAssignment(loggedInUserHandle, members, userHandle) {
   let color = 'primary';
@@ -15,6 +19,10 @@ function colorAssignment(loggedInUserHandle, members, userHandle) {
     yellow['A700'],
     teal['A700'],
     red['A700'],
+    blue['A700'],
+    pink['A700'],
+    grey['A700'],
+    brown['A700'],
   ];
   const currentUserIndex = members.indexOf(loggedInUserHandle);
   let membersList = [...members];

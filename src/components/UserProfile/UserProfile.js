@@ -2,19 +2,20 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
-import MyButton from '../MyButton/MyButton';
-import UserProfileSkeleton from './UserProfileSkeleton';
-// MUI stuff
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import MuiLink from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-// Icons
-import CalendarToday from '@material-ui/icons/CalendarToday';
-import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
+
 //Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser } from '../../redux/actions/userActions';
+
+// MUI stuff
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+import CalendarToday from '@material-ui/icons/CalendarToday';
+import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
+
+import MyButton from '../MyButton/MyButton';
+import UserProfileSkeleton from './UserProfileSkeleton';
 
 const useStyles = makeStyles((theme) => ({
   ...theme.classes,
@@ -42,14 +43,6 @@ function UserProfile() {
             <Typography variant="h5" color="primary">
               {handle}
             </Typography>
-            {/* <MuiLink
-              component={Link}
-              to={`/users/${handle}`}
-              color="primary"
-              variant="h5"
-            >
-              {handle}
-            </MuiLink> */}
             <hr />
             <CalendarToday color="primary" />{' '}
             <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>

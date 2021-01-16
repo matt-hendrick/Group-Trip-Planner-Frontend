@@ -114,7 +114,6 @@ export const setTripMapZoomLevel = (tripID, mapZoomLevel) => (dispatch) => {
 
 export const editItineraryOrder = (tripID, itineraryItems) => (dispatch) => {
   dispatch({ type: LOADING_UI });
-  console.log('data actions', itineraryItems);
   axios
     .post(`/trips/${tripID}`, { itineraryItems })
     .then((res) => {
