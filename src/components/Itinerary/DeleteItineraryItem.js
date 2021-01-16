@@ -8,7 +8,7 @@ import MyButton from '../MyButton/MyButton';
 
 // Redux
 import { useDispatch } from 'react-redux';
-import { deleteItineraryItem } from '../../redux/actions/dataActions';
+import { editItineraryOrder } from '../../redux/actions/dataActions';
 
 // MUI
 import Button from '@material-ui/core/Button';
@@ -28,7 +28,7 @@ function DeleteItineraryItem(props) {
 
   const dispatch = useDispatch();
 
-  const { tripID, itineraryItemID } = props;
+  const { tripID, itineraryItems, index } = props;
 
   const handleOpen = () => {
     setOpen(true);
@@ -39,7 +39,12 @@ function DeleteItineraryItem(props) {
   };
 
   const handleDeleteItineraryItem = () => {
-    dispatch(deleteItineraryItem(tripID, itineraryItemID));
+    itineraryItems.splice(index, 1);
+    let itineraryItemDict = {};
+    itineraryItems?.forEach((item, index) => {
+      itineraryItemDict[index] = item;
+    });
+    dispatch(editItineraryOrder(tripID, itineraryItemDict));
     setOpen(false);
   };
 

@@ -7,7 +7,7 @@ import MyButton from '../MyButton/MyButton';
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  createItineraryItem,
+  editItineraryOrder,
   clearErrors,
 } from '../../redux/actions/dataActions';
 
@@ -28,7 +28,7 @@ function CreateItineraryItem(props) {
   const [open, setOpen] = useState(false);
   const [body, setBody] = useState('');
 
-  const { tripID } = props;
+  const { tripID, userHandle, itineraryItems } = props;
 
   const classes = useStyles();
 
@@ -59,20 +59,27 @@ function CreateItineraryItem(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(createItineraryItem(tripID, { body }));
+    const createdAt = new Date().toISOString();
+    const newItem = { body, userHandle, createdAt };
+    itineraryItems.push(newItem);
+    let itineraryItemDict = {};
+
+    itineraryItems?.forEach((item, index) => {
+      itineraryItemDict[index] = item;
+    });
+    dispatch(editItineraryOrder(tripID, itineraryItemDict));
+    setOpen(false);
   };
 
   return (
     <Fragment>
       <Button
-        // tip="Add new itinerary item"
         onClick={handleOpen}
         className={classes.centeredButton}
         variant="contained"
         color="primary"
       >
         Add new itinerary item
-        {/* <AddBoxIcon color="primary" /> */}
       </Button>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <MyButton

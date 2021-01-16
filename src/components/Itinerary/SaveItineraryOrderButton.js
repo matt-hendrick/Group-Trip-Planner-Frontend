@@ -26,23 +26,10 @@ function SaveItineraryOrderButton(props) {
   const handleSubmit = () => {
     let itineraryItemDict = {};
 
-    itineraryItems?.map((item, index) => {
+    itineraryItems?.forEach((item, index) => {
       itineraryItemDict[index] = item;
     });
-    console.log(itineraryItemDict);
     dispatch(editItineraryOrder(tripID, itineraryItemDict));
-    // itineraryItems.map(({ itineraryItemID, index }, arrayIndex) => {
-    //   setTimeout(() => {
-    //     console.log('submit button', itineraryItemID, { index });
-    //     dispatch(editItineraryOrder(tripID, itineraryItemID, { index }));
-    //   }, 1000);
-    // });
-    // itineraryItems.forEach(({ itineraryItemID, index }, arrayIndex) => {
-    //   setTimeout(() => {
-    //     console.log('submit button', itineraryItemID, { index });
-    //     dispatch(editItineraryOrder(tripID, itineraryItemID, { index }));
-    //   }, 1000);
-    // });
   };
 
   return (

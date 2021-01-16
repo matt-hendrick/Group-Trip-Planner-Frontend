@@ -173,14 +173,14 @@ export const deleteItineraryItem = (tripID, itineraryItemID) => (dispatch) => {
 export const editItineraryOrder = (tripID, reorderedItinerary) => (
   dispatch
 ) => {
-  // dispatch({ type: LOADING_UI });
+  dispatch({ type: LOADING_UI });
   console.log('data actions', reorderedItinerary);
   axios
     .post(`/trips/${tripID}`, { reorderedItinerary })
     .then((res) => {
       dispatch({ type: EDIT_ITINERARY_ORDER, payload: reorderedItinerary });
       dispatch(clearErrors());
-      // dispatch({ type: STOP_LOADING_UI });
+      dispatch({ type: STOP_LOADING_UI });
     })
     .catch((err) => dispatch({ type: SET_ERRORS, payload: err.response.data }));
 };
