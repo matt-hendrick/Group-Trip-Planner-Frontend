@@ -37,11 +37,11 @@ function SaveItineraryOrderButton(props) {
       type="submit"
       variant="contained"
       color="primary"
-      className={classes.submitButton}
+      className={classes.centeredButton}
       disabled={loading}
       onClick={handleSubmit}
     >
-      Save Itinerary Order
+      Save Reordered Itinerary
       {loading && (
         <CircularProgress size={30} className={classes.progressSpinner} />
       )}

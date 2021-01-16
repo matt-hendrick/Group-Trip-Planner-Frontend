@@ -112,6 +112,19 @@ export const setTripMapZoomLevel = (tripID, mapZoomLevel) => (dispatch) => {
     });
 };
 
+export const editItineraryOrder = (tripID, itineraryItems) => (dispatch) => {
+  dispatch({ type: LOADING_UI });
+  console.log('data actions', itineraryItems);
+  axios
+    .post(`/trips/${tripID}`, { itineraryItems })
+    .then((res) => {
+      dispatch({ type: EDIT_ITINERARY_ORDER, payload: itineraryItems });
+      dispatch(clearErrors());
+      dispatch({ type: STOP_LOADING_UI });
+    })
+    .catch((err) => dispatch({ type: SET_ERRORS, payload: err.response.data }));
+};
+
 export const createComment = (tripID, newComment) => (dispatch) => {
   axios
     .post(`/trips/${tripID}/comment`, newComment)
@@ -141,21 +154,6 @@ export const createPin = (tripID, newPin) => (dispatch) => {
       dispatch({ type: CREATE_PIN, payload: res.data });
       dispatch({ type: STOP_LOADING_UI });
       dispatch(clearErrors());
-    })
-    .catch((err) => dispatch({ type: SET_ERRORS, payload: err.response.data }));
-};
-
-export const editItineraryOrder = (tripID, reorderedItinerary) => (
-  dispatch
-) => {
-  dispatch({ type: LOADING_UI });
-  console.log('data actions', reorderedItinerary);
-  axios
-    .post(`/trips/${tripID}`, { reorderedItinerary })
-    .then((res) => {
-      dispatch({ type: EDIT_ITINERARY_ORDER, payload: reorderedItinerary });
-      dispatch(clearErrors());
-      dispatch({ type: STOP_LOADING_UI });
     })
     .catch((err) => dispatch({ type: SET_ERRORS, payload: err.response.data }));
 };

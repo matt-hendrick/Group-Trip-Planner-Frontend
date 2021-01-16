@@ -27,37 +27,37 @@ const useStyles = makeStyles((theme) => ({
 function ItineraryList(props) {
   const classes = useStyles();
 
-  const { tripID, reorderedItinerary } = props;
+  const { tripID, itineraryItems } = props;
 
   const loggedInUserHandle = useSelector(
     (state) => state.user.credentials.handle
   );
   const members = useSelector((state) => state.data.trip.members);
 
-  const [localReorderedItinerary, updateLocalReorderedItinerary] = useState();
+  const [localItinerary, setLocalItinerary] = useState();
 
   useEffect(() => {
-    if (reorderedItinerary && Object.keys(reorderedItinerary).length !== 0) {
-      updateLocalReorderedItinerary(Object.values(reorderedItinerary));
+    if (itineraryItems && Object.keys(itineraryItems).length !== 0) {
+      setLocalItinerary(Object.values(itineraryItems));
     } else {
-      updateLocalReorderedItinerary(reorderedItinerary);
+      setLocalItinerary(itineraryItems);
     }
-  }, [reorderedItinerary, tripID]);
+  }, [itineraryItems, tripID]);
 
   const handleOnDragEnd = (result) => {
     if (!result.destination) return;
-    if (reorderedItinerary && Object.keys(reorderedItinerary).length !== 0) {
-      const items = Object.values(localReorderedItinerary);
+    if (itineraryItems && Object.keys(itineraryItems).length !== 0) {
+      const items = Object.values(localItinerary);
       const [reorderedItem] = items.splice(result.source.index, 1);
       items.splice(result.destination.index, 0, reorderedItem);
-      updateLocalReorderedItinerary(items);
+      setLocalItinerary(items);
     }
   };
 
-  let reorderedDisplay;
+  let itineraryItemsDisplay;
 
-  if (localReorderedItinerary) {
-    reorderedDisplay = Object.values(localReorderedItinerary).map(
+  if (localItinerary) {
+    itineraryItemsDisplay = Object.values(localItinerary).map(
       ({ createdAt, body, userHandle }, index) => {
         const userColor = colorAssignment(
           loggedInUserHandle,
@@ -104,9 +104,9 @@ function ItineraryList(props) {
                         tripID={tripID}
                         index={index}
                         itineraryItems={
-                          reorderedItinerary &&
-                          Object.keys(reorderedItinerary).length !== 0
-                            ? localReorderedItinerary
+                          itineraryItems &&
+                          Object.keys(itineraryItems).length !== 0
+                            ? localItinerary
                             : []
                         }
                       />
@@ -132,7 +132,7 @@ function ItineraryList(props) {
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
-              {reorderedDisplay}
+              {itineraryItemsDisplay}
               {provided.placeholder}
             </ul>
           )}
@@ -142,16 +142,19 @@ function ItineraryList(props) {
         tripID={tripID}
         userHandle={loggedInUserHandle}
         itineraryItems={
-          reorderedItinerary && Object.keys(reorderedItinerary).length !== 0
-            ? localReorderedItinerary
+          itineraryItems && Object.keys(itineraryItems).length !== 0
+            ? localItinerary
             : []
         }
       />
-      {reorderedItinerary && Object.keys(reorderedItinerary).length !== 0 ? (
-        <SaveItineraryOrderButton
-          tripID={tripID}
-          itineraryItems={localReorderedItinerary}
-        />
+      {itineraryItems && Object.keys(itineraryItems).length !== 0 ? (
+        <div>
+          <br />
+          <SaveItineraryOrderButton
+            tripID={tripID}
+            itineraryItems={localItinerary}
+          />
+        </div>
       ) : null}
     </Fragment>
   );

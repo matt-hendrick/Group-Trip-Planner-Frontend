@@ -108,7 +108,7 @@ const dataReducer = (state = initialState, action) => {
         ...state,
         trip: {
           ...state.trip,
-          reorderedItinerary: action.payload,
+          itineraryItems: action.payload,
         },
       };
     case CREATE_LIST_ITEM:
