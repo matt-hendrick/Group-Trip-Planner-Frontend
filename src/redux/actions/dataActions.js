@@ -6,8 +6,6 @@ import {
   CREATE_TRIP,
   DELETE_TRIP,
   EDIT_TRIP_NAME,
-  CREATE_COMMENT,
-  DELETE_COMMENT,
   CREATE_PIN,
   EDIT_ITINERARY_ORDER,
   CREATE_LIST_ITEM,
@@ -123,27 +121,6 @@ export const editItineraryOrder = (tripID, itineraryItems) => (dispatch) => {
       dispatch({ type: STOP_LOADING_UI });
     })
     .catch((err) => dispatch({ type: SET_ERRORS, payload: err.response.data }));
-};
-
-export const createComment = (tripID, newComment) => (dispatch) => {
-  axios
-    .post(`/trips/${tripID}/comment`, newComment)
-    .then((res) => {
-      dispatch({ type: CREATE_COMMENT, payload: res.data });
-      dispatch(clearErrors());
-    })
-    .catch((err) => dispatch({ type: SET_ERRORS, payload: err.response.data }));
-};
-
-export const deleteComment = (tripID, commentID) => (dispatch) => {
-  dispatch({ type: LOADING_UI });
-  axios
-    .delete(`/trips/${tripID}/comments/${commentID}`)
-    .then(() => {
-      dispatch({ type: DELETE_COMMENT, payload: commentID });
-      dispatch({ type: STOP_LOADING_UI });
-    })
-    .catch((err) => console.log(err));
 };
 
 export const createPin = (tripID, newPin) => (dispatch) => {

@@ -79,22 +79,6 @@ const dataReducer = (state = initialState, action) => {
           mapZoomLevel: action.payload,
         },
       };
-    case CREATE_COMMENT:
-      return {
-        ...state,
-        trip: {
-          ...state.trip,
-          comments: [action.payload, ...state.trip.comments],
-        },
-      };
-    case DELETE_COMMENT:
-      let deleteCommentIndex = state.trip.comments.findIndex(
-        (comment) => comment.commentID === action.payload
-      );
-      state.trip.comments.splice(deleteCommentIndex, 1);
-      return {
-        ...state,
-      };
     case CREATE_PIN:
       return {
         ...state,
