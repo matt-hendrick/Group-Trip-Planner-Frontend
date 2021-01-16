@@ -5,12 +5,12 @@ import {
   CREATE_TRIP,
   DELETE_TRIP,
   EDIT_TRIP_NAME,
-  CREATE_COMMENT,
-  DELETE_COMMENT,
   CREATE_PIN,
   EDIT_ITINERARY_ORDER,
   CREATE_LIST_ITEM,
   DELETE_LIST_ITEM,
+  LIKE_LIST_ITEM,
+  UNLIKE_LIST_ITEM,
   INVITE_USER,
   SET_COORDINATES,
   SET_MAP_ZOOM_LEVEL,
@@ -108,6 +108,32 @@ const dataReducer = (state = initialState, action) => {
         (listItem) => listItem.listItemID === action.payload
       );
       state.trip.listItems.splice(deleteListItemIndex, 1);
+      return {
+        ...state,
+      };
+    case LIKE_LIST_ITEM:
+      let likeListItemIndex = state.trip.listItems.findIndex(
+        (listItem) => listItem.listItemID === action.payload.listItemID
+      );
+      state.trip.listItems[likeListItemIndex].likes.push(
+        action.payload.userHandle
+      );
+      return {
+        ...state,
+      };
+    case UNLIKE_LIST_ITEM:
+      let unlikeListItemIndex = state.trip.listItems.findIndex(
+        (listItem) => listItem.listItemID === action.payload.listItemID
+      );
+      let unlikeLikeIndex = state.trip.listItems[
+        unlikeListItemIndex
+      ].likes.findIndex(
+        (userHandle) => userHandle === action.payload.userHandle
+      );
+      state.trip.listItems[unlikeListItemIndex].likes.splice(
+        unlikeLikeIndex,
+        1
+      );
       return {
         ...state,
       };

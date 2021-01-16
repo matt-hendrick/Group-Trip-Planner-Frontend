@@ -147,6 +147,10 @@ const theme = {
     noPaddingButton: {
       padding: '0px',
     },
+    listItemButton: {
+      padding: '0px',
+      // top: '10%',
+    },
     submitButton: {
       position: 'relative',
       float: 'right',

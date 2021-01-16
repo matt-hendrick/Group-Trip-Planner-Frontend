@@ -39,14 +39,17 @@ function UserProfile() {
         <div className={classes.profile}>
           <hr />
           <div className="profile-details">
-            <MuiLink
+            <Typography variant="h5" color="primary">
+              {handle}
+            </Typography>
+            {/* <MuiLink
               component={Link}
               to={`/users/${handle}`}
               color="primary"
               variant="h5"
             >
               {handle}
-            </MuiLink>
+            </MuiLink> */}
             <hr />
             <CalendarToday color="primary" />{' '}
             <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>

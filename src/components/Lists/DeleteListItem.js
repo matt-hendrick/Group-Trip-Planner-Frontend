@@ -48,7 +48,7 @@ function DeleteListItem(props) {
       <MyButton
         tip="Delete List Item"
         onClick={handleOpen}
-        btnClassName={classes.deleteButton}
+        tipClassName={classes.listItemButton}
       >
         <CloseIcon color="secondary" />
       </MyButton>

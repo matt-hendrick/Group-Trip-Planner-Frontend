@@ -4,15 +4,19 @@ import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { likeListItem, unlikeListItem } from '../../redux/actions/dataActions';
 
 // MUI
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import ThumbsUpIcon from '@material-ui/icons/ThumbUp';
+import ThumbsUpOutlined from '@material-ui/icons/ThumbUpOutlined';
 
 import CreateListItem from './CreateListItem';
 import DeleteListItem from './DeleteListItem';
+import MyButton from '../MyButton/MyButton';
 
 import colorAssignment from '../../utility/colorAssignment';
 
@@ -31,26 +35,54 @@ function List(props) {
     (state) => state.user.credentials.handle
   );
   const members = useSelector((state) => state.data.trip.members);
+  const dispatch = useDispatch();
+
+  const handleLikeListItem = (tripID, listItemID, userHandle) => {
+    dispatch(likeListItem(tripID, listItemID, userHandle));
+  };
+  const handleUnlikeListItem = (tripID, listItemID, userHandle) => {
+    dispatch(unlikeListItem(tripID, listItemID, userHandle));
+  };
 
   let listItemsDisplay = listItems ? (
     <Fragment>
       <Grid container>
         {listItems
-          .filter(function (list) {
+          .filter((list) => {
             return tabType === list.listType;
           })
           .map((list, index) => {
-            const {
-              body,
-              createdAt,
-              userHandle,
-              // link,
-              listItemID,
-            } = list;
+            const { body, createdAt, userHandle, listItemID, likes } = list;
             const userColor = colorAssignment(
               loggedInUserHandle,
               members,
               userHandle
+            );
+            const likedListItem = () => {
+              if (likes && likes.includes(loggedInUserHandle)) {
+                return true;
+              } else return false;
+            };
+            const likeButton = likedListItem() ? (
+              <MyButton
+                tip="Undo like"
+                onClick={() =>
+                  handleUnlikeListItem(tripID, listItemID, loggedInUserHandle)
+                }
+                tipClassName={classes.listItemButton}
+              >
+                <ThumbsUpIcon color="primary" />
+              </MyButton>
+            ) : (
+              <MyButton
+                tip="Like"
+                onClick={() =>
+                  handleLikeListItem(tripID, listItemID, loggedInUserHandle)
+                }
+                tipClassName={classes.listItemButton}
+              >
+                <ThumbsUpOutlined color="primary" />
+              </MyButton>
             );
             return (
               <Fragment key={createdAt}>
@@ -80,11 +112,14 @@ function List(props) {
                     </Typography>
                     <hr className={classes.invisibleSeparator} />
                     <Grid container>
-                      <Grid item xs={9}>
+                      <Grid item xs={9} sm={10}>
                         <Typography variant="body1">{body}</Typography>
                       </Grid>
+                      <Grid item xs={2} sm={1}>
+                        {likeButton} {likes.length}
+                      </Grid>
                       {loggedInUserHandle === userHandle ? (
-                        <Grid item xs={2}>
+                        <Grid item xs={1}>
                           <DeleteListItem
                             tripID={tripID}
                             listItemID={listItemID}
@@ -92,21 +127,9 @@ function List(props) {
                         </Grid>
                       ) : null}
                     </Grid>
-                    {/* {link ? (
-                    <Typography
-                      variant="body1"
-                      component={Link}
-                      to={link}
-                      color="primary"
-                    >
-                      {link}
-                    </Typography>
-                  ) : null} */}
                   </Paper>
                 </Grid>
-                {index !== listItems.length - 1 && (
-                  <hr className={classes.invisibleSeparator} />
-                )}
+                <hr className={classes.invisibleSeparator} />
               </Fragment>
             );
           })}

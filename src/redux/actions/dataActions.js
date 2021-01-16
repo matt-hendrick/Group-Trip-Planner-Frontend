@@ -10,6 +10,8 @@ import {
   EDIT_ITINERARY_ORDER,
   CREATE_LIST_ITEM,
   DELETE_LIST_ITEM,
+  LIKE_LIST_ITEM,
+  UNLIKE_LIST_ITEM,
   INVITE_USER,
   SET_COORDINATES,
   SET_MAP_ZOOM_LEVEL,
@@ -156,6 +158,38 @@ export const deleteListItem = (tripID, listItemID) => (dispatch) => {
       dispatch({ type: STOP_LOADING_UI });
     })
     .catch((err) => console.log(err));
+};
+
+export const likeListItem = (tripID, listItemID, userHandle) => (dispatch) => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .post(`/trips/${tripID}/listitems/${listItemID}/like`)
+    .then((res) => {
+      dispatch({ type: LIKE_LIST_ITEM, payload: { listItemID, userHandle } });
+      dispatch(clearErrors());
+      dispatch({ type: STOP_LOADING_UI });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: SET_ERRORS, payload: err.response.data });
+    });
+};
+
+export const unlikeListItem = (tripID, listItemID, userHandle) => (
+  dispatch
+) => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .post(`/trips/${tripID}/listitems/${listItemID}/unlike`)
+    .then((res) => {
+      dispatch({ type: UNLIKE_LIST_ITEM, payload: { listItemID, userHandle } });
+      dispatch(clearErrors());
+      dispatch({ type: STOP_LOADING_UI });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: SET_ERRORS, payload: err.response.data });
+    });
 };
 
 export const inviteUser = (tripID, recipient) => (dispatch) => {
