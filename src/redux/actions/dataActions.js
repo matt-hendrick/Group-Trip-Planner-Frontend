@@ -9,8 +9,6 @@ import {
   CREATE_COMMENT,
   DELETE_COMMENT,
   CREATE_PIN,
-  CREATE_ITINERARY_ITEM,
-  DELETE_ITINERARY_ITEM,
   EDIT_ITINERARY_ORDER,
   CREATE_LIST_ITEM,
   DELETE_LIST_ITEM,
@@ -145,29 +143,6 @@ export const createPin = (tripID, newPin) => (dispatch) => {
       dispatch(clearErrors());
     })
     .catch((err) => dispatch({ type: SET_ERRORS, payload: err.response.data }));
-};
-
-export const createItineraryItem = (tripID, newItineraryItem) => (dispatch) => {
-  dispatch({ type: LOADING_UI });
-  axios
-    .post(`/trips/${tripID}/itineraryitem`, newItineraryItem)
-    .then((res) => {
-      dispatch({ type: CREATE_ITINERARY_ITEM, payload: res.data });
-      dispatch(clearErrors());
-      dispatch({ type: STOP_LOADING_UI });
-    })
-    .catch((err) => dispatch({ type: SET_ERRORS, payload: err.response.data }));
-};
-
-export const deleteItineraryItem = (tripID, itineraryItemID) => (dispatch) => {
-  dispatch({ type: LOADING_UI });
-  axios
-    .delete(`/trips/${tripID}/itineraryitems/${itineraryItemID}`)
-    .then(() => {
-      dispatch({ type: DELETE_ITINERARY_ITEM, payload: itineraryItemID });
-      dispatch({ type: STOP_LOADING_UI });
-    })
-    .catch((err) => console.log(err));
 };
 
 export const editItineraryOrder = (tripID, reorderedItinerary) => (

@@ -8,8 +8,6 @@ import {
   CREATE_COMMENT,
   DELETE_COMMENT,
   CREATE_PIN,
-  CREATE_ITINERARY_ITEM,
-  DELETE_ITINERARY_ITEM,
   EDIT_ITINERARY_ORDER,
   CREATE_LIST_ITEM,
   DELETE_LIST_ITEM,
@@ -104,22 +102,6 @@ const dataReducer = (state = initialState, action) => {
           ...state.trip,
           pins: [action.payload, ...state.trip.pins],
         },
-      };
-    case CREATE_ITINERARY_ITEM:
-      return {
-        ...state,
-        trip: {
-          ...state.trip,
-          itineraryitems: [action.payload, ...state.trip.itineraryitems],
-        },
-      };
-    case DELETE_ITINERARY_ITEM:
-      let deleteItineraryItemIndex = state.trip.itineraryitems.findIndex(
-        (itineraryitem) => itineraryitem.itineraryItemID === action.payload
-      );
-      state.trip.itineraryitems.splice(deleteItineraryItemIndex, 1);
-      return {
-        ...state,
       };
     case EDIT_ITINERARY_ORDER:
       return {

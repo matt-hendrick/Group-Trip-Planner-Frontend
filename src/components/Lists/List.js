@@ -44,7 +44,6 @@ function List(props) {
               body,
               createdAt,
               userHandle,
-              listType,
               // link,
               listItemID,
             } = list;
