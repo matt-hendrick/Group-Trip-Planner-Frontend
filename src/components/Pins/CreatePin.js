@@ -22,9 +22,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 // import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Autocomplete, {
-  createFilterOptions,
-} from '@material-ui/lab/Autocomplete';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const useStyles = makeStyles({
   ...theme.classes,
@@ -67,7 +65,7 @@ function CreatePin() {
     const requestDataFromAPI = () => {
       if (userLocationQuery?.length > 3) {
         axios
-          .post('/geocode', { address: userLocationQuery })
+          .post('/pinGeocode', { address: userLocationQuery })
           .then((data) => {
             response = data.data.features;
 
@@ -124,10 +122,6 @@ function CreatePin() {
     setUserLocationQuery(updatedLocation);
   };
 
-  const filterOptions = createFilterOptions({
-    trim: true,
-  });
-
   return (
     <Fragment>
       <Button
@@ -153,7 +147,7 @@ function CreatePin() {
               id="AddPinForm"
               style={{ textAlign: 'center' }}
               clearOnEscape={true}
-              filterOptions={filterOptions}
+              filterOptions={(options, state) => options}
               open={autocompleteOpen}
               onOpen={() => {
                 setAutocompleteOpen(true);
@@ -162,7 +156,9 @@ function CreatePin() {
                 setAutocompleteOpen(false);
               }}
               onChange={(option, value) => setPinInfo(value)}
-              getOptionLabel={(option) => option.place_name}
+              getOptionLabel={(option) => {
+                return option.place_name;
+              }}
               options={options}
               loading={autocompleteLoading}
               loadingText="Search a location"

@@ -22,9 +22,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 // import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Autocomplete, {
-  createFilterOptions,
-} from '@material-ui/lab/Autocomplete';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const useStyles = makeStyles({
   ...theme.classes,
@@ -65,7 +63,7 @@ function MapCenterButton() {
     const requestDataFromAPI = () => {
       if (userLocationQuery?.length > 3) {
         axios
-          .post('/geocode', { address: userLocationQuery })
+          .post('/mapCenterGeocode', { address: userLocationQuery })
           .then((data) => {
             response = data.data.features;
 
@@ -113,10 +111,6 @@ function MapCenterButton() {
     setUserLocationQuery(updatedLocation);
   };
 
-  const filterOptions = createFilterOptions({
-    trim: true,
-  });
-
   return (
     <Fragment>
       <Button
@@ -142,7 +136,7 @@ function MapCenterButton() {
               id="ChangeMapCenterForm"
               style={{ textAlign: 'center' }}
               clearOnEscape={true}
-              filterOptions={filterOptions}
+              filterOptions={(options, state) => options}
               open={autocompleteOpen}
               onOpen={() => {
                 setAutocompleteOpen(true);
@@ -159,7 +153,7 @@ function MapCenterButton() {
               renderInput={(params) => (
                 <TextField
                   {...params}
-                  label="Change Map Center"
+                  label="Enter the name of a country, region, or city"
                   variant="outlined"
                   margin="normal"
                   onChange={(event) => userLocationQueryChangedHandler(event)}
