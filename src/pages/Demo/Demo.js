@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactPlayer from 'react-player/lazy';
 
-import Video from '../../videos/tripplannerdemo.mp4';
-
 function Demo() {
   return (
     <div
@@ -11,7 +9,12 @@ function Demo() {
         justifyContent: 'center',
       }}
     >
-      <ReactPlayer url={Video} controls={true} />
+      <ReactPlayer
+        url="https://youtu.be/IYfwnjsngSc"
+        controls={true}
+        width="100%"
+        height="80vh"
+      />
     </div>
   );
 }

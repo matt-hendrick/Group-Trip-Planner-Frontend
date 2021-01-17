@@ -83,9 +83,9 @@ function InviteUser(props) {
         <DialogContent>
           <form onSubmit={handleSubmit}>
             <TextField
-              name="Invite User"
+              name="Enter the user's handle"
               type="text"
-              label="Invite User"
+              label="Enter the user's handle"
               placeholder="Enter the user's handle"
               error={errors.invite ? true : false}
               helperText={errors.invite}

@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import dayjs from 'dayjs';
-import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
@@ -49,9 +48,14 @@ function List(props) {
     <Fragment>
       <Grid container>
         {listItems
+          // filters so only component only renders items from current list
           .filter((list) => {
             return tabType === list.listType;
           })
+          // sorts list items by number of likes
+          .sort((listA, listB) =>
+            listA.likes.length < listB.likes.length ? 1 : -1
+          )
           .map((list, index) => {
             const { body, createdAt, userHandle, listItemID, likes } = list;
             const userColor = colorAssignment(
@@ -66,11 +70,11 @@ function List(props) {
             };
             const likeButton = likedListItem() ? (
               <MyButton
-                tip="Undo like"
+                tip="Unlike"
                 onClick={() =>
                   handleUnlikeListItem(tripID, listItemID, loggedInUserHandle)
                 }
-                tipClassName={classes.listItemButton}
+                tipClassName={classes.noPaddingButton}
               >
                 <ThumbsUpIcon color="primary" />
               </MyButton>
@@ -80,7 +84,7 @@ function List(props) {
                 onClick={() =>
                   handleLikeListItem(tripID, listItemID, loggedInUserHandle)
                 }
-                tipClassName={classes.listItemButton}
+                tipClassName={classes.noPaddingButton}
               >
                 <ThumbsUpOutlined color="primary" />
               </MyButton>
@@ -89,28 +93,23 @@ function List(props) {
               <Fragment key={createdAt}>
                 <Grid item xs={12}>
                   <Paper className={classes.listData}>
-                    {userColor === 'primary' || userColor === 'secondary' ? (
-                      <Typography
-                        variant="body1"
-                        component={Link}
-                        to={`/users/${userHandle}`}
-                        color={userColor}
-                      >
-                        {userHandle}
+                    <div className={classes.itemHandleAndDate}>
+                      {userColor === 'primary' || userColor === 'secondary' ? (
+                        <Typography variant="body1" color={userColor}>
+                          {userHandle}
+                        </Typography>
+                      ) : (
+                        <Typography
+                          variant="body1"
+                          style={{ color: userColor }}
+                        >
+                          {userHandle}
+                        </Typography>
+                      )}
+                      <Typography variant="body2" color="textSecondary">
+                        {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
                       </Typography>
-                    ) : (
-                      <Typography
-                        variant="body1"
-                        component={Link}
-                        to={`/users/${userHandle}`}
-                        style={{ color: userColor }}
-                      >
-                        {userHandle}
-                      </Typography>
-                    )}
-                    <Typography variant="body2" color="textSecondary">
-                      {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
-                    </Typography>
+                    </div>
                     <hr className={classes.invisibleSeparator} />
                     <Grid container>
                       <Grid item xs={9} sm={10}>

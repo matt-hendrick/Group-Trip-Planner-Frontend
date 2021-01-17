@@ -41,6 +41,11 @@ if (token) {
   }
 }
 
+window.gtag('config', process.env.REACT_APP_FIREBASE_MEASUREMENT_ID, {
+  page_title: document.title,
+  page_path: window.location.pathname + window.location.search,
+});
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -49,11 +54,11 @@ function App() {
           <Navbar />
           <div className="container">
             <Switch>
-              <Route exact path="/" component={Home} />
               <AuthRoute exact path="/login" component={Login} />
               <AuthRoute exact path="/signup" component={Signup} />
               <Route exact path="/trips/:tripID" component={Trip} />
               <Route exact path="/demo" component={Demo} />
+              <Route path="/" component={Home} />
             </Switch>
           </div>
         </Router>

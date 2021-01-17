@@ -1,7 +1,5 @@
 import React, { useEffect, useState, Fragment } from 'react';
 
-import { Link } from 'react-router-dom';
-
 import { makeStyles } from '@material-ui/core/styles';
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
@@ -76,21 +74,11 @@ function ItineraryList(props) {
                 <Grid container>
                   <Grid item xs={11}>
                     {userColor === 'primary' || userColor === 'secondary' ? (
-                      <Typography
-                        variant="body1"
-                        component={Link}
-                        to={`/users/${userHandle}`}
-                        color={userColor}
-                      >
+                      <Typography variant="body1" color={userColor}>
                         {userHandle}
                       </Typography>
                     ) : (
-                      <Typography
-                        variant="body1"
-                        component={Link}
-                        to={`/users/${userHandle}`}
-                        style={{ color: userColor }}
-                      >
+                      <Typography variant="body1" style={{ color: userColor }}>
                         {userHandle}
                       </Typography>
                     )}

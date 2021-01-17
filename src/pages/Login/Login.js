@@ -44,6 +44,11 @@ function Login(props) {
     dispatch(loginUser(userData, props.history));
   };
 
+  window.gtag('config', process.env.REACT_APP_FIREBASE_MEASUREMENT_ID, {
+    page_title: document.title,
+    page_path: window.location.pathname + window.location.search,
+  });
+
   return (
     <Grid container className={classes.form}>
       <Grid item sm={4} xs={false} />
