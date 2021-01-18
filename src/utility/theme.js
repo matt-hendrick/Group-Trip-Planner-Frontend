@@ -20,9 +20,6 @@ const theme = {
     form: {
       textAlign: 'center',
     },
-    logoImage: {
-      margin: '20px auto 20px auto',
-    },
     pageTitle: {
       margin: '10px auto 10px auto',
       color: '#00bcd4',
@@ -39,9 +36,6 @@ const theme = {
       fontSize: '0.8rem',
       marginTop: 10,
     },
-    progress: {
-      position: 'absolute',
-    },
     invisibleSeparator: {
       border: 'none',
       margin: 4,
@@ -56,22 +50,6 @@ const theme = {
       marginBottom: 20,
     },
     profile: {
-      '& .image-wrapper': {
-        textAlign: 'center',
-        position: 'relative',
-        '& button': {
-          position: 'absolute',
-          top: '80%',
-          left: '70%',
-        },
-      },
-      '& .profile-image': {
-        width: 200,
-        height: 200,
-        objectFit: 'cover',
-        maxWidth: '100%',
-        borderRadius: '50%',
-      },
       '& .profile-details': {
         textAlign: 'center',
         '& span, svg': {
@@ -84,11 +62,6 @@ const theme = {
       '& hr': {
         border: 'none',
         margin: '0 0 10px 0',
-      },
-      '& svg.button': {
-        '&:hover': {
-          cursor: 'pointer',
-        },
       },
     },
     map: {
@@ -106,10 +79,6 @@ const theme = {
     content: {
       width: '85%',
       padding: 25,
-      objectFit: 'cover',
-    },
-    cover: {
-      minWidth: 200,
       objectFit: 'cover',
     },
     date: {

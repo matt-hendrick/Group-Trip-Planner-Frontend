@@ -53,7 +53,6 @@ function Login(props) {
     <Grid container className={classes.form}>
       <Grid item sm={4} xs={false} />
       <Grid item sm={4} xs={12}>
-        {/* <img src={AppIcon} alt="Trip Menu Logo" className={classes.logoImage} /> */}
         <Typography variant="h2" className={classes.pageTitle}>
           Login
         </Typography>
@@ -107,7 +106,7 @@ function Login(props) {
           >
             Login
             {loading && (
-              <CircularProgress size={30} className={classes.progress} />
+              <CircularProgress size={30} className={classes.progressSpinner} />
             )}
           </Button>
           <br />

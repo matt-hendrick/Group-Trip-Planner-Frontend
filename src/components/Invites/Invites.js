@@ -106,7 +106,6 @@ function Invites() {
         anchorEl={anchorElement}
         open={Boolean(anchorElement)}
         onClose={handleClose}
-        // onEntered={onMenuOpened}
       >
         {invitesDisplay}
       </Menu>

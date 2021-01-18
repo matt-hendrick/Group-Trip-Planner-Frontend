@@ -20,13 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
 function TripSnippet(props) {
   const {
-    trip: {
-      tripName,
-      tripID,
-      createdAt,
-      members,
-      // destination, mapZoomLevel
-    },
+    trip: { tripName, tripID, createdAt, members },
   } = props;
 
   const classes = useStyles();

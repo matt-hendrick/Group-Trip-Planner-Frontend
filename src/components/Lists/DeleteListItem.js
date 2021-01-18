@@ -48,13 +48,13 @@ function DeleteListItem(props) {
       <MyButton
         tip="Delete List Item"
         onClick={handleOpen}
-        tipClassName={classes.listItemButton}
+        tipClassName={classes.noPaddingButton}
       >
         <CloseIcon color="secondary" />
       </MyButton>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <DialogTitle>
-          Are you sure you want to delete this list item
+          Are you sure you want to delete this list item?
         </DialogTitle>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
