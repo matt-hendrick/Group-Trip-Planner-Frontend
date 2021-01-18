@@ -52,21 +52,14 @@ function Pins(props) {
             longitude={coordinates[0]}
             key={createdAt}
           >
-            <MyButton tip={toolTip} tipClassName={classes.noPaddingButton}>
+            <MyButton tip={toolTip} tipClassName={classes.pins}>
               {userColor === 'primary' || userColor === 'secondary' ? (
-                <RoomIcon
-                  color={userColor}
-                  style={{
-                    fontSize: 30,
-                    transform: `translate(${-size / 2}px,${-size}px)`,
-                  }}
-                />
+                <RoomIcon color={userColor} style={{ fontSize: 30 }} />
               ) : (
                 <RoomIcon
                   style={{
                     color: userColor,
                     fontSize: 30,
-                    transform: `translate(${-size / 2}px,${-size}px)`,
                   }}
                 />
               )}

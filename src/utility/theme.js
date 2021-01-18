@@ -115,6 +115,11 @@ const theme = {
     },
     noPaddingButton: {
       padding: '0px',
+      transform: `translate(-10px,-20px)`,
+    },
+    pins: {
+      padding: '0px',
+      transform: `translate(-10px,-20px)`,
     },
     submitButton: {
       position: 'relative',
