@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 
 // MUI
 import AppBar from '@material-ui/core/AppBar';
@@ -13,6 +14,10 @@ import LocalSeeIcon from '@material-ui/icons/LocalSee';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import List from './List';
+
+const useStyles = makeStyles((theme) => ({
+  ...theme.classes,
+}));
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -41,7 +46,9 @@ function a11yProps(index) {
   };
 }
 
-function SimpleTabs(props) {
+function SimpleTabs() {
+  const classes = useStyles();
+
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -53,6 +60,7 @@ function SimpleTabs(props) {
       <AppBar position="static">
         <Tabs value={value} onChange={handleChange} centered>
           <Tab
+            className={classes.listTab}
             icon={
               <Tooltip title="Lodging" placement="top">
                 <HotelIcon />
@@ -62,6 +70,7 @@ function SimpleTabs(props) {
             {...a11yProps(0)}
           />
           <Tab
+            className={classes.listTab}
             icon={
               <Tooltip title="Restaurants" placement="top">
                 <RestaurantIcon />
@@ -71,6 +80,7 @@ function SimpleTabs(props) {
             {...a11yProps(1)}
           />
           <Tab
+            className={classes.listTab}
             icon={
               <Tooltip title="Transportation" placement="top">
                 <CommuteIcon />
@@ -80,6 +90,7 @@ function SimpleTabs(props) {
             {...a11yProps(2)}
           />
           <Tab
+            className={classes.listTab}
             icon={
               <Tooltip title="Sights and Activities" placement="top">
                 <LocalSeeIcon />
@@ -89,6 +100,7 @@ function SimpleTabs(props) {
             {...a11yProps(3)}
           />
           <Tab
+            className={classes.listTab}
             icon={
               <Tooltip title="Other" placement="top">
                 <MoreVertIcon />

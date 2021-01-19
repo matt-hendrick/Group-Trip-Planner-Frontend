@@ -35,6 +35,7 @@ function List(props) {
     (state) => state.user.credentials.handle
   );
   const members = useSelector((state) => state.data.trip.members);
+  const loading = useSelector((state) => state.ui.loading);
   const dispatch = useDispatch();
 
   const handleLikeListItem = (tripID, listItemID, userHandle) => {
@@ -48,7 +49,7 @@ function List(props) {
     <Fragment>
       <Grid container>
         {listItems
-          // filters so only component only renders items from current list
+          // filters so component only renders items from active list
           .filter((list) => {
             return tabType === list.listType;
           })
@@ -68,27 +69,28 @@ function List(props) {
                 return true;
               } else return false;
             };
-            const likeButton = likedListItem() ? (
-              <MyButton
-                tip="Unlike"
-                onClick={() =>
-                  handleUnlikeListItem(tripID, listItemID, loggedInUserHandle)
-                }
-                tipClassName={classes.noPaddingButton}
-              >
-                <ThumbsUpIcon color="primary" />
-              </MyButton>
-            ) : (
-              <MyButton
-                tip="Like"
-                onClick={() =>
-                  handleLikeListItem(tripID, listItemID, loggedInUserHandle)
-                }
-                tipClassName={classes.noPaddingButton}
-              >
-                <ThumbsUpOutlined color="primary" />
-              </MyButton>
-            );
+            const likeButton =
+              likedListItem() && !loading ? (
+                <MyButton
+                  tip="Unlike"
+                  onClick={() =>
+                    handleUnlikeListItem(tripID, listItemID, loggedInUserHandle)
+                  }
+                  tipClassName={classes.noPaddingButton}
+                >
+                  <ThumbsUpIcon color="primary" />
+                </MyButton>
+              ) : (
+                <MyButton
+                  tip="Like"
+                  onClick={() =>
+                    handleLikeListItem(tripID, listItemID, loggedInUserHandle)
+                  }
+                  tipClassName={classes.noPaddingButton}
+                >
+                  <ThumbsUpOutlined color="primary" />
+                </MyButton>
+              );
             return (
               <Fragment key={createdAt}>
                 <Grid item xs={12}>

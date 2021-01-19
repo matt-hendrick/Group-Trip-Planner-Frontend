@@ -44,7 +44,6 @@ function Pins(props) {
           members,
           userHandle
         );
-        let size = 20;
         return (
           <Marker
             anchor="bottom"

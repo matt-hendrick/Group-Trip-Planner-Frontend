@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
 function TripSnippet(props) {
   const {
-    trip: { tripName, tripID, createdAt, members },
+    trip: { tripName, tripID, createdAt, members, createdBy },
   } = props;
 
   const classes = useStyles();
@@ -39,7 +39,7 @@ function TripSnippet(props) {
           {tripName}
         </Typography>
         <Typography variant="body2" color="textSecondary">
-          Created {dayjs(createdAt).fromNow()}
+          Created {dayjs(createdAt).fromNow()} by {createdBy}
         </Typography>
         <Grid container>
           <Grid item xs={11}>

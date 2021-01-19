@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Redirect } from 'react-router-dom';
 
@@ -27,10 +27,10 @@ const useStyles = makeStyles((theme) => ({
 
 function Trip() {
   const classes = useStyles();
+  const [localLoading, setLocalLoading] = useState(true);
 
   const trip = useSelector((state) => state.data.trip);
   const coordinates = useSelector((state) => state.data.coordinates);
-  const loading = useSelector((state) => state.ui.loading);
   const authenticated = useSelector((state) => state.user.authenticated);
 
   const dispatch = useDispatch();
@@ -44,10 +44,11 @@ function Trip() {
       page_title: document.title,
       page_path: window.location.pathname + window.location.search,
     });
+    setLocalLoading(false);
   }, [dispatch, tripID]);
 
   let mapDisplay =
-    !loading && coordinates ? (
+    !localLoading && coordinates ? (
       <div className={classes.map}>
         <Map />
       </div>

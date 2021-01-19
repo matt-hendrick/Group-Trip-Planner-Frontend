@@ -115,7 +115,6 @@ const theme = {
     },
     noPaddingButton: {
       padding: '0px',
-      transform: `translate(-10px,-20px)`,
     },
     pins: {
       padding: '0px',
@@ -176,6 +175,9 @@ const theme = {
       marginBottom: '1em',
       backgroundColor: '#fff',
       maxWidth: '100%',
+    },
+    listTab: {
+      minWidth: '20%',
     },
   },
 };
