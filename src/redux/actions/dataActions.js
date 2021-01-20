@@ -1,5 +1,4 @@
 import {
-  SET_TRIPS,
   SET_TRIP,
   LOADING_UI,
   STOP_LOADING_UI,
@@ -19,19 +18,6 @@ import {
   CLEAR_ERRORS,
 } from '../types';
 import axios from 'axios';
-
-export const getTrips = (tripID) => (dispatch) => {
-  dispatch({ type: LOADING_UI });
-  axios
-    .get(`/trips/${tripID}`)
-    .then((res) => {
-      dispatch({ type: SET_TRIPS, payload: res.data });
-      dispatch({ type: STOP_LOADING_UI });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
 
 export const getTrip = (tripID) => (dispatch) => {
   dispatch({ type: LOADING_UI });

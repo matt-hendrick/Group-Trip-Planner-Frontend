@@ -11,7 +11,6 @@ export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const LOADING_UI = 'LOADING_UI';
 export const STOP_LOADING_UI = 'STOP_LOADING_UI';
 // Data reducer types
-export const SET_TRIPS = 'SET_TRIPS';
 export const SET_TRIP = 'SET_TRIP';
 export const CREATE_TRIP = 'CREATE_TRIP';
 export const DELETE_TRIP = 'DELETE_TRIP';

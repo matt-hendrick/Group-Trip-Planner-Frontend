@@ -69,28 +69,27 @@ function List(props) {
                 return true;
               } else return false;
             };
-            const likeButton =
-              likedListItem() && !loading ? (
-                <MyButton
-                  tip="Unlike"
-                  onClick={() =>
-                    handleUnlikeListItem(tripID, listItemID, loggedInUserHandle)
-                  }
-                  tipClassName={classes.noPaddingButton}
-                >
-                  <ThumbsUpIcon color="primary" />
-                </MyButton>
-              ) : (
-                <MyButton
-                  tip="Like"
-                  onClick={() =>
-                    handleLikeListItem(tripID, listItemID, loggedInUserHandle)
-                  }
-                  tipClassName={classes.noPaddingButton}
-                >
-                  <ThumbsUpOutlined color="primary" />
-                </MyButton>
-              );
+            const likeButton = likedListItem() ? (
+              <MyButton
+                tip="Unlike"
+                onClick={() =>
+                  handleUnlikeListItem(tripID, listItemID, loggedInUserHandle)
+                }
+                tipClassName={classes.noPaddingButton}
+              >
+                <ThumbsUpIcon color="primary" />
+              </MyButton>
+            ) : (
+              <MyButton
+                tip="Like"
+                onClick={() =>
+                  handleLikeListItem(tripID, listItemID, loggedInUserHandle)
+                }
+                tipClassName={classes.noPaddingButton}
+              >
+                <ThumbsUpOutlined color="primary" />
+              </MyButton>
+            );
             return (
               <Fragment key={createdAt}>
                 <Grid item xs={12}>

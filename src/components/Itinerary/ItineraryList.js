@@ -25,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
 function ItineraryList(props) {
   const classes = useStyles();
 
+  const [localItinerary, setLocalItinerary] = useState();
+  const [changed, setChanged] = useState(false);
+
   const { tripID, itineraryItems } = props;
 
   const loggedInUserHandle = useSelector(
@@ -32,13 +35,13 @@ function ItineraryList(props) {
   );
   const members = useSelector((state) => state.data.trip.members);
 
-  const [localItinerary, setLocalItinerary] = useState();
-
   useEffect(() => {
     if (itineraryItems && Object.keys(itineraryItems).length !== 0) {
       setLocalItinerary(Object.values(itineraryItems));
+      setChanged(false);
     } else {
       setLocalItinerary(itineraryItems);
+      setChanged(false);
     }
   }, [itineraryItems, tripID]);
 
@@ -49,6 +52,7 @@ function ItineraryList(props) {
       const [reorderedItem] = items.splice(result.source.index, 1);
       items.splice(result.destination.index, 0, reorderedItem);
       setLocalItinerary(items);
+      setChanged(true);
     }
   };
 
@@ -141,6 +145,7 @@ function ItineraryList(props) {
           <SaveItineraryOrderButton
             tripID={tripID}
             itineraryItems={localItinerary}
+            changed={changed}
           />
         </div>
       ) : null}

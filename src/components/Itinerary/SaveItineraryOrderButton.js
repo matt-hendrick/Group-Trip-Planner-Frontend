@@ -21,7 +21,7 @@ function SaveItineraryOrderButton(props) {
   const loading = useSelector((state) => state.ui.loading);
   const dispatch = useDispatch();
 
-  const { tripID, itineraryItems } = props;
+  const { tripID, itineraryItems, changed } = props;
 
   const handleSubmit = () => {
     let itineraryItemDict = {};
@@ -38,7 +38,7 @@ function SaveItineraryOrderButton(props) {
       variant="contained"
       color="primary"
       className={classes.centeredButton}
-      disabled={loading}
+      disabled={!changed}
       onClick={handleSubmit}
     >
       Save Reordered Itinerary

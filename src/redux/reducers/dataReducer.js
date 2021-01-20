@@ -1,5 +1,4 @@
 import {
-  SET_TRIPS,
   SET_TRIP,
   LOADING_DATA,
   CREATE_TRIP,
@@ -30,11 +29,6 @@ const dataReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-      };
-    case SET_TRIPS:
-      return {
-        ...state,
-        trips: action.payload,
       };
     case SET_TRIP:
       return {
