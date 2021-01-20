@@ -5,14 +5,15 @@ import dayjs from 'dayjs';
 //Redux
 import { useSelector } from 'react-redux';
 
-import TripProfileSkeleton from './TripProfileSkeleton';
-import InviteUserButton from '../Invites/InviteUserButton';
-
 // MUI stuff
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+
 // Icons
 import CalendarToday from '@material-ui/icons/CalendarToday';
+
+import TripProfileSkeleton from './TripProfileSkeleton';
+import InviteUserButton from '../Invites/InviteUserButton';
 
 const useStyles = makeStyles((theme) => ({
   ...theme.classes,

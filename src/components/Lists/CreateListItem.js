@@ -2,8 +2,6 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import theme from '../../utility/theme';
 
-import MyButton from '../MyButton/MyButton';
-
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { createListItem, clearErrors } from '../../redux/actions/dataActions';
@@ -14,8 +12,10 @@ import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import CloseIcon from '@material-ui/icons/Close';
 import CircularProgress from '@material-ui/core/CircularProgress';
+
+import CloseIcon from '@material-ui/icons/Close';
+import MyButton from '../MyButton/MyButton';
 
 const useStyles = makeStyles({
   ...theme.classes,

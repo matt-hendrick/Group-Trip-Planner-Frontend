@@ -3,8 +3,6 @@ import {
   SET_AUTHENTICATED,
   SET_UNAUTHENTICATED,
   LOADING_USER,
-  // ACCEPT_INVITE,
-  // REJECT_INVITE,
 } from '../types';
 
 const initialState = {
@@ -32,22 +30,6 @@ const userReducer = (state = initialState, action) => {
       };
     case LOADING_USER:
       return { ...state, loading: true };
-    // case ACCEPT_INVITE:
-    //   return {
-    //     ...state,
-    //     user: {
-    //       ...state.user,
-    //       invites: [action.payload, ...state.user.invites],
-    //     },
-    //   };
-    // case REJECT_INVITE:
-    //   return {
-    //     ...state,
-    //     user: {
-    //       ...state.user,
-    //       invites: [action.payload, ...state.user.pendingInvites],
-    //     },
-    //   };
     default:
       return state;
   }

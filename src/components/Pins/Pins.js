@@ -11,11 +11,8 @@ import { useSelector } from 'react-redux';
 // MUI
 import RoomIcon from '@material-ui/icons/Room';
 
-import colorAssignment from '../../utility/colorAssignment';
-
 import MyButton from '../MyButton/MyButton';
-
-// import DeletePin from './DeletePin';
+import colorAssignment from '../../utility/colorAssignment';
 
 const useStyles = makeStyles((theme) => ({
   ...theme.classes,

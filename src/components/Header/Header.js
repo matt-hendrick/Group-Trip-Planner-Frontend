@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
+// MUI
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 

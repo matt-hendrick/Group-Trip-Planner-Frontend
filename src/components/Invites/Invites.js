@@ -2,7 +2,9 @@ import React, { useState, Fragment } from 'react';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
-import MyButton from '../MyButton/MyButton';
+// Redux
+import { useSelector, useDispatch } from 'react-redux';
+import { acceptInvite, rejectInvite } from '../../redux/actions/userActions';
 
 // MUI stuff
 import Menu from '@material-ui/core/Menu';
@@ -15,9 +17,8 @@ import Badge from '@material-ui/core/Badge';
 import GroupIcon from '@material-ui/icons/GroupAdd';
 import ThumbsUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbsDownIcon from '@material-ui/icons/ThumbDown';
-// Redux
-import { useSelector, useDispatch } from 'react-redux';
-import { acceptInvite, rejectInvite } from '../../redux/actions/userActions';
+
+import MyButton from '../MyButton/MyButton';
 
 function Invites() {
   const [anchorElement, setAnchorElement] = useState(null);

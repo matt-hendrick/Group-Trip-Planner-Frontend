@@ -1,7 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+
 // MUI
 import Paper from '@material-ui/core/Paper';
+
 // Icons
 import CalendarToday from '@material-ui/icons/CalendarToday';
 

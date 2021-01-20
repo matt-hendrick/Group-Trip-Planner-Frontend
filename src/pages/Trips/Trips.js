@@ -6,7 +6,6 @@ import { getOwnUserDetails } from '../../redux/actions/userActions';
 
 import TripSnippet from '../../components/TripSnippet/TripSnippet';
 import TripSnippetSkeleton from '../../components/TripSnippet/TripSnippetSkeleton';
-
 import UserProfile from '../../components/UserProfile/UserProfile';
 import CreateTrip from '../../components/TripSnippet/CreateTrip';
 import Header from '../../components/Header/Header';

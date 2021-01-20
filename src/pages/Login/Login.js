@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-// import AppIcon from '../../images/TripMenuLogo.png';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';

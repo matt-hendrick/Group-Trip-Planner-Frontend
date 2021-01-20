@@ -3,8 +3,6 @@ import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import theme from '../../utility/theme';
 
-import MyButton from '../MyButton/MyButton';
-
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -13,16 +11,19 @@ import {
   setErrors,
 } from '../../redux/actions/dataActions';
 
-//MUI
+// MUI
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-// import AddIcon from '@material-ui/icons/Add';
-import CloseIcon from '@material-ui/icons/Close';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+
+// Icons
+import CloseIcon from '@material-ui/icons/Close';
+
+import MyButton from '../MyButton/MyButton';
 
 const useStyles = makeStyles({
   ...theme.classes,

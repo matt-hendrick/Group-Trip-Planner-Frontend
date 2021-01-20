@@ -7,6 +7,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 import Tooltip from '@material-ui/core/Tooltip';
+
+// Icons
 import HotelIcon from '@material-ui/icons/Hotel';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import CommuteIcon from '@material-ui/icons/Commute';

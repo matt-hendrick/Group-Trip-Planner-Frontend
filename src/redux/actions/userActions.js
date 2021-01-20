@@ -5,8 +5,6 @@ import {
   LOADING_UI,
   SET_UNAUTHENTICATED,
   LOADING_USER,
-  // ACCEPT_INVITE,
-  // REJECT_INVITE,
   STOP_LOADING_UI,
 } from '../types';
 import axios from 'axios';
@@ -65,7 +63,6 @@ export const acceptInvite = (tripID, inviteID) => (dispatch) => {
   axios
     .post(`/trips/${tripID}/invite/${inviteID}`)
     .then((res) => {
-      // dispatch({ type: ACCEPT_INVITE, payload: inviteID });
       dispatch(clearErrors());
       dispatch({ type: STOP_LOADING_UI });
     })
@@ -80,7 +77,6 @@ export const rejectInvite = (tripID, inviteID) => (dispatch) => {
   axios
     .delete(`/trips/${tripID}/invite/${inviteID}`)
     .then((res) => {
-      // dispatch({ type: REJECT_INVITE, payload: inviteID });
       dispatch(clearErrors());
       dispatch({ type: STOP_LOADING_UI });
     })

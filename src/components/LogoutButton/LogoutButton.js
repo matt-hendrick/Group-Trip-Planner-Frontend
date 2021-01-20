@@ -4,11 +4,10 @@ import React from 'react';
 import { logoutUser } from '../../redux/actions/userActions';
 import { useDispatch } from 'react-redux';
 
-// Components
-import MyButton from '../MyButton/MyButton';
-
 // MUI Icons
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+
+import MyButton from '../MyButton/MyButton';
 
 function LogoutButton() {
   const dispatch = useDispatch();

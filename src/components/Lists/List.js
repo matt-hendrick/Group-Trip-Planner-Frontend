@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 
+// Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { likeListItem, unlikeListItem } from '../../redux/actions/dataActions';
 
@@ -11,6 +12,8 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
+
+// Icons
 import ThumbsUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbsUpOutlined from '@material-ui/icons/ThumbUpOutlined';
 

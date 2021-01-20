@@ -10,6 +10,7 @@ import { getTrip } from '../../redux/actions/dataActions';
 import Grid from '@material-ui/core/Grid';
 import Skeleton from '@material-ui/lab/Skeleton';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 import Map from '../../components/Map/Map';
 import TripProfile from '../../components/TripProfile/TripProfile';
@@ -19,7 +20,6 @@ import CreatePin from '../../components/Pins/CreatePin';
 import MapCenterButton from '../../components/Map/MapCenterButton';
 import Lists from '../../components/Lists/Lists';
 import EditTripNameButton from '../../components/TripSnippet/EditTripNameButton';
-import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   ...theme.classes,

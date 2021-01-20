@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { setTripMapZoomLevel } from '../../redux/actions/dataActions';
 
-// MUI
+// MUI Icons
 import ZoomInIcon from '@material-ui/icons/ZoomIn';
 import ZoomOutIcon from '@material-ui/icons/ZoomOut';
 

@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import theme from '../../utility/theme';
 
-import MyButton from '../MyButton/MyButton';
-
 // Redux
 import { useDispatch } from 'react-redux';
 import { editTripName } from '../../redux/actions/dataActions';
@@ -16,7 +14,11 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+
+// Icons
 import EditIcon from '@material-ui/icons/Edit';
+
+import MyButton from '../MyButton/MyButton';
 
 const useStyles = makeStyles({
   ...theme.classes,
