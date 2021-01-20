@@ -201,7 +201,7 @@ function CreatePin() {
               variant="contained"
               color="primary"
               className={classes.submitButton}
-              disabled={loading}
+              disabled={loading || !pinInfo}
             >
               Submit
               {loading && (

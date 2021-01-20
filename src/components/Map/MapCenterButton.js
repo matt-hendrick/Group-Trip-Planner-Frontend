@@ -176,7 +176,7 @@ function MapCenterButton() {
               variant="contained"
               color="primary"
               className={classes.submitButton}
-              disabled={loading}
+              disabled={loading || !location}
             >
               Submit
               {loading && (

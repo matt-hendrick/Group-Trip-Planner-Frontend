@@ -109,7 +109,7 @@ function CreateItineraryItem(props) {
               variant="contained"
               color="primary"
               className={classes.submitButton}
-              disabled={loading}
+              disabled={loading || !body}
             >
               Submit
               {loading && (

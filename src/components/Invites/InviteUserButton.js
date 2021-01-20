@@ -98,7 +98,7 @@ function InviteUser(props) {
               variant="contained"
               color="primary"
               className={classes.submitButton}
-              disabled={loading}
+              disabled={loading || !recipient}
             >
               Submit
               {loading && (

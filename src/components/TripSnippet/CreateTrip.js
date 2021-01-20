@@ -95,7 +95,7 @@ function CreateTrip() {
               variant="contained"
               color="primary"
               className={classes.submitButton}
-              disabled={loading}
+              disabled={loading || !tripName}
             >
               Submit
               {loading && (
