@@ -5,12 +5,12 @@ import {
   LOADING_USER,
 } from '../types';
 
-const initialState = {
+export const initialState = {
   authenticated: false,
   loading: false,
   credentials: {},
-  likes: [],
-  notifications: [],
+  // trips: null,
+  // invites: null,
 };
 
 const userReducer = (state = initialState, action) => {
