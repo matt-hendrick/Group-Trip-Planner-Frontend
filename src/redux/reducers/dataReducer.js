@@ -20,8 +20,6 @@ const initialState = {
   trips: [],
   trip: {},
   loading: false,
-  invitedUsers: [],
-  coordinates: [],
 };
 
 const dataReducer = (state = initialState, action) => {

@@ -24,7 +24,7 @@ function colorAssignment(loggedInUserHandle, members, userHandle) {
     grey['A700'],
     brown['A700'],
   ];
-  const currentUserIndex = members.indexOf(loggedInUserHandle);
+  const currentUserIndex = members ? members.indexOf(loggedInUserHandle) : 0;
   let membersList = [...members];
   if (membersList.includes(loggedInUserHandle))
     membersList.splice(currentUserIndex, 1);

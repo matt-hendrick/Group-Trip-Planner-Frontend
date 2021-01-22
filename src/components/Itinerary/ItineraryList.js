@@ -57,7 +57,7 @@ function ItineraryList(props) {
 
   let itineraryItemsDisplay;
 
-  if (localItinerary) {
+  if (localItinerary && loggedInUserHandle) {
     itineraryItemsDisplay = Object.values(localItinerary).map(
       ({ createdAt, body, userHandle }, index) => {
         const userColor = colorAssignment(

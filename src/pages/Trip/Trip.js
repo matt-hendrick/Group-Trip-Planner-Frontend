@@ -30,7 +30,6 @@ function Trip() {
   const [localLoading, setLocalLoading] = useState(true);
 
   const trip = useSelector((state) => state.data.trip);
-  const coordinates = useSelector((state) => state.data.coordinates);
   const authenticated = useSelector((state) => state.user.authenticated);
 
   const dispatch = useDispatch();
@@ -47,14 +46,13 @@ function Trip() {
     setLocalLoading(false);
   }, [dispatch, tripID]);
 
-  let mapDisplay =
-    !localLoading && coordinates ? (
-      <div className={classes.map}>
-        <Map />
-      </div>
-    ) : (
-      <Skeleton variant="rect" width="100%" height="40vh" />
-    );
+  let mapDisplay = !localLoading ? (
+    <div className={classes.map}>
+      <Map />
+    </div>
+  ) : (
+    <Skeleton variant="rect" width="100%" height="40vh" />
+  );
 
   const tripDisplay = (
     <Fragment>
