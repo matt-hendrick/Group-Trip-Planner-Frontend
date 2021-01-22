@@ -1,13 +1,13 @@
 import reducer, { initialState } from './userReducer';
 import * as types from '../types';
-import { mock } from 'fetch-mock';
 
-describe('user reducer', () => {
+describe('userReducer tests', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual({
       authenticated: false,
-      loading: false,
       credentials: {},
+      trips: null,
+      invites: null,
     });
   });
 
@@ -20,8 +20,9 @@ describe('user reducer', () => {
       })
     ).toEqual({
       authenticated: true,
-      loading: false,
       credentials: {},
+      trips: null,
+      invites: null,
     });
   });
 
@@ -33,27 +34,51 @@ describe('user reducer', () => {
       })
     ).toEqual({
       authenticated: false,
-      loading: false,
       credentials: {},
+      trips: null,
+      invites: null,
     });
   });
 
   it('should handle SET_USER', () => {
-    // const mockCredentials = {
-    //   userHandle: 'john doe',
-    //   createdAt: '1/1/2025',
-    //   email: 'johndoe@gmail.com',
-    // };
+    const payload = {
+      credentials: {
+        userHandle: 'john doe',
+        createdAt: '1/1/2025',
+        email: 'johndoe@gmail.com',
+      },
+      trips: [{ tripID: 1, tripName: 'test trip', createdAt: '1/1/2025' }],
+      invites: [
+        {
+          sender: 'jimdoe',
+          recipient: 'johndoe',
+          createdAt: '1/1/2025',
+          tripID: 2,
+        },
+      ],
+    };
     expect(
-      reducer(initialState, {
+      reducer([], {
         type: types.SET_USER,
         authenticated: true,
-        loading: false,
+        payload,
       })
     ).toEqual({
       authenticated: true,
-      loading: false,
-      //   credentials: {},
+      credentials: {
+        userHandle: 'john doe',
+        createdAt: '1/1/2025',
+        email: 'johndoe@gmail.com',
+      },
+      trips: [{ tripID: 1, tripName: 'test trip', createdAt: '1/1/2025' }],
+      invites: [
+        {
+          sender: 'jimdoe',
+          recipient: 'johndoe',
+          createdAt: '1/1/2025',
+          tripID: 2,
+        },
+      ],
     });
   });
 });

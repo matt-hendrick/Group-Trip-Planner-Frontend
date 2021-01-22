@@ -42,7 +42,6 @@ const dataReducer = (state = initialState, action) => {
     case CREATE_TRIP:
       return {
         ...state,
-
         trips: [action.payload, ...state.trips],
       };
     case DELETE_TRIP:

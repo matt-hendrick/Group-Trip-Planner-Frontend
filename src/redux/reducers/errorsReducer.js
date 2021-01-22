@@ -1,6 +1,6 @@
 import { SET_ERRORS, CLEAR_ERRORS } from '../types';
 
-const initialState = {
+export const initialState = {
   errors: '',
 };
 
