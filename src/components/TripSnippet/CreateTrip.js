@@ -29,7 +29,7 @@ function CreateTrip() {
 
   const classes = useStyles();
 
-  const loading = useSelector((state) => state.ui.loading);
+  const loading = useSelector((state) => state.data.loading);
   const errors = useSelector((state) => state.ui.errors);
   const dispatch = useDispatch();
 

@@ -2,15 +2,14 @@ import {
   SET_USER,
   SET_ERRORS,
   CLEAR_ERRORS,
-  LOADING_UI,
   SET_UNAUTHENTICATED,
-  LOADING_USER,
-  STOP_LOADING_UI,
+  LOADING_DATA,
+  STOP_LOADING_DATA,
 } from '../types';
 import axios from 'axios';
 
 export const loginUser = (userData, history) => (dispatch) => {
-  dispatch({ type: LOADING_UI });
+  dispatch({ type: LOADING_DATA });
   axios
     .post('/login', userData)
     .then((res) => {
@@ -18,6 +17,7 @@ export const loginUser = (userData, history) => (dispatch) => {
       dispatch(getOwnUserDetails());
       dispatch({ type: CLEAR_ERRORS });
       history.push('/');
+      dispatch({ type: STOP_LOADING_DATA });
     })
     .catch((err) => {
       dispatch({ type: SET_ERRORS, payload: err.response.data });
@@ -25,7 +25,7 @@ export const loginUser = (userData, history) => (dispatch) => {
 };
 
 export const signupUser = (newUserData, history) => (dispatch) => {
-  dispatch({ type: LOADING_UI });
+  dispatch({ type: LOADING_DATA });
   axios
     .post('/signup', newUserData)
     .then((res) => {
@@ -33,6 +33,7 @@ export const signupUser = (newUserData, history) => (dispatch) => {
       dispatch(getOwnUserDetails());
       dispatch({ type: CLEAR_ERRORS });
       history.push('/');
+      dispatch({ type: STOP_LOADING_DATA });
     })
     .catch((err) => {
       dispatch({ type: SET_ERRORS, payload: err.response.data });
@@ -46,7 +47,6 @@ export const logoutUser = () => (dispatch) => {
 };
 
 export const getOwnUserDetails = () => (dispatch) => {
-  dispatch({ type: LOADING_USER });
   axios
     .get(`/user`)
     .then((res) => {
@@ -60,12 +60,12 @@ export const getOwnUserDetails = () => (dispatch) => {
 };
 
 export const acceptInvite = (tripID, inviteID) => (dispatch) => {
-  dispatch({ type: LOADING_UI });
+  dispatch({ type: LOADING_DATA });
   axios
     .post(`/trips/${tripID}/invite/${inviteID}`)
     .then((res) => {
       dispatch(clearErrors());
-      dispatch({ type: STOP_LOADING_UI });
+      dispatch({ type: STOP_LOADING_DATA });
     })
     .catch((err) => {
       console.log(err);
@@ -74,12 +74,12 @@ export const acceptInvite = (tripID, inviteID) => (dispatch) => {
 };
 
 export const rejectInvite = (tripID, inviteID) => (dispatch) => {
-  dispatch({ type: LOADING_UI });
+  dispatch({ type: LOADING_DATA });
   axios
     .delete(`/trips/${tripID}/invite/${inviteID}`)
     .then((res) => {
       dispatch(clearErrors());
-      dispatch({ type: STOP_LOADING_UI });
+      dispatch({ type: STOP_LOADING_DATA });
     })
     .catch((err) => {
       console.log(err);

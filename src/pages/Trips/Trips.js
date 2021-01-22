@@ -12,7 +12,7 @@ import Header from '../../components/Header/Header';
 
 function Trip() {
   const trips = useSelector((state) => state.user.trips);
-  const loading = useSelector((state) => state.ui.loading);
+  const loading = useSelector((state) => state.data.loading);
   const userHandle = useSelector((state) => state.user.credentials.handle);
   const dispatch = useDispatch();
 

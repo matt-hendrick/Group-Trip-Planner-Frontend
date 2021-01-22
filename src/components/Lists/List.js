@@ -38,7 +38,7 @@ function List(props) {
     (state) => state.user.credentials.handle
   );
   const members = useSelector((state) => state.data.trip.members);
-  const loading = useSelector((state) => state.ui.loading);
+  const loading = useSelector((state) => state.data.loading);
   const dispatch = useDispatch();
 
   const handleLikeListItem = (tripID, listItemID, userHandle) => {

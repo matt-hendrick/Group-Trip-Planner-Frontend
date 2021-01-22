@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 function SaveItineraryOrderButton(props) {
   const classes = useStyles();
 
-  const loading = useSelector((state) => state.ui.loading);
+  const loading = useSelector((state) => state.data.loading);
   const dispatch = useDispatch();
 
   const { tripID, itineraryItems, changed } = props;

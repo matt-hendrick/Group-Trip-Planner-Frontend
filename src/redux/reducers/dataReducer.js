@@ -1,6 +1,7 @@
 import {
   SET_TRIP,
   LOADING_DATA,
+  STOP_LOADING_DATA,
   CREATE_TRIP,
   DELETE_TRIP,
   EDIT_TRIP_NAME,
@@ -29,6 +30,11 @@ const dataReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+      };
+    case STOP_LOADING_DATA:
+      return {
+        ...state,
+        loading: false,
       };
     case SET_TRIP:
       return {

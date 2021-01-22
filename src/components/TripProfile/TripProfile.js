@@ -22,14 +22,15 @@ const useStyles = makeStyles((theme) => ({
 function TripProfile() {
   const classes = useStyles();
 
-  const loading = useSelector((state) => state.user.loading);
   const createdAt = useSelector((state) => state.data.trip.createdAt);
   const members = useSelector((state) => state.data.trip.members);
   const pendingInvites = useSelector((state) => state.data.trip.pendingInvites);
   const tripID = useSelector((state) => state.data.trip.tripID);
 
   let profileDisplay =
-    !loading && createdAt ? (
+    !createdAt && !members ? (
+      <TripProfileSkeleton />
+    ) : (
       <Paper className={classes.paper}>
         <div className={classes.profile}>
           <hr />
@@ -53,8 +54,6 @@ function TripProfile() {
           <InviteUserButton tripID={tripID} />
         </div>
       </Paper>
-    ) : (
-      <TripProfileSkeleton />
     );
 
   return profileDisplay;

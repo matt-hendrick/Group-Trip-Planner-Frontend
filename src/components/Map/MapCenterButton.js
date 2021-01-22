@@ -38,7 +38,7 @@ function MapCenterButton() {
 
   const classes = useStyles();
 
-  const loading = useSelector((state) => state.ui.loading);
+  const loading = useSelector((state) => state.data.loading);
   const errors = useSelector((state) => state.ui.errors);
   const tripID = useSelector((state) => state.data.trip.tripID);
   const dispatch = useDispatch();
