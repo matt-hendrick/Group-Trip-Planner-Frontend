@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   editItineraryOrder,
   clearLoadingData,
-} from '../../redux/actions/dataActions';
+} from '../../redux/actions/tripActions';
 import { clearErrors } from '../../redux/actions/errorsActions';
 
 // MUI
@@ -35,7 +35,7 @@ function CreateItineraryItem(props) {
 
   const classes = useStyles();
 
-  const loading = useSelector((state) => state.data.loading);
+  const loading = useSelector((state) => state.trip.loading);
   const errors = useSelector((state) => state.errors.errors);
   const dispatch = useDispatch();
 

@@ -2,8 +2,6 @@ import {
   SET_TRIP,
   LOADING_DATA,
   CLEAR_LOADING_DATA,
-  CREATE_TRIP,
-  DELETE_TRIP,
   EDIT_TRIP_NAME,
   CREATE_PIN,
   EDIT_ITINERARY_ORDER,
@@ -24,6 +22,7 @@ export const getTrip = (tripID) => (dispatch) => {
     .get(`/trips/${tripID}`)
     .then((res) => {
       dispatch({ type: SET_TRIP, payload: res.data });
+      dispatch(clearErrors());
       dispatch(clearLoadingData());
     })
     .catch((err) => {
@@ -36,7 +35,6 @@ export const createTrip = (newTrip) => (dispatch) => {
   axios
     .post(`/trips`, newTrip)
     .then((res) => {
-      dispatch({ type: CREATE_TRIP, payload: res.data });
       dispatch(clearErrors());
       dispatch(clearLoadingData());
     })
@@ -48,7 +46,7 @@ export const deleteTrip = (tripID) => (dispatch) => {
   axios
     .delete(`/trips/${tripID}`)
     .then(() => {
-      dispatch({ type: DELETE_TRIP, payload: tripID });
+      dispatch(clearErrors());
       dispatch(clearLoadingData());
     })
     .catch((err) => dispatch(setErrors(err.response.data)));

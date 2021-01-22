@@ -2,14 +2,14 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
 import userReducer from './reducers/userReducer';
-import dataReducer from './reducers/dataReducer';
+import tripReducer from './reducers/tripReducer';
 import errorsReducer from './reducers/errorsReducer';
 
 const initialState = {};
 
 const reducers = combineReducers({
   user: userReducer,
-  data: dataReducer,
+  trip: tripReducer,
   errors: errorsReducer,
 });
 

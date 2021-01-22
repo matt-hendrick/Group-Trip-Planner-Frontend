@@ -32,7 +32,7 @@ function ItineraryList(props) {
   const loggedInUserHandle = useSelector(
     (state) => state.user.credentials.handle
   );
-  const members = useSelector((state) => state.data.trip.members);
+  const members = useSelector((state) => state.trip.trip.members);
 
   useEffect(() => {
     if (itineraryItems && Object.keys(itineraryItems).length !== 0) {

@@ -27,7 +27,7 @@ function UserProfile() {
   const classes = useStyles();
 
   const authenticated = useSelector((state) => state.user.authenticated);
-  const loading = useSelector((state) => state.data.loading);
+  const loading = useSelector((state) => state.trip.loading);
   const handle = useSelector((state) => state.user.credentials.handle);
   const createdAt = useSelector((state) => state.user.credentials.createdAt);
   const dispatch = useDispatch();

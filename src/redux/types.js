@@ -5,10 +5,8 @@ export const SET_USER = 'SET_USER';
 // Errors reducer types
 export const SET_ERRORS = 'SET_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
-// Data reducer types
+// Trip reducer types
 export const SET_TRIP = 'SET_TRIP';
-export const CREATE_TRIP = 'CREATE_TRIP';
-export const DELETE_TRIP = 'DELETE_TRIP';
 export const EDIT_TRIP_NAME = 'EDIT_TRIP_NAME';
 export const CREATE_PIN = 'CREATE_PIN';
 export const EDIT_ITINERARY_ORDER = 'EDIT_ITINERARY_ORDER';

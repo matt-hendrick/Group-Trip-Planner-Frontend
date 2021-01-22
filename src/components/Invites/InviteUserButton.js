@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { inviteUser, clearLoadingData } from '../../redux/actions/dataActions';
+import { inviteUser, clearLoadingData } from '../../redux/actions/tripActions';
 import { clearErrors } from '../../redux/actions/errorsActions';
 
 // MUI
@@ -33,7 +33,7 @@ function InviteUser(props) {
 
   const { tripID } = props;
 
-  const loading = useSelector((state) => state.data.loading);
+  const loading = useSelector((state) => state.trip.loading);
   const errors = useSelector((state) => state.errors.errors);
   const dispatch = useDispatch();
 

@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { getTrip } from '../../redux/actions/dataActions';
+import { getTrip } from '../../redux/actions/tripActions';
 
 // MUI
 import Grid from '@material-ui/core/Grid';
@@ -29,7 +29,7 @@ function Trip() {
   const classes = useStyles();
   const [localLoading, setLocalLoading] = useState(true);
 
-  const trip = useSelector((state) => state.data.trip);
+  const trip = useSelector((state) => state.trip.trip);
   const authenticated = useSelector((state) => state.user.authenticated);
 
   const dispatch = useDispatch();

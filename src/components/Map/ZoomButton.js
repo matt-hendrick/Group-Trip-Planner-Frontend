@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 // React
 import { useSelector, useDispatch } from 'react-redux';
-import { setTripMapZoomLevel } from '../../redux/actions/dataActions';
+import { setTripMapZoomLevel } from '../../redux/actions/tripActions';
 
 // MUI Icons
 import ZoomInIcon from '@material-ui/icons/ZoomIn';
@@ -21,7 +21,7 @@ function ZoomButton(props) {
 
   const { tripID, zoomType } = props;
 
-  let mapZoomLevel = useSelector((state) => state.data.trip.mapZoomLevel);
+  let mapZoomLevel = useSelector((state) => state.trip.trip.mapZoomLevel);
   const dispatch = useDispatch();
 
   const handleZoom = () => {

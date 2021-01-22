@@ -4,12 +4,12 @@ import fetchMock from 'fetch-mock';
 import {
   getTrip,
   // setTripMapZoomLevel,
-} from './dataActions';
+} from './tripActions';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
-describe('dataActions tests', () => {
+describe('tripActions tests', () => {
   it('getTrip should dispatch an initial Loading UI action', () => {
     const initialState = {};
     const store = mockStore(initialState);

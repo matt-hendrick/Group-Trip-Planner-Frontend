@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { likeListItem, unlikeListItem } from '../../redux/actions/dataActions';
+import { likeListItem, unlikeListItem } from '../../redux/actions/tripActions';
 
 // MUI
 import Grid from '@material-ui/core/Grid';
@@ -32,13 +32,13 @@ function List(props) {
 
   const { tabType } = props;
 
-  const listItems = useSelector((state) => state.data.trip.listItems);
-  const tripID = useSelector((state) => state.data.trip.tripID);
+  const listItems = useSelector((state) => state.trip.trip.listItems);
+  const tripID = useSelector((state) => state.trip.trip.tripID);
   const loggedInUserHandle = useSelector(
     (state) => state.user.credentials.handle
   );
-  const members = useSelector((state) => state.data.trip.members);
-  const loading = useSelector((state) => state.data.loading);
+  const members = useSelector((state) => state.trip.trip.members);
+  const loading = useSelector((state) => state.trip.loading);
   const dispatch = useDispatch();
 
   const handleLikeListItem = (tripID, listItemID, userHandle) => {

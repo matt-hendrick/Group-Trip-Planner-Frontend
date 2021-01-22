@@ -23,7 +23,7 @@ function Signup(props) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [handle, setHandle] = useState('');
 
-  const loading = useSelector((state) => state.data.loading);
+  const loading = useSelector((state) => state.trip.loading);
   const errors = useSelector((state) => state.errors.errors);
   const dispatch = useDispatch();
 

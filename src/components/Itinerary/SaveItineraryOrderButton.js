@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import theme from '../../utility/theme';
 
 // Redux
-import { editItineraryOrder } from '../../redux/actions/dataActions';
+import { editItineraryOrder } from '../../redux/actions/tripActions';
 import { useSelector, useDispatch } from 'react-redux';
 
 // MUI
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 function SaveItineraryOrderButton(props) {
   const classes = useStyles();
 
-  const loading = useSelector((state) => state.data.loading);
+  const loading = useSelector((state) => state.trip.loading);
   const dispatch = useDispatch();
 
   const { tripID, itineraryItems, changed } = props;

@@ -1,6 +1,6 @@
 import { SET_USER, SET_UNAUTHENTICATED } from '../types';
 import { setErrors, clearErrors } from './errorsActions';
-import { loadingData, clearLoadingData } from './dataActions';
+import { loadingData, clearLoadingData } from './tripActions';
 import axios from 'axios';
 
 export const loginUser = (userData, history) => (dispatch) => {

@@ -22,10 +22,10 @@ const useStyles = makeStyles((theme) => ({
 function TripProfile() {
   const classes = useStyles();
 
-  const createdAt = useSelector((state) => state.data.trip.createdAt);
-  const members = useSelector((state) => state.data.trip.members);
-  const pendingInvites = useSelector((state) => state.data.trip.pendingInvites);
-  const tripID = useSelector((state) => state.data.trip.tripID);
+  const createdAt = useSelector((state) => state.trip.trip.createdAt);
+  const members = useSelector((state) => state.trip.trip.members);
+  const pendingInvites = useSelector((state) => state.trip.trip.pendingInvites);
+  const tripID = useSelector((state) => state.trip.trip.tripID);
 
   let profileDisplay =
     !createdAt && !members ? (

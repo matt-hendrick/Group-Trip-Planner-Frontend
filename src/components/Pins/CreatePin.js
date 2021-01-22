@@ -5,7 +5,7 @@ import theme from '../../utility/theme';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { createPin, clearLoadingData } from '../../redux/actions/dataActions';
+import { createPin, clearLoadingData } from '../../redux/actions/tripActions';
 import { clearErrors, setErrors } from '../../redux/actions/errorsActions';
 
 //MUI
@@ -36,9 +36,9 @@ function CreatePin() {
 
   const classes = useStyles();
 
-  const loading = useSelector((state) => state.data.loading);
+  const loading = useSelector((state) => state.trip.loading);
   const errors = useSelector((state) => state.errors.errors);
-  const tripID = useSelector((state) => state.data.trip.tripID);
+  const tripID = useSelector((state) => state.trip.trip.tripID);
   const dispatch = useDispatch();
 
   const autocompleteLoading = autocompleteOpen && options.length === 0;

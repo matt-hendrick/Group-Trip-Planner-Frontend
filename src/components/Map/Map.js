@@ -7,9 +7,9 @@ import { useSelector } from 'react-redux';
 import Pins from '../Pins/Pins';
 
 function Map() {
-  const destination = useSelector((state) => state.data.trip.destination);
-  const mapZoomLevel = useSelector((state) => state.data.trip.mapZoomLevel);
-  const pins = useSelector((state) => state.data.trip.pins);
+  const destination = useSelector((state) => state.trip.trip.destination);
+  const mapZoomLevel = useSelector((state) => state.trip.trip.mapZoomLevel);
+  const pins = useSelector((state) => state.trip.trip.pins);
 
   const [viewport, setViewport] = useState({});
 

@@ -5,7 +5,7 @@ import theme from '../../utility/theme';
 
 // Redux
 import { useDispatch } from 'react-redux';
-import { editTripName } from '../../redux/actions/dataActions';
+import { editTripName } from '../../redux/actions/tripActions';
 
 //MUI
 import Button from '@material-ui/core/Button';

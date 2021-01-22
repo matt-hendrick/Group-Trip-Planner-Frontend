@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 // Redux
 import { useDispatch } from 'react-redux';
-import { deleteTrip } from '../../redux/actions/dataActions';
+import { deleteTrip } from '../../redux/actions/tripActions';
 
 // MUI
 import Button from '@material-ui/core/Button';

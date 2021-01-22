@@ -13,6 +13,7 @@
     "dayjs": "^1.9.8",
     "dotenv": "^8.2.0",
     "jwt-decode": "^3.1.2",
+    "lodash": "^4.17.20",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-beautiful-dnd": "^13.0.0",
