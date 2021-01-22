@@ -3,14 +3,14 @@ import thunk from 'redux-thunk';
 
 import userReducer from './reducers/userReducer';
 import dataReducer from './reducers/dataReducer';
-import uiReducer from './reducers/uiReducer';
+import errorsReducer from './reducers/errorsReducer';
 
 const initialState = {};
 
 const reducers = combineReducers({
   user: userReducer,
   data: dataReducer,
-  ui: uiReducer,
+  errors: errorsReducer,
 });
 
 const composeEnhancers =

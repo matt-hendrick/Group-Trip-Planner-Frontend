@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { inviteUser, clearErrors } from '../../redux/actions/dataActions';
+import { inviteUser, clearLoadingData } from '../../redux/actions/dataActions';
+import { clearErrors } from '../../redux/actions/errorsActions';
 
 // MUI
 import Button from '@material-ui/core/Button';
@@ -33,7 +34,7 @@ function InviteUser(props) {
   const { tripID } = props;
 
   const loading = useSelector((state) => state.data.loading);
-  const errors = useSelector((state) => state.ui.errors);
+  const errors = useSelector((state) => state.errors.errors);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -49,6 +50,7 @@ function InviteUser(props) {
 
   const handleClose = () => {
     dispatch(clearErrors());
+    dispatch(clearLoadingData());
     setOpen(false);
   };
 

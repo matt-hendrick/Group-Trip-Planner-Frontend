@@ -5,11 +5,8 @@ import theme from '../../utility/theme';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  createPin,
-  clearErrors,
-  setErrors,
-} from '../../redux/actions/dataActions';
+import { createPin, clearLoadingData } from '../../redux/actions/dataActions';
+import { clearErrors, setErrors } from '../../redux/actions/errorsActions';
 
 //MUI
 import Button from '@material-ui/core/Button';
@@ -40,7 +37,7 @@ function CreatePin() {
   const classes = useStyles();
 
   const loading = useSelector((state) => state.data.loading);
-  const errors = useSelector((state) => state.ui.errors);
+  const errors = useSelector((state) => state.errors.errors);
   const tripID = useSelector((state) => state.data.trip.tripID);
   const dispatch = useDispatch();
 
@@ -101,6 +98,7 @@ function CreatePin() {
 
   const handleClose = () => {
     dispatch(clearErrors());
+    dispatch(clearLoadingData());
     setOpen(false);
   };
 

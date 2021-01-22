@@ -4,7 +4,8 @@ import theme from '../../utility/theme';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { createTrip, clearErrors } from '../../redux/actions/dataActions';
+import { createTrip, clearLoadingData } from '../../redux/actions/dataActions';
+import { clearErrors } from '../../redux/actions/errorsActions';
 
 //MUI
 import Button from '@material-ui/core/Button';
@@ -30,7 +31,7 @@ function CreateTrip() {
   const classes = useStyles();
 
   const loading = useSelector((state) => state.data.loading);
-  const errors = useSelector((state) => state.ui.errors);
+  const errors = useSelector((state) => state.errors.errors);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -46,6 +47,7 @@ function CreateTrip() {
 
   const handleClose = () => {
     dispatch(clearErrors());
+    dispatch(clearLoadingData());
     setOpen(false);
   };
 

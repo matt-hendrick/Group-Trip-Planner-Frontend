@@ -7,9 +7,9 @@ import theme from '../../utility/theme';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   setTripCoordinates,
-  clearErrors,
-  setErrors,
+  clearLoadingData,
 } from '../../redux/actions/dataActions';
+import { clearErrors, setErrors } from '../../redux/actions/errorsActions';
 
 // MUI
 import Button from '@material-ui/core/Button';
@@ -39,7 +39,7 @@ function MapCenterButton() {
   const classes = useStyles();
 
   const loading = useSelector((state) => state.data.loading);
-  const errors = useSelector((state) => state.ui.errors);
+  const errors = useSelector((state) => state.errors.errors);
   const tripID = useSelector((state) => state.data.trip.tripID);
   const dispatch = useDispatch();
 
@@ -99,6 +99,7 @@ function MapCenterButton() {
 
   const handleClose = () => {
     dispatch(clearErrors());
+    dispatch(clearLoadingData());
     setOpen(false);
   };
 

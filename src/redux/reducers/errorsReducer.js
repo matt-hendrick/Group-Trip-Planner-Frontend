@@ -4,7 +4,7 @@ const initialState = {
   errors: '',
 };
 
-const uiReducer = (state = initialState, action) => {
+const errorsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_ERRORS:
       return {
@@ -21,4 +21,4 @@ const uiReducer = (state = initialState, action) => {
   }
 };
 
-export default uiReducer;
+export default errorsReducer;

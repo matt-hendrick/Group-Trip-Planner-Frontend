@@ -3,8 +3,8 @@ import { SET_USER, SET_AUTHENTICATED, SET_UNAUTHENTICATED } from '../types';
 export const initialState = {
   authenticated: false,
   credentials: {},
-  // trips: null,
-  // invites: null,
+  trips: null,
+  invites: null,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -18,6 +18,7 @@ const userReducer = (state = initialState, action) => {
       return initialState;
     case SET_USER:
       return {
+        ...state,
         authenticated: true,
         ...action.payload,
       };

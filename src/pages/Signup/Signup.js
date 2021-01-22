@@ -24,7 +24,7 @@ function Signup(props) {
   const [handle, setHandle] = useState('');
 
   const loading = useSelector((state) => state.data.loading);
-  const errors = useSelector((state) => state.ui.errors);
+  const errors = useSelector((state) => state.errors.errors);
   const dispatch = useDispatch();
 
   const classes = useStyles();
