@@ -30,7 +30,7 @@ function colorAssignment(loggedInUserHandle, members, userHandle) {
     membersList.splice(currentUserIndex, 1);
   if (userHandle !== loggedInUserHandle) {
     const otherUserIndex = membersList.indexOf(userHandle);
-    if (otherUserIndex < 7) {
+    if (otherUserIndex < 7 && members.length > 0) {
       color = colorArray[otherUserIndex];
     }
   }

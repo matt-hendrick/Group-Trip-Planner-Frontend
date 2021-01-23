@@ -74,7 +74,6 @@ export const setTripCoordinates = (tripID, coordinates) => (dispatch) => {
       dispatch(clearLoadingData());
     })
     .catch((err) => {
-      console.log(err);
       dispatch(setErrors(err.response.data));
     });
 };
@@ -87,7 +86,6 @@ export const setTripMapZoomLevel = (tripID, mapZoomLevel) => (dispatch) => {
       dispatch(clearErrors());
     })
     .catch((err) => {
-      console.log(err);
       dispatch(setErrors(err.response.data));
     });
 };

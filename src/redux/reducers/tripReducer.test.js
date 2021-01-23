@@ -1,8 +1,5 @@
 import reducer, { initialState } from './tripReducer';
-import { cleanup, render } from '@testing-library/react';
 import * as types from '../types';
-
-afterEach(cleanup);
 
 const mockState = {
   loading: false,

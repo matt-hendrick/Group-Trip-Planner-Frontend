@@ -50,7 +50,7 @@ export const getOwnUserDetails = () => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => setErrors(err.response.data));
 };
 
 export const acceptInvite = (tripID, inviteID) => (dispatch) => {
@@ -62,7 +62,6 @@ export const acceptInvite = (tripID, inviteID) => (dispatch) => {
       dispatch(clearLoadingData());
     })
     .catch((err) => {
-      console.log(err);
       dispatch(setErrors(err.response.data));
     });
 };
@@ -76,7 +75,6 @@ export const rejectInvite = (tripID, inviteID) => (dispatch) => {
       dispatch(clearLoadingData());
     })
     .catch((err) => {
-      console.log(err);
       dispatch(setErrors(err.response.data));
     });
 };
