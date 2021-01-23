@@ -39,14 +39,16 @@ function Trip() {
 
   useEffect(() => {
     dispatch(getTrip(tripID));
-    window.gtag
-      ? window.gtag('config', process.env.REACT_APP_FIREBASE_MEASUREMENT_ID, {
-          page_title: document.title,
-          page_path: window.location.pathname + window.location.search,
-        })
-      : null;
+
     setLocalLoading(false);
   }, [dispatch, tripID]);
+
+  window.gtag
+    ? window.gtag('config', process.env.REACT_APP_FIREBASE_MEASUREMENT_ID, {
+        page_title: document.title,
+        page_path: window.location.pathname + window.location.search,
+      })
+    : null;
 
   let mapDisplay = !localLoading ? (
     <div className={classes.map}>

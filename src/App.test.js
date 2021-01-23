@@ -9,8 +9,8 @@ describe('App tests', () => {
       <App />
       // </MemoryRouter>
     );
-    expect(screen.getByRole('heading', /login/i)).toBeInTheDocument();
-    expect(screen.getByRole('textbox', /email/i)).toBeInTheDocument();
-    expect(screen.getByRole('textbox', /password/i)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /login/i })).toBeInTheDocument();
+    expect(screen.getByRole('textbox', { name: /email/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /here/i })).toBeInTheDocument();
   });
 });
