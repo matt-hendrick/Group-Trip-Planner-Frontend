@@ -43,12 +43,12 @@ function Login(props) {
     dispatch(loginUser(userData, props.history));
   };
 
-  window.gtag
-    ? window.gtag('config', process.env.REACT_APP_FIREBASE_MEASUREMENT_ID, {
-        page_title: document.title,
-        page_path: window.location.pathname + window.location.search,
-      })
-    : null;
+  if (window.gtag) {
+    window.gtag('config', process.env.REACT_APP_FIREBASE_MEASUREMENT_ID, {
+      page_title: document.title,
+      page_path: window.location.pathname + window.location.search,
+    });
+  }
 
   return (
     <Grid container className={classes.form}>
