@@ -1,5 +1,6 @@
 import React from 'react';
 import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -27,6 +28,8 @@ function Pins(props) {
     (state) => state.user.credentials.handle
   );
   const members = useSelector((state) => state.trip.trip.members);
+
+  dayjs.extend(relativeTime);
 
   return pins && loggedInUserHandle
     ? pins.map((pin) => {

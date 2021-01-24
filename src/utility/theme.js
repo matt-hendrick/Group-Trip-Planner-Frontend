@@ -179,6 +179,10 @@ const theme = {
     listTab: {
       minWidth: '20%',
     },
+    demoDiv: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
   },
 };
 

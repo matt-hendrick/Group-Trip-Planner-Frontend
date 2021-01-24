@@ -56,7 +56,7 @@ function UserProfile() {
       </Paper>
     ) : (
       <Paper className={classes.paper}>
-        <Typography variant="body2" align="center">
+        <Typography variant="h5" align="center">
           No profile found, please login again
         </Typography>
         <div className={classes.buttons}>

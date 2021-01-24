@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '../../utility/reduxTestUtils';
+import { render, screen } from '../../utility/reduxTestUtils';
 import { MemoryRouter } from 'react-router-dom';
 import Trip from './Trip';
 
@@ -77,6 +77,12 @@ describe('Trip tests', () => {
     ).toBeInTheDocument();
     expect(
       getByRole('button', { name: /change map center/i })
+    ).toBeInTheDocument();
+    expect(
+      getByRole('button', { name: /invite a user to the trip/i })
+    ).toBeInTheDocument();
+    expect(
+      getByRole('button', { name: /janedoe 10 am hike/i })
     ).toBeInTheDocument();
     expect(getByRole('tab', { name: /lodging/i })).toBeInTheDocument();
   });
