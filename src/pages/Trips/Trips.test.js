@@ -50,12 +50,5 @@ describe('Trips tests', () => {
     ).toBeInTheDocument();
     expect(getByRole('link', { name: /example trip/i })).toBeInTheDocument();
     expect(getByRole('button', { name: /delete trip/i })).toBeInTheDocument();
-
-    // fireEvent.click(getByRole('button', { name: /delete trip/i }));
-    // await (() => {
-    //   expect(
-    //     getByRole('link', { name: /example trip/i })
-    //   ).not.toBeInTheDocument();
-    // });
   });
 });

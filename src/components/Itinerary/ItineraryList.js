@@ -119,6 +119,7 @@ function ItineraryList(props) {
         <Droppable droppableId="itineraryList">
           {(provided) => (
             <ul
+              aria-label="Itinerary List"
               className={classes.itineraryList}
               {...provided.droppableProps}
               ref={provided.innerRef}

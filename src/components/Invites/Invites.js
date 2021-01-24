@@ -48,7 +48,12 @@ function Invites() {
   let invitesIcon;
   if (invites && invites.length > 0) {
     invitesIcon = (
-      <Badge badgeContent={invites.length} color="secondary">
+      <Badge
+        badgeContent={invites.length}
+        color="secondary"
+        aria-label="InviteBadge"
+        role="button"
+      >
         <GroupIcon />
       </Badge>
     );
@@ -59,9 +64,6 @@ function Invites() {
     invites && invites.length > 0 ? (
       invites.map((invite) => {
         const time = dayjs(invite.createdAt).fromNow();
-        // const icon = (
-        //   <GroupIcon color="secondary" style={{ marginRight: 10 }} />
-        // );
         const inviteID = invite.inviteID;
         const tripID = invite.tripID;
         return (
@@ -69,7 +71,6 @@ function Invites() {
             key={invite.createdAt}
             //   onClick={handleClose}
           >
-            {/* {icon} */}
             <Typography color="inherit" variant="body1">
               {invite.sender} invited you to {invite.tripName} ({time})
             </Typography>
