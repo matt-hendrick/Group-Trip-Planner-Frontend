@@ -39,7 +39,6 @@ function Trip() {
 
   useEffect(() => {
     dispatch(getTrip(tripID));
-
     setLocalLoading(false);
   }, [dispatch, tripID]);
 

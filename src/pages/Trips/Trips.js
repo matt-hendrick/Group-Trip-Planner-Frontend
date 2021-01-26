@@ -10,7 +10,7 @@ import UserProfile from '../../components/UserProfile/UserProfile';
 import CreateTrip from '../../components/TripSnippet/CreateTrip';
 import Header from '../../components/Header/Header';
 
-function Trip() {
+function Trips() {
   const trips = useSelector((state) => state.user.trips);
   const loading = useSelector((state) => state.trip.loading);
   const userHandle = useSelector((state) => state.user.credentials.handle);
@@ -48,4 +48,4 @@ function Trip() {
   );
 }
 
-export default Trip;
+export default Trips;

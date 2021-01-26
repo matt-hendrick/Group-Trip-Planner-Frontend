@@ -8,7 +8,8 @@ import Trips from '../Trips/Trips';
 
 function Home() {
   const authenticated = useSelector((state) => state.user.authenticated);
-  return authenticated ? <Trips /> : <Redirect to="/login" />;
+  const loading = useSelector((state) => state.trip.loading);
+  return !loading ? authenticated ? <Trips /> : <Redirect to="/login" /> : null;
 }
 
 export default Home;
