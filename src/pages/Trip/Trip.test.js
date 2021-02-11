@@ -88,8 +88,8 @@ describe('Trip tests', () => {
     expect(getByRole('tab', { name: /lodging/i })).toBeInTheDocument();
   });
 
-  it('Renders Trip page when passed valid credentials and trip info', async () => {
-    const { getByRole, findByRole, findByText } = render(
+  it('Renders edit trip name dialog when edit trip name button clicked', async () => {
+    const { getByRole, findByRole } = render(
       <MemoryRouter>
         <Trip />
       </MemoryRouter>,
@@ -158,7 +158,7 @@ describe('Trip tests', () => {
     await findByRole('heading', { name: /edit trip name/i });
   });
 
-  it('Renders Trip page when passed valid credentials and trip info', async () => {
+  it('Renders invite user dialog when invite user button clicked', async () => {
     const { getByRole, findByRole, findByText } = render(
       <MemoryRouter>
         <Trip />
