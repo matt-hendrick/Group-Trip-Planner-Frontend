@@ -54,7 +54,7 @@ function DeleteTrip(props) {
         <DeleteOutline color="secondary" />
       </MyButton>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
-        <DialogTitle>Are you sure you want to delete this trip</DialogTitle>
+        <DialogTitle>Are you sure you want to delete this trip?</DialogTitle>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Cancel
