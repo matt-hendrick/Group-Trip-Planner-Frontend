@@ -9,7 +9,11 @@ import pink from '@material-ui/core/colors/pink';
 import grey from '@material-ui/core/colors/grey';
 import brown from '@material-ui/core/colors/brown';
 
-function colorAssignment(loggedInUserHandle, members, userHandle) {
+function colorAssignment(
+  loggedInUserHandle: string,
+  members: string[],
+  userHandle: string
+) {
   let color = 'primary';
   const colorArray = [
     'secondary',
