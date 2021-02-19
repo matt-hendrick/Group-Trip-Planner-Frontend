@@ -1,8 +1,30 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 // MUI
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
+
+interface Props {
+  children: ReactNode | string;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  tip: string;
+  btnClassName?: string;
+  tipClassName?: string;
+  placement?:
+    | 'left'
+    | 'right'
+    | 'top'
+    | 'bottom'
+    | 'bottom-end'
+    | 'bottom-start'
+    | 'left-end'
+    | 'left-start'
+    | 'right-end'
+    | 'right-start'
+    | 'top-end'
+    | 'top-start'
+    | undefined;
+}
 
 function MyButton({
   children,
@@ -11,7 +33,7 @@ function MyButton({
   btnClassName,
   tipClassName,
   placement,
-}) {
+}: Props) {
   return (
     <Tooltip
       title={tip}

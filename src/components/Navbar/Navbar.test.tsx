@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '../../utility/reduxTestUtils';
+import { render } from '../../utility/reduxTestUtils';
 import { MemoryRouter } from 'react-router-dom';
 import Navbar from './Navbar';
 

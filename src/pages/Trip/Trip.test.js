@@ -1,10 +1,11 @@
 import React from 'react';
-import { render, screen } from '../../utility/reduxTestUtils';
+import { render, cleanup } from '../../utility/reduxTestUtils';
 import { MemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import Trip from './Trip';
 
 describe('Trip tests', () => {
+  afterEach(cleanup);
   it('Renders Trip page when passed valid credentials and trip info', () => {
     const { getByRole } = render(
       <MemoryRouter>

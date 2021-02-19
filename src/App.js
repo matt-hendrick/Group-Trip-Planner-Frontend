@@ -1,7 +1,9 @@
 import React from 'react';
 import './App.css';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import axios from 'axios';
-import jwtDecode, { JwtPayload } from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
+
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // Redux
@@ -10,33 +12,16 @@ import store from './redux/store';
 import { SET_AUTHENTICATED } from './redux/types';
 import { logoutUser, getOwnUserDetails } from './redux/actions/userActions';
 
-// MUI
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import themeObject from './utility/theme';
 
-// Components
 import Navbar from './components/Navbar/Navbar';
 import AuthRoute from './components/AuthRoute/AuthRoute';
 
-// Pages
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import Trip from './pages/Trip/Trip';
 import Demo from './pages/Demo/Demo';
-
-// Utility Functions
-import googleAnalytics from './utility/googleAnalytics';
-
-declare global {
-  interface Window {
-    gtag?: (
-      key: string,
-      trackingId: string,
-      config: { page_path: string }
-    ) => void;
-  }
-}
 
 const theme = createMuiTheme(themeObject);
 
@@ -45,8 +30,8 @@ axios.defaults.baseURL =
 
 const token = localStorage.FBIdToken;
 if (token) {
-  const decodedToken = jwtDecode<JwtPayload>(token);
-  if (decodedToken.exp && decodedToken.exp * 1000 < Date.now()) {
+  const decodedToken = jwtDecode(token);
+  if (decodedToken.exp * 1000 < Date.now()) {
     store.dispatch(logoutUser());
     window.location.href = '/login';
   } else {
@@ -56,7 +41,12 @@ if (token) {
   }
 }
 
-googleAnalytics();
+if (window.gtag) {
+  window.gtag('config', process.env.REACT_APP_FIREBASE_MEASUREMENT_ID, {
+    page_title: document.title,
+    page_path: window.location.pathname + window.location.search,
+  });
+}
 
 function App() {
   return (

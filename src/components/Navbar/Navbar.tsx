@@ -14,8 +14,12 @@ import MyButton from '../MyButton/MyButton';
 import LogoutButton from '../LogoutButton/LogoutButton';
 import Invites from '../Invites/Invites';
 
+import { UserReducerState } from '../../utility/sharedTypes';
+
 function Navbar() {
-  const authenticated = useSelector((state) => state.user.authenticated);
+  const authenticated = useSelector(
+    (state: UserReducerState) => state.user.authenticated
+  );
   return (
     <AppBar>
       <Toolbar className="nav-container">
