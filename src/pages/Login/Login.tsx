@@ -20,7 +20,7 @@ import { ReducerState } from '../../utility/sharedTypes';
 import googleAnalytics from '../../utility/googleAnalytics';
 
 interface Props {
-  history: History;
+  history?: History;
 }
 
 const useStyles = makeStyles<Theme, object>((theme) => ({

@@ -1,6 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
 
 // React
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,19 +7,30 @@ import { setTripMapZoomLevel } from '../../redux/actions/tripActions';
 // MUI Icons
 import ZoomInIcon from '@material-ui/icons/ZoomIn';
 import ZoomOutIcon from '@material-ui/icons/ZoomOut';
+import { Theme, makeStyles } from '@material-ui/core';
 
 import MyButton from '../MyButton/MyButton';
 
-const useStyles = makeStyles((theme) => ({
-  ...theme.classes,
+// Types
+import { ReducerState } from '../../utility/sharedTypes';
+
+interface Props {
+  tripID: string;
+  zoomType: string;
+}
+
+const useStyles = makeStyles<Theme, object>((theme) => ({
+  ...(theme.classes as object),
 }));
 
-function ZoomButton(props) {
+function ZoomButton(props: Props) {
   const classes = useStyles();
 
   const { tripID, zoomType } = props;
 
-  let mapZoomLevel = useSelector((state) => state.trip.trip.mapZoomLevel);
+  let mapZoomLevel = useSelector(
+    (state: ReducerState) => state.trip.trip.mapZoomLevel
+  );
   const dispatch = useDispatch();
 
   const handleZoom = () => {
@@ -45,9 +54,5 @@ function ZoomButton(props) {
     </MyButton>
   );
 }
-
-ZoomButton.propTypes = {
-  zoomType: PropTypes.string.isRequired,
-};
 
 export default ZoomButton;

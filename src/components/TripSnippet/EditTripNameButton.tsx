@@ -1,7 +1,4 @@
 import React, { useState, Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import theme from '../../utility/theme';
 
 // Redux
 import { useDispatch } from 'react-redux';
@@ -14,20 +11,25 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
-// Icons
 import EditIcon from '@material-ui/icons/Edit';
+import { Theme, makeStyles } from '@material-ui/core';
 
+// Components
 import MyButton from '../MyButton/MyButton';
 
-const useStyles = makeStyles({
-  ...theme.classes,
+interface Props {
+  tripID: string;
+  tripName?: string;
+}
+
+const useStyles = makeStyles<Theme, object>((theme) => ({
+  ...(theme.classes as object),
   button: {
     float: 'right',
   },
-});
+}));
 
-function EditTripName(props) {
+function EditTripName(props: Props) {
   const [localTripName, setLocalTripName] = useState('');
   const [open, setOpen] = useState(false);
 
@@ -56,9 +58,12 @@ function EditTripName(props) {
     handleClose();
   };
 
-  const tripNameChangedHandler = (event) => {
-    const updatedTripName = event.target.value;
-    setLocalTripName(updatedTripName);
+  const tripNameChangedHandler = (event: React.ChangeEvent) => {
+    const target = event.target as HTMLInputElement;
+    if (target) {
+      const updatedTripName = target.value;
+      setLocalTripName(updatedTripName);
+    }
   };
 
   return (
@@ -99,10 +104,5 @@ function EditTripName(props) {
     </Fragment>
   );
 }
-
-EditTripName.propTypes = {
-  tripID: PropTypes.string.isRequired,
-  tripName: PropTypes.string,
-};
 
 export default EditTripName;

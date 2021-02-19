@@ -63,6 +63,8 @@ export interface ReducerState {
     errors: {
       email?: string;
       password?: string;
+      confirmPassword?: string;
+      handle?: string;
       general?: string;
       error?: string;
     };

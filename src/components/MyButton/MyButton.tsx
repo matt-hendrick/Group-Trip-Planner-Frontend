@@ -24,6 +24,7 @@ interface Props {
     | 'top-end'
     | 'top-start'
     | undefined;
+  color?: 'inherit' | 'primary' | 'secondary' | 'default' | undefined;
 }
 
 function MyButton({
@@ -33,6 +34,7 @@ function MyButton({
   btnClassName,
   tipClassName,
   placement,
+  color,
 }: Props) {
   return (
     <Tooltip
@@ -40,7 +42,7 @@ function MyButton({
       className={tipClassName}
       placement={placement ? placement : 'top'}
     >
-      <IconButton onClick={onClick} className={btnClassName}>
+      <IconButton onClick={onClick} className={btnClassName} color={color}>
         {children}
       </IconButton>
     </Tooltip>
