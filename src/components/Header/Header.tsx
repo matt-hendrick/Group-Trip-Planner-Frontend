@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 // MUI
 import Paper from '@material-ui/core/Paper';
@@ -26,9 +25,5 @@ function Header(props: Props) {
     </Paper>
   );
 }
-
-Header.propTypes = {
-  headerTitle: PropTypes.string,
-};
 
 export default Header;

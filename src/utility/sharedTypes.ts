@@ -10,7 +10,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
   }
 }
 
-export interface UserReducerState {
+export interface ReducerState {
   user: {
     authenticated: boolean;
     credentials: {
@@ -28,7 +28,7 @@ export interface UserReducerState {
           pendingInvites: object[] | [];
           mapZoomLevel: number;
           tripName: string;
-          members: object[];
+          members: string[];
           tripID: string;
         }[]
       | [];
@@ -43,5 +43,20 @@ export interface UserReducerState {
           inviteID: string;
         }[]
       | [];
+  };
+  trip: {
+    loading: boolean;
+    trip: {
+      itineraryItems: object | null;
+      createdBy: string;
+      destination: null | number[];
+      pendingInvites: object[] | [];
+      mapZoomLevel: number;
+      tripName: string;
+      members: string[];
+      tripID: string;
+      pins: object[];
+      listItems: object[];
+    };
   };
 }

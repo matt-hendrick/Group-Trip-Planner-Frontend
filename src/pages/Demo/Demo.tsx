@@ -1,9 +1,13 @@
 import React from 'react';
-import ReactPlayer from 'react-player/lazy';
-import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-  ...theme.classes,
+// React Player
+import ReactPlayer from 'react-player/lazy';
+
+//MUI
+import { Theme, makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles<Theme, object>((theme) => ({
+  ...(theme.classes as object),
 }));
 
 function Demo() {

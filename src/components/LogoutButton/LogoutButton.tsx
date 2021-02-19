@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 // MUI Icons
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
+// Components
 import MyButton from '../MyButton/MyButton';
 
 function LogoutButton() {
