@@ -1,7 +1,4 @@
 import React, { useState, Fragment } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import theme from '../../utility/theme';
-import PropTypes from 'prop-types';
 
 // Redux
 import { useDispatch } from 'react-redux';
@@ -12,17 +9,21 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';
-
-// Icons
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
+import { Theme, makeStyles } from '@material-ui/core';
 
+// Components
 import MyButton from '../MyButton/MyButton';
 
-const useStyles = makeStyles({
-  ...theme.classes,
-});
+interface Props {
+  tripID: string;
+}
 
-function DeleteTrip(props) {
+const useStyles = makeStyles<Theme, object>((theme) => ({
+  ...(theme.classes as object),
+}));
+
+function DeleteTrip(props: Props) {
   const [open, setOpen] = useState(false);
 
   const classes = useStyles();
@@ -67,9 +68,5 @@ function DeleteTrip(props) {
     </Fragment>
   );
 }
-
-DeleteTrip.propTypes = {
-  tripID: PropTypes.string.isRequired,
-};
 
 export default DeleteTrip;

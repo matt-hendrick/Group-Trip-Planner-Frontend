@@ -48,6 +48,7 @@ export interface ReducerState {
     trip: {
       itineraryItems: object | null;
       createdBy: string;
+      createdAt: string;
       destination: null | number[];
       pendingInvites: object[] | [];
       mapZoomLevel: number;
@@ -66,6 +67,7 @@ export interface ReducerState {
       handle?: string;
       general?: string;
       error?: string;
+      tripName?: string;
     };
   };
 }

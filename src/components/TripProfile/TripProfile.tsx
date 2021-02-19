@@ -1,31 +1,37 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import dayjs from 'dayjs';
 
 //Redux
 import { useSelector } from 'react-redux';
 
-// MUI stuff
+// MUI
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-
-// Icons
 import CalendarToday from '@material-ui/icons/CalendarToday';
+import { Theme, makeStyles } from '@material-ui/core';
 
+// Components
 import TripProfileSkeleton from './TripProfileSkeleton';
 import InviteUserButton from '../Invites/InviteUserButton';
 
-const useStyles = makeStyles((theme) => ({
-  ...theme.classes,
+// Types
+import { ReducerState } from '../../utility/sharedTypes';
+
+const useStyles = makeStyles<Theme, object>((theme) => ({
+  ...(theme.classes as object),
 }));
 
 function TripProfile() {
   const classes = useStyles();
 
-  const createdAt = useSelector((state) => state.trip.trip.createdAt);
-  const members = useSelector((state) => state.trip.trip.members);
-  const pendingInvites = useSelector((state) => state.trip.trip.pendingInvites);
-  const tripID = useSelector((state) => state.trip.trip.tripID);
+  const createdAt = useSelector(
+    (state: ReducerState) => state.trip.trip.createdAt
+  );
+  const members = useSelector((state: ReducerState) => state.trip.trip.members);
+  const pendingInvites = useSelector(
+    (state: ReducerState) => state.trip.trip.pendingInvites
+  );
+  const tripID = useSelector((state: ReducerState) => state.trip.trip.tripID);
 
   let profileDisplay =
     !createdAt && !members ? (

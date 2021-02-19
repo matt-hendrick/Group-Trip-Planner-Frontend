@@ -1,6 +1,4 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import theme from '../../utility/theme';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -14,15 +12,18 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
-// Icons
 import CloseIcon from '@material-ui/icons/Close';
+import { Theme, makeStyles } from '@material-ui/core';
 
+// Components
 import MyButton from '../MyButton/MyButton';
 
-const useStyles = makeStyles({
-  ...theme.classes,
-});
+// Types
+import { ReducerState } from '../../utility/sharedTypes';
+
+const useStyles = makeStyles<Theme, object>((theme) => ({
+  ...(theme.classes as object),
+}));
 
 function CreateTrip() {
   const [open, setOpen] = useState(false);
@@ -30,8 +31,8 @@ function CreateTrip() {
 
   const classes = useStyles();
 
-  const loading = useSelector((state) => state.trip.loading);
-  const errors = useSelector((state) => state.errors.errors);
+  const loading = useSelector((state: ReducerState) => state.trip.loading);
+  const errors = useSelector((state: ReducerState) => state.errors.errors);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -51,12 +52,15 @@ function CreateTrip() {
     setOpen(false);
   };
 
-  const changeTripName = (event) => {
-    const updatedTripName = event.target.value;
-    setTripName(updatedTripName);
+  const changeTripName = (event: React.ChangeEvent) => {
+    const target = event.target as HTMLInputElement;
+    if (target) {
+      const updatedTripName = target.value;
+      setTripName(updatedTripName);
+    }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     dispatch(createTrip({ tripName }));
   };
