@@ -30,8 +30,8 @@ export interface ReducerState {
           tripName: string;
           members: string[];
           tripID: string;
-        }[]
-      | [];
+          createdAt: string;
+        }[];
     invites:
       | null
       | {
@@ -41,8 +41,7 @@ export interface ReducerState {
           sender: string;
           tripID: string;
           inviteID: string;
-        }[]
-      | [];
+        }[];
   };
   trip: {
     loading: boolean;

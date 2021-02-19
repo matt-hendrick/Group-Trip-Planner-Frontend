@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 
 // MUI
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import { Theme, makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
-  ...theme.classes,
+const useStyles = makeStyles<Theme, object>((theme) => ({
+  ...(theme.classes as object),
   handle: {
     width: 60,
     height: 18,

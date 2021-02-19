@@ -24,9 +24,6 @@ interface Props {
 
 const useStyles = makeStyles<Theme, object>((theme) => ({
   ...(theme.classes as object),
-  button: {
-    float: 'right',
-  },
 }));
 
 function EditTripName(props: Props) {

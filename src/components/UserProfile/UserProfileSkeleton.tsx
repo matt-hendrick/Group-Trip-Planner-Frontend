@@ -1,14 +1,14 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 
 // MUI
 import Paper from '@material-ui/core/Paper';
+import { Theme, makeStyles } from '@material-ui/core';
 
 // Icons
 import CalendarToday from '@material-ui/icons/CalendarToday';
 
-const useStyles = makeStyles((theme) => ({
-  ...theme.classes,
+const useStyles = makeStyles<Theme, object>((theme) => ({
+  ...(theme.classes as object),
   handle: {
     width: 60,
     height: 18,

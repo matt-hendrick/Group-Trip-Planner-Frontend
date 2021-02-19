@@ -1,8 +1,6 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 
@@ -11,14 +9,27 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import { Theme, makeStyles } from '@material-ui/core';
 
+// Components
 import DeleteTrip from './DeleteTrip';
 
-const useStyles = makeStyles((theme) => ({
-  ...theme.classes,
+interface Props {
+  trip: {
+    itineraryItems: object | null;
+    createdBy: string;
+    createdAt: string;
+    tripName: string;
+    members: string[];
+    tripID: string;
+  };
+}
+
+const useStyles = makeStyles<Theme, object>((theme) => ({
+  ...(theme.classes as object),
 }));
 
-function TripSnippet(props) {
+function TripSnippet(props: Props) {
   const {
     trip: { tripName, tripID, createdAt, members, createdBy },
   } = props;
@@ -57,9 +68,5 @@ function TripSnippet(props) {
     </Card>
   );
 }
-
-TripSnippet.propTypes = {
-  trip: PropTypes.object.isRequired,
-};
 
 export default TripSnippet;

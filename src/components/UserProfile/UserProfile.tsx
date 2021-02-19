@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 
@@ -7,29 +6,37 @@ import dayjs from 'dayjs';
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser } from '../../redux/actions/userActions';
 
-// MUI stuff
+// MUI
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-
-// Icons
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
+import { Theme, makeStyles } from '@material-ui/core';
 
 import MyButton from '../MyButton/MyButton';
 import UserProfileSkeleton from './UserProfileSkeleton';
 
-const useStyles = makeStyles((theme) => ({
-  ...theme.classes,
+// Types
+import { ReducerState } from '../../utility/sharedTypes';
+
+const useStyles = makeStyles<Theme, object>((theme) => ({
+  ...(theme.classes as object),
 }));
 
 function UserProfile() {
   const classes = useStyles();
 
-  const authenticated = useSelector((state) => state.user.authenticated);
-  const loading = useSelector((state) => state.trip.loading);
-  const handle = useSelector((state) => state.user.credentials.handle);
-  const createdAt = useSelector((state) => state.user.credentials.createdAt);
+  const authenticated = useSelector(
+    (state: ReducerState) => state.user.authenticated
+  );
+  const loading = useSelector((state: ReducerState) => state.trip.loading);
+  const handle = useSelector(
+    (state: ReducerState) => state.user.credentials.handle
+  );
+  const createdAt = useSelector(
+    (state: ReducerState) => state.user.credentials.createdAt
+  );
   const dispatch = useDispatch();
 
   const handleLogout = () => {
