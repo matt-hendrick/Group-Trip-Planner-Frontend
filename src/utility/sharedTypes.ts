@@ -59,4 +59,12 @@ export interface ReducerState {
       listItems: object[];
     };
   };
+  errors: {
+    errors: {
+      email?: string;
+      password?: string;
+      general?: string;
+      error?: string;
+    };
+  };
 }

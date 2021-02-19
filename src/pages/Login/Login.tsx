@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 
 // Redux
@@ -12,43 +11,55 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { Theme, makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
-  ...theme.classes,
+// Types
+import { ReducerState } from '../../utility/sharedTypes';
+
+// Utility Functions
+import googleAnalytics from '../../utility/googleAnalytics';
+
+interface Props {
+  history: History;
+}
+
+const useStyles = makeStyles<Theme, object>((theme) => ({
+  ...(theme.classes as object),
 }));
 
-function Login(props) {
+function Login(props: Props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const loading = useSelector((state) => state.trip.loading);
-  const errors = useSelector((state) => state.errors.errors);
+  const loading = useSelector((state: ReducerState) => state.trip.loading);
+  const errors = useSelector((state: ReducerState) => state.errors.errors);
   const dispatch = useDispatch();
 
   const classes = useStyles();
 
-  const emailChangedHandler = (event) => {
-    const updatedEmail = event.target.value;
-    setEmail(updatedEmail);
+  const emailChangedHandler = (event: React.ChangeEvent) => {
+    const target = event.target as HTMLInputElement;
+    if (target) {
+      const updatedEmail = target.value;
+      setEmail(updatedEmail);
+    }
   };
 
-  const passwordChangedHandler = (event) => {
-    const updatedPassword = event.target.value;
-    setPassword(updatedPassword);
+  const passwordChangedHandler = (event: React.ChangeEvent) => {
+    const target = event.target as HTMLInputElement;
+    if (target) {
+      const updatedPassword = target.value;
+      setPassword(updatedPassword);
+    }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     const userData = { email, password };
     dispatch(loginUser(userData, props.history));
   };
 
-  if (window.gtag) {
-    window.gtag('config', process.env.REACT_APP_FIREBASE_MEASUREMENT_ID, {
-      page_title: document.title,
-      page_path: window.location.pathname + window.location.search,
-    });
-  }
+  googleAnalytics();
 
   return (
     <Grid container className={classes.form}>
