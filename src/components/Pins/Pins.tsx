@@ -1,8 +1,6 @@
 import React from 'react';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
 
 import { Marker } from 'react-map-gl';
 
@@ -11,23 +9,40 @@ import { useSelector } from 'react-redux';
 
 // MUI
 import RoomIcon from '@material-ui/icons/Room';
+import { Theme, makeStyles } from '@material-ui/core';
 
+// Components
 import MyButton from '../MyButton/MyButton';
+
+// Utility Functions
 import colorAssignment from '../../utility/colorAssignment';
 
-const useStyles = makeStyles((theme) => ({
-  ...theme.classes,
+// Types
+import { ReducerState } from '../../utility/sharedTypes';
+
+interface Props {
+  pins: {
+    comment: string;
+    address: string;
+    createdAt: string;
+    coordinates: number[];
+    userHandle: string;
+  }[];
+}
+
+const useStyles = makeStyles<Theme, object>((theme) => ({
+  ...(theme.classes as object),
 }));
 
-function Pins(props) {
+function Pins(props: Props) {
   const classes = useStyles();
 
   const { pins } = props;
 
   const loggedInUserHandle = useSelector(
-    (state) => state.user.credentials.handle
+    (state: ReducerState) => state.user.credentials.handle
   );
-  const members = useSelector((state) => state.trip.trip.members);
+  const members = useSelector((state: ReducerState) => state.trip.trip.members);
 
   dayjs.extend(relativeTime);
 
@@ -46,7 +61,6 @@ function Pins(props) {
         );
         return (
           <Marker
-            anchor="bottom"
             latitude={coordinates[1]}
             longitude={coordinates[0]}
             key={createdAt}
@@ -68,9 +82,5 @@ function Pins(props) {
       })
     : null;
 }
-
-Pins.propTypes = {
-  pins: PropTypes.array,
-};
 
 export default Pins;
