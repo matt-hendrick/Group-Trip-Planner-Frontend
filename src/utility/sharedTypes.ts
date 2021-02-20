@@ -85,3 +85,13 @@ export interface ReducerState {
     };
   };
 }
+
+export interface ItineraryItem {
+  createdAt: string;
+  userHandle: string;
+  body: string;
+}
+
+export interface ItineraryDictionary {
+  [key: number]: ItineraryItem;
+}

@@ -1,7 +1,11 @@
 import React, { useEffect, useState, Fragment } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+  DropResult,
+} from 'react-beautiful-dnd';
 
 // Redux
 import { useSelector } from 'react-redux';
@@ -9,30 +13,41 @@ import { useSelector } from 'react-redux';
 // MUI
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import { Theme, makeStyles } from '@material-ui/core';
 
+// Components
 import Header from '../Header/Header';
 import CreateItineraryItem from './CreateItineraryItem';
 import DeleteItineraryItem from './DeleteItineraryItem';
-
-import colorAssignment from '../../utility/colorAssignment';
 import SaveItineraryOrderButton from './SaveItineraryOrderButton';
 
-const useStyles = makeStyles((theme) => ({
-  ...theme.classes,
+// Utility Functions
+import colorAssignment from '../../utility/colorAssignment';
+
+// Types
+import { ReducerState, ItineraryItem } from '../../utility/sharedTypes';
+
+interface Props {
+  itineraryItems: ItineraryItem[];
+  tripID: string;
+}
+
+const useStyles = makeStyles<Theme, object>((theme) => ({
+  ...(theme.classes as object),
 }));
 
-function ItineraryList(props) {
+function ItineraryList(props: Props) {
   const classes = useStyles();
 
-  const [localItinerary, setLocalItinerary] = useState();
+  const [localItinerary, setLocalItinerary] = useState<ItineraryItem[]>([]);
   const [changed, setChanged] = useState(false);
 
   const { tripID, itineraryItems } = props;
 
   const loggedInUserHandle = useSelector(
-    (state) => state.user.credentials.handle
+    (state: ReducerState) => state.user.credentials.handle
   );
-  const members = useSelector((state) => state.trip.trip.members);
+  const members = useSelector((state: ReducerState) => state.trip.trip.members);
 
   useEffect(() => {
     if (itineraryItems && Object.keys(itineraryItems).length !== 0) {
@@ -44,9 +59,13 @@ function ItineraryList(props) {
     }
   }, [itineraryItems, tripID]);
 
-  const handleOnDragEnd = (result) => {
+  const handleOnDragEnd = (result: DropResult) => {
     if (!result.destination) return;
-    if (itineraryItems && Object.keys(itineraryItems).length !== 0) {
+    if (
+      itineraryItems &&
+      Object.keys(itineraryItems).length !== 0 &&
+      localItinerary
+    ) {
       const items = Object.values(localItinerary);
       const [reorderedItem] = items.splice(result.source.index, 1);
       items.splice(result.destination.index, 0, reorderedItem);
@@ -55,7 +74,7 @@ function ItineraryList(props) {
     }
   };
 
-  let itineraryItemsDisplay;
+  let itineraryItemsDisplay: null | React.ReactNode;
 
   if (localItinerary && loggedInUserHandle) {
     itineraryItemsDisplay = Object.values(localItinerary).map(

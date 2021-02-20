@@ -1,6 +1,4 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import theme from '../../utility/theme';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -17,17 +15,30 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
-// Icons
 import CloseIcon from '@material-ui/icons/Close';
+import { Theme, makeStyles } from '@material-ui/core';
 
+// Components
 import MyButton from '../MyButton/MyButton';
 
-const useStyles = makeStyles({
-  ...theme.classes,
-});
+// Types
+import {
+  ReducerState,
+  ItineraryItem,
+  ItineraryDictionary,
+} from '../../utility/sharedTypes';
 
-function CreateItineraryItem(props) {
+interface Props {
+  itineraryItems: ItineraryItem[];
+  tripID: string;
+  userHandle: string;
+}
+
+const useStyles = makeStyles<Theme, object>((theme) => ({
+  ...(theme.classes as object),
+}));
+
+function CreateItineraryItem(props: Props) {
   const [open, setOpen] = useState(false);
   const [body, setBody] = useState('');
 
@@ -35,8 +46,8 @@ function CreateItineraryItem(props) {
 
   const classes = useStyles();
 
-  const loading = useSelector((state) => state.trip.loading);
-  const errors = useSelector((state) => state.errors.errors);
+  const loading = useSelector((state: ReducerState) => state.trip.loading);
+  const errors = useSelector((state: ReducerState) => state.errors.errors);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -56,17 +67,20 @@ function CreateItineraryItem(props) {
     setOpen(false);
   };
 
-  const changeBody = (event) => {
-    const updatedBody = event.target.value;
-    setBody(updatedBody);
+  const changeBody = (event: React.ChangeEvent) => {
+    const target = event.target as HTMLInputElement;
+    if (target) {
+      const updatedBody = target.value;
+      setBody(updatedBody);
+    }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     const createdAt = new Date().toISOString();
     const newItem = { body, userHandle, createdAt };
     itineraryItems.push(newItem);
-    let itineraryItemDict = {};
+    let itineraryItemDict: ItineraryDictionary = {};
 
     itineraryItems?.forEach((item, index) => {
       itineraryItemDict[index] = item;

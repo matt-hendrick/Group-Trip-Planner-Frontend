@@ -10,20 +10,14 @@ import Button from '@material-ui/core/Button';
 import { Theme, makeStyles } from '@material-ui/core';
 
 // Types
-import { ReducerState } from '../../utility/sharedTypes';
-
-interface ItineraryItem {
-  createdAt: string;
-  userHandle: string;
-  body: string;
-}
-
-interface ItineraryDictionary {
-  [key: number]: ItineraryItem;
-}
+import {
+  ReducerState,
+  ItineraryItem,
+  ItineraryDictionary,
+} from '../../utility/sharedTypes';
 
 interface Props {
-  itineraryItems: ItineraryItem[];
+  itineraryItems: ItineraryItem[] | null;
   tripID: string;
   changed: boolean;
 }

@@ -5,13 +5,13 @@ import ItineraryList from './ItineraryList';
 
 describe('ItineraryList tests', () => {
   it('Properly renders ItineraryList when passed valid credentials and list info', () => {
-    const itineraryItems = {
-      0: {
+    const itineraryItems = [
+      {
         userHandle: 'janedoe',
         createdAt: '2021-01-17T17:56:44.726Z',
         body: '10 am hike',
       },
-    };
+    ];
     const { getByRole, getByText } = render(
       <MemoryRouter>
         <ItineraryList

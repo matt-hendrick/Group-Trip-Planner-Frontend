@@ -1,7 +1,4 @@
 import React, { useState, Fragment } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import theme from '../../utility/theme';
-import PropTypes from 'prop-types';
 
 // Redux
 import { useDispatch } from 'react-redux';
@@ -12,17 +9,26 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';
-
-// Icons
 import CloseIcon from '@material-ui/icons/Close';
+import { Theme, makeStyles } from '@material-ui/core';
 
+// Components
 import MyButton from '../MyButton/MyButton';
 
-const useStyles = makeStyles({
-  ...theme.classes,
-});
+// Types
+import { ItineraryItem, ItineraryDictionary } from '../../utility/sharedTypes';
 
-function DeleteItineraryItem(props) {
+interface Props {
+  itineraryItems: ItineraryItem[];
+  tripID: string;
+  index: number;
+}
+
+const useStyles = makeStyles<Theme, object>((theme) => ({
+  ...(theme.classes as object),
+}));
+
+function DeleteItineraryItem(props: Props) {
   const [open, setOpen] = useState(false);
 
   const classes = useStyles();
@@ -41,7 +47,7 @@ function DeleteItineraryItem(props) {
 
   const handleDeleteItineraryItem = () => {
     itineraryItems.splice(index, 1);
-    let itineraryItemDict = {};
+    let itineraryItemDict: ItineraryDictionary = {};
     itineraryItems?.forEach((item, index) => {
       itineraryItemDict[index] = item;
     });
@@ -74,10 +80,5 @@ function DeleteItineraryItem(props) {
     </Fragment>
   );
 }
-
-DeleteItineraryItem.propTypes = {
-  itineraryItemID: PropTypes.string.isRequired,
-  tripID: PropTypes.string.isRequired,
-};
 
 export default DeleteItineraryItem;
