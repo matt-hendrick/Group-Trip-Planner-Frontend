@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
 import dayjs from 'dayjs';
-import { makeStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -12,39 +10,57 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
-
-// Icons
 import ThumbsUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbsUpOutlined from '@material-ui/icons/ThumbUpOutlined';
+import { Theme, makeStyles } from '@material-ui/core';
 
+// Components
 import CreateListItem from './CreateListItem';
 import DeleteListItem from './DeleteListItem';
 import MyButton from '../MyButton/MyButton';
 
+// Utility Functions
 import colorAssignment from '../../utility/colorAssignment';
 
-const useStyles = makeStyles((theme) => ({
-  ...theme.classes,
+// Types
+import { ReducerState } from '../../utility/sharedTypes';
+
+interface Props {
+  tabType: string;
+}
+
+const useStyles = makeStyles<Theme, object>((theme) => ({
+  ...(theme.classes as object),
 }));
 
-function List(props) {
+function List(props: Props) {
   const classes = useStyles();
 
   const { tabType } = props;
 
-  const listItems = useSelector((state) => state.trip.trip.listItems);
-  const tripID = useSelector((state) => state.trip.trip.tripID);
-  const loggedInUserHandle = useSelector(
-    (state) => state.user.credentials.handle
+  const listItems = useSelector(
+    (state: ReducerState) => state.trip.trip.listItems
   );
-  const members = useSelector((state) => state.trip.trip.members);
-  const loading = useSelector((state) => state.trip.loading);
+  const tripID = useSelector((state: ReducerState) => state.trip.trip.tripID);
+  const loggedInUserHandle = useSelector(
+    (state: ReducerState) => state.user.credentials.handle
+  );
+  const members = useSelector((state: ReducerState) => state.trip.trip.members);
+  const loading = useSelector((state: ReducerState) => state.trip.loading);
   const dispatch = useDispatch();
 
-  const handleLikeListItem = (tripID, listItemID, userHandle) => {
+  const handleLikeListItem = (
+    tripID: string,
+    listItemID: string,
+    userHandle: string
+  ) => {
     dispatch(likeListItem(tripID, listItemID, userHandle));
   };
-  const handleUnlikeListItem = (tripID, listItemID, userHandle) => {
+  const handleUnlikeListItem = (
+    tripID: string,
+    listItemID: string,
+    userHandle: string
+  ) => {
     dispatch(unlikeListItem(tripID, listItemID, userHandle));
   };
 
@@ -150,9 +166,5 @@ function List(props) {
     );
   return listItemsDisplay;
 }
-
-List.propTypes = {
-  tabType: PropTypes.string.isRequired,
-};
 
 export default List;

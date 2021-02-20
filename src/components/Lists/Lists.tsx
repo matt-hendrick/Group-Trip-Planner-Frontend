@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState, ReactNode, ChangeEvent } from 'react';
 
 // MUI
 import AppBar from '@material-ui/core/AppBar';
@@ -7,21 +6,27 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 import Tooltip from '@material-ui/core/Tooltip';
-
-// Icons
 import HotelIcon from '@material-ui/icons/Hotel';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import CommuteIcon from '@material-ui/icons/Commute';
 import LocalSeeIcon from '@material-ui/icons/LocalSee';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { Theme, makeStyles } from '@material-ui/core';
 
+// Components
 import List from './List';
 
-const useStyles = makeStyles((theme) => ({
-  ...theme.classes,
+interface Props {
+  children: ReactNode;
+  value: number;
+  index: number;
+}
+
+const useStyles = makeStyles<Theme, object>((theme) => ({
+  ...(theme.classes as object),
 }));
 
-function TabPanel(props) {
+function TabPanel(props: Props) {
   const { children, value, index, ...other } = props;
 
   return (
@@ -41,7 +46,7 @@ function TabPanel(props) {
   );
 }
 
-function a11yProps(index) {
+function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
     'aria-controls': `simple-tabpanel-${index}`,
@@ -53,7 +58,7 @@ function SimpleTabs() {
 
   const [value, setValue] = useState(0);
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (event: ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
 

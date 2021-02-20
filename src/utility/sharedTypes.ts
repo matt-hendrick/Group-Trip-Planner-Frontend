@@ -55,8 +55,21 @@ export interface ReducerState {
       tripName: string;
       members: string[];
       tripID: string;
-      pins: object[];
-      listItems: object[];
+      pins: {
+        comment: string;
+        address: string;
+        createdAt: string;
+        coordinates: number[];
+        userHandle: string;
+      }[];
+      listItems: {
+        listType: string;
+        likes: {}[];
+        body: string;
+        createdAt: string;
+        userHandle: string;
+        listItemID: string;
+      }[];
     };
   };
   errors: {
