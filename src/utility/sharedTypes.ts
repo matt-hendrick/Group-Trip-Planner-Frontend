@@ -96,3 +96,22 @@ export interface ItineraryItem {
 export interface ItineraryDictionary {
   [key: number]: ItineraryItem;
 }
+
+export interface MapBoxFeature {
+  bbox: number[];
+  center: number[];
+  context: {
+    id: string;
+    short_code: string;
+    text: string;
+    wikidata: string;
+  }[];
+  geometry: { type: string; coordinates: number[] };
+  id: string;
+  place_name: string;
+  place_type: string[];
+  properties: { wikidata: string };
+  relevance: number;
+  text: string;
+  type: string;
+}
