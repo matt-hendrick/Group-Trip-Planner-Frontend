@@ -1,5 +1,5 @@
 import reducer, { initialState } from './tripReducer';
-import * as types from '../types';
+import * as types from '../reduxTypes';
 
 const mockState = {
   loading: false,

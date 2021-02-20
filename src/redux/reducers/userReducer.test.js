@@ -1,5 +1,5 @@
 import reducer, { initialState } from './userReducer';
-import * as types from '../types';
+import * as types from '../reduxTypes';
 
 describe('userReducer tests', () => {
   it('should return the initial state', () => {

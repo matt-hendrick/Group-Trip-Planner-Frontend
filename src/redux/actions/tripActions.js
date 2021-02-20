@@ -12,7 +12,7 @@ import {
   INVITE_USER,
   SET_COORDINATES,
   SET_MAP_ZOOM_LEVEL,
-} from '../types';
+} from '../reduxTypes';
 import { setErrors, clearErrors } from './errorsActions';
 import axios from 'axios';
 

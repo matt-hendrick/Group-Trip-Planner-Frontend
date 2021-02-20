@@ -1,4 +1,4 @@
-import { SET_USER, SET_UNAUTHENTICATED } from '../types';
+import { SET_USER, SET_UNAUTHENTICATED } from '../reduxTypes';
 import { setErrors, clearErrors } from './errorsActions';
 import { loadingData, clearLoadingData } from './tripActions';
 import axios from 'axios';

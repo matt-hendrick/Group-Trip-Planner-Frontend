@@ -10,6 +10,22 @@ declare module '@material-ui/core/styles/createMuiTheme' {
   }
 }
 
+export interface Error {
+  email?: string;
+  password?: string;
+  confirmPassword?: string;
+  handle?: string;
+  general?: string;
+  error?: string;
+  tripName?: string;
+  body?: string;
+  invite?: string;
+}
+
+export interface Errors {
+  errors: Error | '';
+}
+
 export interface ReducerState {
   user: {
     authenticated: boolean;
@@ -72,19 +88,7 @@ export interface ReducerState {
       }[];
     };
   };
-  errors: {
-    errors: {
-      email?: string;
-      password?: string;
-      confirmPassword?: string;
-      handle?: string;
-      general?: string;
-      error?: string;
-      tripName?: string;
-      body?: string;
-      invite?: string;
-    };
-  };
+  errors: { errors: Error };
 }
 
 export interface ItineraryItem {

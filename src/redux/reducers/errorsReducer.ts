@@ -1,10 +1,17 @@
-import { SET_ERRORS, CLEAR_ERRORS } from '../types';
+import { SET_ERRORS, CLEAR_ERRORS } from '../reduxTypes';
 
-export const initialState = {
+import { Errors, Error } from '../../utility/sharedTypes';
+
+interface Action {
+  type: string;
+  payload?: Error;
+}
+
+export const initialState: Errors = {
   errors: '',
 };
 
-const errorsReducer = (state = initialState, action) => {
+const errorsReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case SET_ERRORS:
       return {

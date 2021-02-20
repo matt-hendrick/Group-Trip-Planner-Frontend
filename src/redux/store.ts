@@ -5,6 +5,12 @@ import userReducer from './reducers/userReducer';
 import tripReducer from './reducers/tripReducer';
 import errorsReducer from './reducers/errorsReducer';
 
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
+
 const initialState = {};
 
 const reducers = combineReducers({
@@ -13,10 +19,7 @@ const reducers = combineReducers({
   errors: errorsReducer,
 });
 
-const composeEnhancers =
-  process.env.NODE_ENV === 'development'
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    : null || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   reducers,

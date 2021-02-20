@@ -13,7 +13,7 @@ import {
   INVITE_USER,
   SET_COORDINATES,
   SET_MAP_ZOOM_LEVEL,
-} from '../types';
+} from '../reduxTypes';
 
 export const initialState = {
   trip: {},

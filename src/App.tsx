@@ -11,7 +11,7 @@ import themeObject from './utility/theme';
 // Redux
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import { SET_AUTHENTICATED } from './redux/types';
+import { SET_AUTHENTICATED } from './redux/reduxTypes';
 import { logoutUser, getOwnUserDetails } from './redux/actions/userActions';
 
 // Components

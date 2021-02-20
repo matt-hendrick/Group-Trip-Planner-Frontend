@@ -1,13 +1,7 @@
 import reducer, { initialState } from './errorsReducer';
-import * as types from '../types';
+import * as types from '../reduxTypes';
 
 describe('errorsReducer tests', () => {
-  it('should return the initial state', () => {
-    expect(reducer(undefined, {})).toEqual({
-      errors: '',
-    });
-  });
-
   it('setErrors should add an error message to the error state', () => {
     const payload = { error: 'an error message' };
     expect(
@@ -22,11 +16,11 @@ describe('errorsReducer tests', () => {
   });
 
   it('clearErrors should return the initial state (meaning no errors)', () => {
+    const newState = { errors: { error: 'example error' } };
     expect(
-      reducer(initialState, {
+      reducer(newState, {
         type: types.CLEAR_ERRORS,
-        ...initialState,
-        errors: '',
+        ...newState,
       })
     ).toEqual({
       errors: '',

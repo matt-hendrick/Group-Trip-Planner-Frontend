@@ -1,4 +1,4 @@
-import { SET_ERRORS, CLEAR_ERRORS } from '../types';
+import { SET_ERRORS, CLEAR_ERRORS } from '../reduxTypes';
 
 export const clearErrors = () => (dispatch) => {
   dispatch({ type: CLEAR_ERRORS });
