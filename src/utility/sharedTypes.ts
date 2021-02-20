@@ -82,6 +82,7 @@ export interface ReducerState {
       error?: string;
       tripName?: string;
       body?: string;
+      invite?: string;
     };
   };
 }

@@ -1,7 +1,4 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import theme from '../../utility/theme';
-import PropTypes from 'prop-types';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -15,17 +12,24 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
-// Icons
 import CloseIcon from '@material-ui/icons/Close';
+import { Theme, makeStyles } from '@material-ui/core';
 
+// Components
 import MyButton from '../MyButton/MyButton';
 
-const useStyles = makeStyles({
-  ...theme.classes,
-});
+// Types
+import { ReducerState } from '../../utility/sharedTypes';
 
-function InviteUser(props) {
+interface Props {
+  tripID: string;
+}
+
+const useStyles = makeStyles<Theme, object>((theme) => ({
+  ...(theme.classes as object),
+}));
+
+function InviteUser(props: Props) {
   const [open, setOpen] = useState(false);
   const [recipient, setRecipient] = useState('');
 
@@ -33,8 +37,8 @@ function InviteUser(props) {
 
   const { tripID } = props;
 
-  const loading = useSelector((state) => state.trip.loading);
-  const errors = useSelector((state) => state.errors.errors);
+  const loading = useSelector((state: ReducerState) => state.trip.loading);
+  const errors = useSelector((state: ReducerState) => state.errors.errors);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -54,12 +58,15 @@ function InviteUser(props) {
     setOpen(false);
   };
 
-  const changeRecipient = (event) => {
-    const updatedRecipient = event.target.value;
-    setRecipient(updatedRecipient);
+  const changeRecipient = (event: React.ChangeEvent) => {
+    const target = event.target as HTMLInputElement;
+    if (target) {
+      const updatedRecipient = target.value;
+      setRecipient(updatedRecipient);
+    }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     dispatch(inviteUser(tripID, { recipient }));
   };
@@ -117,9 +124,5 @@ function InviteUser(props) {
     </Fragment>
   );
 }
-
-InviteUser.propTypes = {
-  tripID: PropTypes.string.isRequired,
-};
 
 export default InviteUser;

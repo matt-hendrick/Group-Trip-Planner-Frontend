@@ -6,39 +6,46 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import { useSelector, useDispatch } from 'react-redux';
 import { acceptInvite, rejectInvite } from '../../redux/actions/userActions';
 
-// MUI stuff
+// MUI
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
-// Icons
 import GroupIcon from '@material-ui/icons/GroupAdd';
 import ThumbsUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbsDownIcon from '@material-ui/icons/ThumbDown';
 
+// Components
 import MyButton from '../MyButton/MyButton';
 
-function Invites() {
-  const [anchorElement, setAnchorElement] = useState(null);
+// Types
+import { ReducerState } from '../../utility/sharedTypes';
 
-  const invites = useSelector((state) => state.user.invites);
+function Invites() {
+  const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);
+
+  const invites = useSelector((state: ReducerState) => state.user.invites);
   const dispatch = useDispatch();
 
-  const handleOpen = (event) => {
-    setAnchorElement(event.target);
+  const handleOpen = (event: React.MouseEvent) => {
+    const target = event.target as HTMLButtonElement;
+    if (target) {
+      setAnchorElement(target);
+    }
   };
+
   const handleClose = () => {
     setAnchorElement(null);
   };
 
-  const handleAccept = (tripID, inviteID) => {
+  const handleAccept = (tripID: string, inviteID: string) => {
     dispatch(acceptInvite(tripID, inviteID));
     handleClose();
   };
 
-  const handleReject = (tripID, inviteID) => {
+  const handleReject = (tripID: string, inviteID: string) => {
     dispatch(rejectInvite(tripID, inviteID));
     handleClose();
   };
@@ -67,10 +74,7 @@ function Invites() {
         const inviteID = invite.inviteID;
         const tripID = invite.tripID;
         return (
-          <MenuItem
-            key={invite.createdAt}
-            //   onClick={handleClose}
-          >
+          <MenuItem key={invite.createdAt}>
             <Typography color="inherit" variant="body1">
               {invite.sender} invited you to {invite.tripName} ({time})
             </Typography>
