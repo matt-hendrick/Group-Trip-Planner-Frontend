@@ -46,7 +46,7 @@ export interface ReducerState {
   trip: {
     loading: boolean;
     trip: {
-      itineraryItems: object | null;
+      itineraryItems: { createdAt: string; userHandle: string; body: string }[];
       createdBy: string;
       createdAt: string;
       destination: null | number[];
@@ -81,6 +81,7 @@ export interface ReducerState {
       general?: string;
       error?: string;
       tripName?: string;
+      body?: string;
     };
   };
 }

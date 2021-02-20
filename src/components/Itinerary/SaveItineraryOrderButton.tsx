@@ -1,7 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import theme from '../../utility/theme';
 
 // Redux
 import { editItineraryOrder } from '../../redux/actions/tripActions';
@@ -10,23 +7,43 @@ import { useSelector, useDispatch } from 'react-redux';
 // MUI
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
+import { Theme, makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles({
-  ...theme.classes,
-});
+// Types
+import { ReducerState } from '../../utility/sharedTypes';
 
-function SaveItineraryOrderButton(props) {
+interface ItineraryItem {
+  createdAt: string;
+  userHandle: string;
+  body: string;
+}
+
+interface ItineraryDictionary {
+  [key: number]: ItineraryItem;
+}
+
+interface Props {
+  itineraryItems: ItineraryItem[];
+  tripID: string;
+  changed: boolean;
+}
+
+const useStyles = makeStyles<Theme, object>((theme) => ({
+  ...(theme.classes as object),
+}));
+
+function SaveItineraryOrderButton(props: Props) {
   const classes = useStyles();
 
-  const loading = useSelector((state) => state.trip.loading);
+  const loading = useSelector((state: ReducerState) => state.trip.loading);
   const dispatch = useDispatch();
 
   const { tripID, itineraryItems, changed } = props;
 
   const handleSubmit = () => {
-    let itineraryItemDict = {};
+    let itineraryItemDict: ItineraryDictionary = {};
 
-    itineraryItems?.forEach((item, index) => {
+    itineraryItems?.forEach((item: ItineraryItem, index: number) => {
       itineraryItemDict[index] = item;
     });
     dispatch(editItineraryOrder(tripID, itineraryItemDict));
@@ -48,10 +65,5 @@ function SaveItineraryOrderButton(props) {
     </Button>
   );
 }
-
-SaveItineraryOrderButton.propTypes = {
-  tripID: PropTypes.string.isRequired,
-  itineraryBody: PropTypes.string.isRequired,
-};
 
 export default SaveItineraryOrderButton;

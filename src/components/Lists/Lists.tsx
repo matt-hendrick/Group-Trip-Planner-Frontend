@@ -1,4 +1,4 @@
-import React, { useState, ReactNode, ChangeEvent } from 'react';
+import React, { useState, ReactNode } from 'react';
 
 // MUI
 import AppBar from '@material-ui/core/AppBar';
@@ -58,7 +58,7 @@ function SimpleTabs() {
 
   const [value, setValue] = useState(0);
 
-  const handleChange = (event: ChangeEvent<{}>, newValue: number) => {
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
 

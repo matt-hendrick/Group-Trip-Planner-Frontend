@@ -1,6 +1,4 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import theme from '../../utility/theme';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -17,15 +15,25 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
 import CloseIcon from '@material-ui/icons/Close';
+import { Theme, makeStyles } from '@material-ui/core';
+
+// Components
 import MyButton from '../MyButton/MyButton';
 
-const useStyles = makeStyles({
-  ...theme.classes,
-});
+// Types
+import { ReducerState } from '../../utility/sharedTypes';
 
-function CreateListItem(props) {
+interface Props {
+  listType: string;
+  tripID: string;
+}
+
+const useStyles = makeStyles<Theme, object>((theme) => ({
+  ...(theme.classes as object),
+}));
+
+function CreateListItem(props: Props) {
   const [open, setOpen] = useState(false);
   const [body, setBody] = useState('');
 
@@ -33,8 +41,8 @@ function CreateListItem(props) {
 
   const classes = useStyles();
 
-  const loading = useSelector((state) => state.trip.loading);
-  const errors = useSelector((state) => state.errors.errors);
+  const loading = useSelector((state: ReducerState) => state.trip.loading);
+  const errors = useSelector((state: ReducerState) => state.errors.errors);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -54,12 +62,15 @@ function CreateListItem(props) {
     setOpen(false);
   };
 
-  const changeBody = (event) => {
-    const updatedBody = event.target.value;
-    setBody(updatedBody);
+  const changeBody = (event: React.ChangeEvent) => {
+    const target = event.target as HTMLInputElement;
+    if (target) {
+      const updatedBody = target.value;
+      setBody(updatedBody);
+    }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     dispatch(createListItem(tripID, { body, listType }));
   };

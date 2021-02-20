@@ -1,7 +1,4 @@
 import React, { useState, Fragment } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import theme from '../../utility/theme';
-import PropTypes from 'prop-types';
 
 // Redux
 import { useDispatch } from 'react-redux';
@@ -12,17 +9,22 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';
-
-// Icons
 import CloseIcon from '@material-ui/icons/Close';
+import { Theme, makeStyles } from '@material-ui/core';
 
+// Components
 import MyButton from '../MyButton/MyButton';
 
-const useStyles = makeStyles({
-  ...theme.classes,
-});
+interface Props {
+  listItemID: string;
+  tripID: string;
+}
 
-function DeleteListItem(props) {
+const useStyles = makeStyles<Theme, object>((theme) => ({
+  ...(theme.classes as object),
+}));
+
+function DeleteListItem(props: Props) {
   const [open, setOpen] = useState(false);
 
   const classes = useStyles();
@@ -69,10 +71,5 @@ function DeleteListItem(props) {
     </Fragment>
   );
 }
-
-DeleteListItem.propTypes = {
-  listItemID: PropTypes.string.isRequired,
-  tripID: PropTypes.string.isRequired,
-};
 
 export default DeleteListItem;
