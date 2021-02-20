@@ -4,14 +4,28 @@ import {
   SET_UNAUTHENTICATED,
 } from '../reduxTypes';
 
-export const initialState = {
+import { User } from '../../utility/sharedTypes';
+
+interface Action {
+  type: string;
+  payload?: User;
+}
+
+interface Credentials {
+  email: string;
+  userID: string;
+  handle: string;
+  createdAt: string;
+}
+
+export const initialState: User = {
   authenticated: false,
-  credentials: {},
+  credentials: {} as Credentials,
   trips: null,
   invites: null,
 };
 
-const userReducer = (state = initialState, action) => {
+const userReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case SET_AUTHENTICATED:
       return {
