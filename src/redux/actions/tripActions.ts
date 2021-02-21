@@ -1,3 +1,6 @@
+import axios from 'axios';
+
+// Redux Types
 import {
   SET_TRIP,
   LOADING_DATA,
@@ -13,10 +16,33 @@ import {
   SET_COORDINATES,
   SET_MAP_ZOOM_LEVEL,
 } from '../reduxTypes';
-import { setErrors, clearErrors } from './errorsActions';
-import axios from 'axios';
 
-export const getTrip = (tripID) => (dispatch) => {
+// Redux Actions
+import { setErrors, clearErrors } from './errorsActions';
+
+// Types
+import { Action } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { Trip, ItineraryDictionary } from '../../utility/sharedTypes';
+
+interface NewTrip {
+  tripName: string;
+}
+
+interface NewPin {
+  comment: string;
+  coordinates: number[];
+  address: string;
+}
+
+interface NewListItem {
+  body: string;
+  listType: string;
+}
+
+export const getTrip = (tripID: string) => (
+  dispatch: ThunkDispatch<Trip, void, Action>
+) => {
   dispatch(loadingData());
   axios
     .get(`/trips/${tripID}`)
@@ -26,11 +52,13 @@ export const getTrip = (tripID) => (dispatch) => {
       dispatch(clearLoadingData());
     })
     .catch((err) => {
-      dispatch(setErrors(err.response.data));
+      dispatch(setErrors(err?.response?.data));
     });
 };
 
-export const createTrip = (newTrip) => (dispatch) => {
+export const createTrip = (newTrip: NewTrip) => (
+  dispatch: ThunkDispatch<Trip, void, Action>
+) => {
   dispatch(loadingData());
   axios
     .post(`/trips`, newTrip)
@@ -38,10 +66,12 @@ export const createTrip = (newTrip) => (dispatch) => {
       dispatch(clearErrors());
       dispatch(clearLoadingData());
     })
-    .catch((err) => dispatch(setErrors(err.response.data)));
+    .catch((err) => dispatch(setErrors(err?.response?.data)));
 };
 
-export const deleteTrip = (tripID) => (dispatch) => {
+export const deleteTrip = (tripID: string) => (
+  dispatch: ThunkDispatch<Trip, void, Action>
+) => {
   dispatch(loadingData());
   axios
     .delete(`/trips/${tripID}`)
@@ -49,22 +79,26 @@ export const deleteTrip = (tripID) => (dispatch) => {
       dispatch(clearErrors());
       dispatch(clearLoadingData());
     })
-    .catch((err) => dispatch(setErrors(err.response.data)));
+    .catch((err) => dispatch(setErrors(err?.response?.data)));
 };
 
-export const editTripName = (tripID, tripName) => (dispatch) => {
+export const editTripName = (tripID: string, tripName: string) => (
+  dispatch: ThunkDispatch<Trip, void, Action>
+) => {
   dispatch(loadingData());
   axios
     .post(`/trips/${tripID}`, tripName)
     .then((res) => {
-      dispatch({ type: EDIT_TRIP_NAME, payload: tripName.tripName });
+      dispatch({ type: EDIT_TRIP_NAME, payload: tripName });
       dispatch(clearErrors());
       dispatch(clearLoadingData());
     })
-    .catch((err) => dispatch(setErrors(err.response.data)));
+    .catch((err) => dispatch(setErrors(err?.response?.data)));
 };
 
-export const setTripCoordinates = (tripID, coordinates) => (dispatch) => {
+export const setTripCoordinates = (tripID: string, coordinates: number[]) => (
+  dispatch: ThunkDispatch<Trip, void, Action>
+) => {
   dispatch(loadingData());
   axios
     .post(`/trips/${tripID}`, { destination: coordinates })
@@ -74,11 +108,13 @@ export const setTripCoordinates = (tripID, coordinates) => (dispatch) => {
       dispatch(clearLoadingData());
     })
     .catch((err) => {
-      dispatch(setErrors(err.response.data));
+      dispatch(setErrors(err?.response?.data));
     });
 };
 
-export const setTripMapZoomLevel = (tripID, mapZoomLevel) => (dispatch) => {
+export const setTripMapZoomLevel = (tripID: string, mapZoomLevel: number) => (
+  dispatch: ThunkDispatch<Trip, void, Action>
+) => {
   axios
     .post(`/trips/${tripID}`, { mapZoomLevel })
     .then((res) => {
@@ -86,11 +122,14 @@ export const setTripMapZoomLevel = (tripID, mapZoomLevel) => (dispatch) => {
       dispatch(clearErrors());
     })
     .catch((err) => {
-      dispatch(setErrors(err.response.data));
+      dispatch(setErrors(err?.response?.data));
     });
 };
 
-export const editItineraryOrder = (tripID, itineraryItems) => (dispatch) => {
+export const editItineraryOrder = (
+  tripID: string,
+  itineraryItems: ItineraryDictionary
+) => (dispatch: ThunkDispatch<Trip, void, Action>) => {
   dispatch(loadingData());
   axios
     .post(`/trips/${tripID}`, { itineraryItems })
@@ -99,10 +138,12 @@ export const editItineraryOrder = (tripID, itineraryItems) => (dispatch) => {
       dispatch(clearErrors());
       dispatch(clearLoadingData());
     })
-    .catch((err) => dispatch(setErrors(err.response.data)));
+    .catch((err) => dispatch(setErrors(err?.response?.data)));
 };
 
-export const createPin = (tripID, newPin) => (dispatch) => {
+export const createPin = (tripID: string, newPin: NewPin) => (
+  dispatch: ThunkDispatch<Trip, void, Action>
+) => {
   dispatch(loadingData());
   axios
     .post(`/trips/${tripID}/pin`, newPin)
@@ -111,10 +152,12 @@ export const createPin = (tripID, newPin) => (dispatch) => {
       dispatch(clearErrors());
       dispatch(clearLoadingData());
     })
-    .catch((err) => dispatch(setErrors(err.response.data)));
+    .catch((err) => dispatch(setErrors(err?.response?.data)));
 };
 
-export const createListItem = (tripID, newListItem) => (dispatch) => {
+export const createListItem = (tripID: string, newListItem: NewListItem) => (
+  dispatch: ThunkDispatch<Trip, void, Action>
+) => {
   dispatch(loadingData());
   axios
     .post(`/trips/${tripID}/listitem`, newListItem)
@@ -123,10 +166,12 @@ export const createListItem = (tripID, newListItem) => (dispatch) => {
       dispatch(clearErrors());
       dispatch(clearLoadingData());
     })
-    .catch((err) => dispatch(setErrors(err.response.data)));
+    .catch((err) => dispatch(setErrors(err?.response?.data)));
 };
 
-export const deleteListItem = (tripID, listItemID) => (dispatch) => {
+export const deleteListItem = (tripID: string, listItemID: string) => (
+  dispatch: ThunkDispatch<Trip, void, Action>
+) => {
   dispatch(loadingData());
   axios
     .delete(`/trips/${tripID}/listitems/${listItemID}`)
@@ -135,11 +180,15 @@ export const deleteListItem = (tripID, listItemID) => (dispatch) => {
       dispatch(clearLoadingData());
     })
     .catch((err) => {
-      dispatch(setErrors(err.response.data));
+      dispatch(setErrors(err?.response?.data));
     });
 };
 
-export const likeListItem = (tripID, listItemID, userHandle) => (dispatch) => {
+export const likeListItem = (
+  tripID: string,
+  listItemID: string,
+  userHandle: string
+) => (dispatch: ThunkDispatch<Trip, void, Action>) => {
   dispatch(loadingData());
   axios
     .post(`/trips/${tripID}/listitems/${listItemID}/like`)
@@ -149,13 +198,15 @@ export const likeListItem = (tripID, listItemID, userHandle) => (dispatch) => {
       dispatch(clearLoadingData());
     })
     .catch((err) => {
-      dispatch(setErrors(err.response.data));
+      dispatch(setErrors(err?.response?.data));
     });
 };
 
-export const unlikeListItem = (tripID, listItemID, userHandle) => (
-  dispatch
-) => {
+export const unlikeListItem = (
+  tripID: string,
+  listItemID: string,
+  userHandle: string
+) => (dispatch: ThunkDispatch<Trip, void, Action>) => {
   dispatch(loadingData());
   axios
     .post(`/trips/${tripID}/listitems/${listItemID}/unlike`)
@@ -165,11 +216,14 @@ export const unlikeListItem = (tripID, listItemID, userHandle) => (
       dispatch(clearLoadingData());
     })
     .catch((err) => {
-      dispatch(setErrors(err.response.data));
+      dispatch(setErrors(err?.response?.data));
     });
 };
 
-export const inviteUser = (tripID, recipient) => (dispatch) => {
+export const inviteUser = (
+  tripID: string,
+  recipient: { recipient: string }
+) => (dispatch: ThunkDispatch<Trip, void, Action>) => {
   dispatch(loadingData());
   axios
     .post(`/trips/${tripID}/invite`, recipient)
@@ -179,14 +233,18 @@ export const inviteUser = (tripID, recipient) => (dispatch) => {
       dispatch(clearLoadingData());
     })
     .catch((err) => {
-      dispatch(setErrors(err.response.data));
+      dispatch(setErrors(err?.response?.data));
     });
 };
 
-export const loadingData = () => (dispatch) => {
+export const loadingData = () => (
+  dispatch: ThunkDispatch<Trip, void, Action>
+) => {
   dispatch({ type: LOADING_DATA });
 };
 
-export const clearLoadingData = () => (dispatch) => {
+export const clearLoadingData = () => (
+  dispatch: ThunkDispatch<Trip, void, Action>
+) => {
   dispatch({ type: CLEAR_LOADING_DATA });
 };

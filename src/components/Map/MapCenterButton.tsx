@@ -108,7 +108,9 @@ function MapCenterButton() {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    dispatch(setTripCoordinates(tripID, location));
+    if (location) {
+      dispatch(setTripCoordinates(tripID, location));
+    }
   };
 
   const userLocationQueryChangedHandler = (event: React.ChangeEvent) => {

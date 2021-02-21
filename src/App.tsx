@@ -33,7 +33,7 @@ const theme = createMuiTheme(themeObject);
 axios.defaults.baseURL =
   'https://us-central1-grouptripplannerbackend.cloudfunctions.net/api';
 
-const token = localStorage.FBIdToken;
+const token: string = localStorage.FBIdToken;
 if (token) {
   const decodedToken = jwtDecode<JwtPayload>(token);
   if (decodedToken.exp && decodedToken.exp * 1000 < Date.now()) {

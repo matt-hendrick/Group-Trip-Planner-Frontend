@@ -51,7 +51,7 @@ function EditTripName(props: Props) {
   };
 
   const handleSubmit = () => {
-    dispatch(editTripName(tripID, { tripName: localTripName }));
+    dispatch(editTripName(tripID, localTripName));
     handleClose();
   };
 

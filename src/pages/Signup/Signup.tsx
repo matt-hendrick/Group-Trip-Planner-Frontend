@@ -15,12 +15,13 @@ import { Theme, makeStyles } from '@material-ui/core';
 
 // Types
 import { ReducerState } from '../../utility/sharedTypes';
+import { History } from 'history';
 
 // Utility Functions
 import googleAnalytics from '../../utility/googleAnalytics';
 
 interface Props {
-  history?: History;
+  history: History;
 }
 
 const useStyles = makeStyles<Theme, object>((theme) => ({

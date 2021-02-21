@@ -63,6 +63,11 @@ function InviteUser(props: Props) {
     if (target) {
       const updatedRecipient = target.value;
       setRecipient(updatedRecipient);
+      // if errors, clears them out when user types.
+      // This ensures that user can resubmit the form without having to close/reopen the dialog
+      if (errors && loading) {
+        dispatch(clearErrors());
+      }
     }
   };
 
@@ -108,7 +113,7 @@ function InviteUser(props: Props) {
               variant="contained"
               color="primary"
               className={classes.submitButton}
-              disabled={loading || !recipient}
+              disabled={!!errors || !recipient}
             >
               Submit
               {loading && (
