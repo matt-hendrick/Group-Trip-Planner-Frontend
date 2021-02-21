@@ -1,5 +1,7 @@
+// Redux Types
 import { SET_ERRORS, CLEAR_ERRORS } from '../reduxTypes';
 
+// Types
 import { Errors, Error } from '../../utility/sharedTypes';
 
 interface Action {

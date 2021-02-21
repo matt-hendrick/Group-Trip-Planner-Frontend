@@ -1,9 +1,11 @@
+// Redux Types
 import {
   SET_USER,
   SET_AUTHENTICATED,
   SET_UNAUTHENTICATED,
 } from '../reduxTypes';
 
+// Types
 import { User } from '../../utility/sharedTypes';
 
 interface Action {

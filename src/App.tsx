@@ -28,21 +28,27 @@ import Demo from './pages/Demo/Demo';
 // Utility Functions
 import googleAnalytics from './utility/googleAnalytics';
 
+// Types
+import { Action } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { User } from './utility/sharedTypes';
+
 const theme = createMuiTheme(themeObject);
 
 axios.defaults.baseURL =
   'https://us-central1-grouptripplannerbackend.cloudfunctions.net/api';
 
+const dispatchStore = store.dispatch as ThunkDispatch<User, void, Action>;
 const token: string = localStorage.FBIdToken;
 if (token) {
   const decodedToken = jwtDecode<JwtPayload>(token);
   if (decodedToken.exp && decodedToken.exp * 1000 < Date.now()) {
-    store.dispatch(logoutUser());
+    dispatchStore(logoutUser());
     window.location.href = '/login';
   } else {
     store.dispatch({ type: SET_AUTHENTICATED });
     axios.defaults.headers.common['Authorization'] = token;
-    store.dispatch(getOwnUserDetails());
+    dispatchStore(getOwnUserDetails());
   }
 }
 

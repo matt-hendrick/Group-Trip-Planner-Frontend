@@ -15,12 +15,26 @@ import {
   SET_MAP_ZOOM_LEVEL,
 } from '../reduxTypes';
 
-export const initialState = {
-  trip: {},
+// Types
+import {
+  Trip,
+  NestedTrip,
+  ItineraryDictionary,
+  Pin,
+  ListItem,
+} from '../../utility/sharedTypes';
+
+interface Action {
+  type: string;
+  payload?: any;
+}
+
+export const initialState: Trip = {
+  trip: {} as NestedTrip,
   loading: false,
 };
 
-const tripReducer = (state = initialState, action) => {
+const tripReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case LOADING_DATA:
       return {
@@ -66,7 +80,7 @@ const tripReducer = (state = initialState, action) => {
         ...state,
         trip: {
           ...state.trip,
-          pins: [action.payload, ...state.trip.pins],
+          pins: [action.payload as Pin, ...state.trip.pins],
         },
       };
     case EDIT_ITINERARY_ORDER:
@@ -74,7 +88,7 @@ const tripReducer = (state = initialState, action) => {
         ...state,
         trip: {
           ...state.trip,
-          itineraryItems: action.payload,
+          itineraryItems: action.payload as ItineraryDictionary,
         },
       };
     case CREATE_LIST_ITEM:
@@ -82,12 +96,12 @@ const tripReducer = (state = initialState, action) => {
         ...state,
         trip: {
           ...state.trip,
-          listItems: [action.payload, ...state.trip.listItems],
+          listItems: [action.payload as ListItem, ...state.trip.listItems],
         },
       };
     case DELETE_LIST_ITEM:
       const deleteListItemIndex = state.trip.listItems.findIndex(
-        (listItem) => listItem.listItemID === action.payload
+        (listItem) => listItem.listItemID === (action.payload as string)
       );
       return {
         ...state,
@@ -100,11 +114,12 @@ const tripReducer = (state = initialState, action) => {
       };
     case LIKE_LIST_ITEM:
       const likeListItemIndex = state.trip.listItems.findIndex(
-        (listItem) => listItem.listItemID === action.payload.listItemID
+        (listItem) =>
+          listItem.listItemID === (action.payload.listItemID as string)
       );
       const newListArrayForLike = _.cloneDeep(state.trip.listItems);
       newListArrayForLike[likeListItemIndex].likes.push(
-        action.payload.userHandle
+        action.payload.userHandle as string
       );
       return {
         ...state,
@@ -115,12 +130,13 @@ const tripReducer = (state = initialState, action) => {
       };
     case UNLIKE_LIST_ITEM:
       const unlikeListItemIndex = state.trip.listItems.findIndex(
-        (listItem) => listItem.listItemID === action.payload.listItemID
+        (listItem) =>
+          listItem.listItemID === (action.payload.listItemID as string)
       );
       const unlikeLikeIndex = state.trip.listItems[
         unlikeListItemIndex
       ].likes.findIndex(
-        (userHandle) => userHandle === action.payload.userHandle
+        (userHandle) => userHandle === (action.payload.userHandle as string)
       );
       const newListArrayForUnlike = _.cloneDeep(state.trip.listItems);
       newListArrayForUnlike[unlikeListItemIndex].likes.splice(
@@ -139,7 +155,10 @@ const tripReducer = (state = initialState, action) => {
         ...state,
         trip: {
           ...state.trip,
-          pendingInvites: [action.payload, ...state.trip.pendingInvites],
+          pendingInvites: [
+            action.payload as string,
+            ...state.trip.pendingInvites,
+          ],
         },
       };
     default:

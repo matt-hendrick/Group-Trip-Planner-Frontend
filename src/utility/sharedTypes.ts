@@ -59,31 +59,35 @@ export interface User {
       }[];
 }
 
+export interface Pin {
+  comment: string;
+  address: string;
+  createdAt: string;
+  coordinates: number[];
+  userHandle: string;
+}
+
+export interface ListItem {
+  listType: string;
+  likes: string[];
+  body: string;
+  createdAt: string;
+  userHandle: string;
+  listItemID: string;
+}
+
 export interface NestedTrip {
   itineraryItems: { createdAt: string; userHandle: string; body: string }[];
   createdBy: string;
   createdAt: string;
   destination: null | number[];
-  pendingInvites: object[] | [];
+  pendingInvites: string[];
   mapZoomLevel: number;
   tripName: string;
   members: string[];
   tripID: string;
-  pins: {
-    comment: string;
-    address: string;
-    createdAt: string;
-    coordinates: number[];
-    userHandle: string;
-  }[];
-  listItems: {
-    listType: string;
-    likes: {}[];
-    body: string;
-    createdAt: string;
-    userHandle: string;
-    listItemID: string;
-  }[];
+  pins: Pin[];
+  listItems: ListItem[];
 }
 
 export interface Trip {
