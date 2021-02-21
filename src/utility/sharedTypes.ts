@@ -60,7 +60,7 @@ export interface User {
 }
 
 export interface Pin {
-  comment: string;
+  comment: string | null;
   address: string;
   createdAt: string;
   coordinates: number[];

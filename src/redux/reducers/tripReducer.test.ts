@@ -39,39 +39,31 @@ const mockState = {
         listItemID: 'AG4xIQg4g6x9h5x2QNOu',
       },
     ],
-    itineraryItems: {
-      0: {
+    itineraryItems: [
+      {
         body: '10 am hike',
         createdAt: '2021-01-17T17:56:44.726Z',
         userHandle: 'janedoe',
       },
-      1: {
+      {
         body: 'Friday the 4th, Dinner in Belfast',
         userHandle: 'janedoe',
         createdAt: '2021-01-20T00:36:07.237Z',
       },
-      2: {
+      {
         userHandle: 'janedoe',
         createdAt: '2021-01-20T00:36:28.166Z',
         body: 'New item',
       },
-    },
+    ],
   },
 };
 
 describe('tripReducer tests', () => {
-  it('should return the initial state', () => {
-    expect(reducer(undefined, {})).toEqual({
-      trip: {},
-      loading: false,
-    });
-  });
-
   it('should handle LOADING_DATA', () => {
     expect(
       reducer(initialState, {
         type: types.LOADING_DATA,
-        loading: true,
         ...initialState,
       })
     ).toEqual({
@@ -84,7 +76,6 @@ describe('tripReducer tests', () => {
     expect(
       reducer(initialState, {
         type: types.CLEAR_LOADING_DATA,
-        loading: false,
         ...initialState,
       })
     ).toEqual({
@@ -139,23 +130,23 @@ describe('tripReducer tests', () => {
             listItemID: 'AG4xIQg4g6x9h5x2QNOu',
           },
         ],
-        itineraryItems: {
-          0: {
+        itineraryItems: [
+          {
             body: '10 am hike',
             createdAt: '2021-01-17T17:56:44.726Z',
             userHandle: 'janedoe',
           },
-          1: {
+          {
             body: 'Friday the 4th, Dinner in Belfast',
             userHandle: 'janedoe',
             createdAt: '2021-01-20T00:36:07.237Z',
           },
-          2: {
+          {
             userHandle: 'janedoe',
             createdAt: '2021-01-20T00:36:28.166Z',
             body: 'New item',
           },
-        },
+        ],
       },
     });
   });
@@ -206,23 +197,23 @@ describe('tripReducer tests', () => {
             listItemID: 'AG4xIQg4g6x9h5x2QNOu',
           },
         ],
-        itineraryItems: {
-          0: {
+        itineraryItems: [
+          {
             body: '10 am hike',
             createdAt: '2021-01-17T17:56:44.726Z',
             userHandle: 'janedoe',
           },
-          1: {
+          {
             body: 'Friday the 4th, Dinner in Belfast',
             userHandle: 'janedoe',
             createdAt: '2021-01-20T00:36:07.237Z',
           },
-          2: {
+          {
             userHandle: 'janedoe',
             createdAt: '2021-01-20T00:36:28.166Z',
             body: 'New item',
           },
-        },
+        ],
       },
     });
   });
@@ -273,23 +264,23 @@ describe('tripReducer tests', () => {
             listItemID: 'AG4xIQg4g6x9h5x2QNOu',
           },
         ],
-        itineraryItems: {
-          0: {
+        itineraryItems: [
+          {
             body: '10 am hike',
             createdAt: '2021-01-17T17:56:44.726Z',
             userHandle: 'janedoe',
           },
-          1: {
+          {
             body: 'Friday the 4th, Dinner in Belfast',
             userHandle: 'janedoe',
             createdAt: '2021-01-20T00:36:07.237Z',
           },
-          2: {
+          {
             userHandle: 'janedoe',
             createdAt: '2021-01-20T00:36:28.166Z',
             body: 'New item',
           },
-        },
+        ],
       },
     });
   });
@@ -340,23 +331,23 @@ describe('tripReducer tests', () => {
             listItemID: 'AG4xIQg4g6x9h5x2QNOu',
           },
         ],
-        itineraryItems: {
-          0: {
+        itineraryItems: [
+          {
             body: '10 am hike',
             createdAt: '2021-01-17T17:56:44.726Z',
             userHandle: 'janedoe',
           },
-          1: {
+          {
             body: 'Friday the 4th, Dinner in Belfast',
             userHandle: 'janedoe',
             createdAt: '2021-01-20T00:36:07.237Z',
           },
-          2: {
+          {
             userHandle: 'janedoe',
             createdAt: '2021-01-20T00:36:28.166Z',
             body: 'New item',
           },
-        },
+        ],
       },
     });
   });
@@ -425,45 +416,46 @@ describe('tripReducer tests', () => {
             listItemID: 'AG4xIQg4g6x9h5x2QNOu',
           },
         ],
-        itineraryItems: {
-          0: {
+        itineraryItems: [
+          {
             body: '10 am hike',
             createdAt: '2021-01-17T17:56:44.726Z',
             userHandle: 'janedoe',
           },
-          1: {
+          {
             body: 'Friday the 4th, Dinner in Belfast',
             userHandle: 'janedoe',
             createdAt: '2021-01-20T00:36:07.237Z',
           },
-          2: {
+          {
             userHandle: 'janedoe',
             createdAt: '2021-01-20T00:36:28.166Z',
             body: 'New item',
           },
-        },
+        ],
       },
     });
   });
 
   it('should handle EDIT_ITINERARY_ORDER', () => {
-    const payload = {
-      2: {
-        body: '10 am hike',
-        createdAt: '2021-01-17T17:56:44.726Z',
-        userHandle: 'janedoe',
-      },
-      1: {
+    const payload = [
+      {
         body: 'Friday the 4th, Dinner in Belfast',
         userHandle: 'janedoe',
         createdAt: '2021-01-20T00:36:07.237Z',
       },
-      0: {
+      {
         userHandle: 'janedoe',
         createdAt: '2021-01-20T00:36:28.166Z',
         body: 'New item',
       },
-    };
+      {
+        body: '10 am hike',
+        createdAt: '2021-01-17T17:56:44.726Z',
+        userHandle: 'janedoe',
+      },
+    ];
+
     expect(
       reducer(mockState, {
         type: types.EDIT_ITINERARY_ORDER,
@@ -508,23 +500,23 @@ describe('tripReducer tests', () => {
             listItemID: 'AG4xIQg4g6x9h5x2QNOu',
           },
         ],
-        itineraryItems: {
-          2: {
-            body: '10 am hike',
-            createdAt: '2021-01-17T17:56:44.726Z',
-            userHandle: 'janedoe',
-          },
-          1: {
+        itineraryItems: [
+          {
             body: 'Friday the 4th, Dinner in Belfast',
             userHandle: 'janedoe',
             createdAt: '2021-01-20T00:36:07.237Z',
           },
-          0: {
+          {
             userHandle: 'janedoe',
             createdAt: '2021-01-20T00:36:28.166Z',
             body: 'New item',
           },
-        },
+          {
+            body: '10 am hike',
+            createdAt: '2021-01-17T17:56:44.726Z',
+            userHandle: 'janedoe',
+          },
+        ],
       },
     });
   });
@@ -601,23 +593,23 @@ describe('tripReducer tests', () => {
             listItemID: 'AG4xIQg4g6x9h5x2QNOu',
           },
         ],
-        itineraryItems: {
-          0: {
+        itineraryItems: [
+          {
             body: '10 am hike',
             createdAt: '2021-01-17T17:56:44.726Z',
             userHandle: 'janedoe',
           },
-          1: {
+          {
             body: 'Friday the 4th, Dinner in Belfast',
             userHandle: 'janedoe',
             createdAt: '2021-01-20T00:36:07.237Z',
           },
-          2: {
+          {
             userHandle: 'janedoe',
             createdAt: '2021-01-20T00:36:28.166Z',
             body: 'New item',
           },
-        },
+        ],
       },
     });
   });
@@ -654,23 +646,23 @@ describe('tripReducer tests', () => {
           },
         ],
         listItems: [],
-        itineraryItems: {
-          0: {
+        itineraryItems: [
+          {
             body: '10 am hike',
             createdAt: '2021-01-17T17:56:44.726Z',
             userHandle: 'janedoe',
           },
-          1: {
+          {
             body: 'Friday the 4th, Dinner in Belfast',
             userHandle: 'janedoe',
             createdAt: '2021-01-20T00:36:07.237Z',
           },
-          2: {
+          {
             userHandle: 'janedoe',
             createdAt: '2021-01-20T00:36:28.166Z',
             body: 'New item',
           },
-        },
+        ],
       },
     });
   });
@@ -724,23 +716,23 @@ describe('tripReducer tests', () => {
             listItemID: 'AG4xIQg4g6x9h5x2QNOu',
           },
         ],
-        itineraryItems: {
-          0: {
+        itineraryItems: [
+          {
             body: '10 am hike',
             createdAt: '2021-01-17T17:56:44.726Z',
             userHandle: 'janedoe',
           },
-          1: {
+          {
             body: 'Friday the 4th, Dinner in Belfast',
             userHandle: 'janedoe',
             createdAt: '2021-01-20T00:36:07.237Z',
           },
-          2: {
+          {
             userHandle: 'janedoe',
             createdAt: '2021-01-20T00:36:28.166Z',
             body: 'New item',
           },
-        },
+        ],
       },
     });
   });
@@ -794,23 +786,23 @@ describe('tripReducer tests', () => {
             listItemID: 'AG4xIQg4g6x9h5x2QNOu',
           },
         ],
-        itineraryItems: {
-          0: {
+        itineraryItems: [
+          {
             body: '10 am hike',
             createdAt: '2021-01-17T17:56:44.726Z',
             userHandle: 'janedoe',
           },
-          1: {
+          {
             body: 'Friday the 4th, Dinner in Belfast',
             userHandle: 'janedoe',
             createdAt: '2021-01-20T00:36:07.237Z',
           },
-          2: {
+          {
             userHandle: 'janedoe',
             createdAt: '2021-01-20T00:36:28.166Z',
             body: 'New item',
           },
-        },
+        ],
       },
     });
   });
@@ -862,23 +854,23 @@ describe('tripReducer tests', () => {
             pinID: 'yaBxVUvoOHOougcvZceW',
           },
         ],
-        itineraryItems: {
-          0: {
+        itineraryItems: [
+          {
             body: '10 am hike',
             createdAt: '2021-01-17T17:56:44.726Z',
             userHandle: 'janedoe',
           },
-          1: {
+          {
             body: 'Friday the 4th, Dinner in Belfast',
             userHandle: 'janedoe',
             createdAt: '2021-01-20T00:36:07.237Z',
           },
-          2: {
+          {
             userHandle: 'janedoe',
             createdAt: '2021-01-20T00:36:28.166Z',
             body: 'New item',
           },
-        },
+        ],
       },
     });
   });
