@@ -18,23 +18,17 @@ import MyButton from '../MyButton/MyButton';
 import colorAssignment from '../../utility/colorAssignment';
 
 // Types
-import { ReducerState } from '../../utility/sharedTypes';
+import { ReducerState, Pin } from '../../utility/sharedTypes';
 
 interface Props {
-  pins: {
-    comment: string;
-    address: string;
-    createdAt: string;
-    coordinates: number[];
-    userHandle: string;
-  }[];
+  pins: Pin[];
 }
 
 const useStyles = makeStyles<Theme, object>((theme) => ({
   ...(theme.classes as object),
 }));
 
-function Pins(props: Props) {
+const Pins = (props: Props) => {
   const classes = useStyles();
 
   const { pins } = props;
@@ -46,41 +40,43 @@ function Pins(props: Props) {
 
   dayjs.extend(relativeTime);
 
-  return pins && loggedInUserHandle
-    ? pins.map((pin) => {
-        const { comment, address, createdAt, coordinates, userHandle } = pin;
-        const toolTip = comment
-          ? `"${comment}" at ${address} by ${userHandle} - ${dayjs(
-              createdAt
-            ).fromNow()}`
-          : `${address} by ${userHandle} - ${dayjs(createdAt).fromNow()}`;
-        const userColor = colorAssignment(
-          loggedInUserHandle,
-          members,
-          userHandle
-        );
-        return (
-          <Marker
-            latitude={coordinates[1]}
-            longitude={coordinates[0]}
-            key={createdAt}
-          >
-            <MyButton tip={toolTip} tipClassName={classes.pins}>
-              {userColor === 'primary' || userColor === 'secondary' ? (
-                <RoomIcon color={userColor} style={{ fontSize: 30 }} />
-              ) : (
-                <RoomIcon
-                  style={{
-                    color: userColor,
-                    fontSize: 30,
-                  }}
-                />
-              )}
-            </MyButton>
-          </Marker>
-        );
-      })
-    : null;
-}
+  let pinsDisplay =
+    pins && loggedInUserHandle
+      ? pins.map((pin) => {
+          const { comment, address, createdAt, coordinates, userHandle } = pin;
+          const toolTip = comment
+            ? `"${comment}" at ${address} by ${userHandle} - ${dayjs(
+                createdAt
+              ).fromNow()}`
+            : `${address} by ${userHandle} - ${dayjs(createdAt).fromNow()}`;
+          const userColor = colorAssignment(
+            loggedInUserHandle,
+            members,
+            userHandle
+          );
+          return (
+            <Marker
+              latitude={coordinates[1]}
+              longitude={coordinates[0]}
+              key={createdAt}
+            >
+              <MyButton tip={toolTip} tipClassName={classes.pins}>
+                {userColor === 'primary' || userColor === 'secondary' ? (
+                  <RoomIcon color={userColor} style={{ fontSize: 30 }} />
+                ) : (
+                  <RoomIcon
+                    style={{
+                      color: userColor,
+                      fontSize: 30,
+                    }}
+                  />
+                )}
+              </MyButton>
+            </Marker>
+          );
+        })
+      : null;
+  return <React.Fragment>{pinsDisplay}</React.Fragment>;
+};
 
 export default Pins;

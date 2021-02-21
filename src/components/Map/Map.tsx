@@ -4,12 +4,20 @@ import ReactMapGL from 'react-map-gl';
 // Redux
 import { useSelector } from 'react-redux';
 
+// Components
 import Pins from '../Pins/Pins';
 
+// Types
+import { ReducerState } from '../../utility/sharedTypes';
+
 function Map() {
-  const destination = useSelector((state) => state.trip.trip.destination);
-  const mapZoomLevel = useSelector((state) => state.trip.trip.mapZoomLevel);
-  const pins = useSelector((state) => state.trip.trip.pins);
+  const destination = useSelector(
+    (state: ReducerState) => state.trip.trip.destination
+  );
+  const mapZoomLevel = useSelector(
+    (state: ReducerState) => state.trip.trip.mapZoomLevel
+  );
+  const pins = useSelector((state: ReducerState) => state.trip.trip.pins);
 
   const [viewport, setViewport] = useState({});
 
