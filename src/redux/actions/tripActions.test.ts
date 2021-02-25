@@ -8,7 +8,7 @@ import { getTrip } from './tripActions';
 // Types
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { Trip, ItineraryDictionary } from '../../utility/sharedTypes';
+import { Trip } from '../../utility/sharedTypes';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
