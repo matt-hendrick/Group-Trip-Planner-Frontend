@@ -1,15 +1,15 @@
 const theme = {
   palette: {
     primary: {
-      light: '#33c9dc',
-      main: '#00bcd4',
-      dark: '#008394',
+      light: '#00b4d8',
+      main: '#023e8a',
+      dark: '#03045e',
       contrastText: '#fff',
     },
     secondary: {
-      light: '#ff6333',
-      main: '#ff3d00',
-      dark: '#b22a00',
+      light: '#e5383b',
+      main: '#ba181b',
+      dark: '#660708',
       contrastText: '#fff',
     },
   },
@@ -19,10 +19,6 @@ const theme = {
     },
     form: {
       textAlign: 'center',
-    },
-    pageTitle: {
-      margin: '10px auto 10px auto',
-      color: '#00bcd4',
     },
     textField: {
       margin: '10px auto 10px auto',

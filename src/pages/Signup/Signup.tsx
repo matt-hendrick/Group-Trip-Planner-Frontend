@@ -26,6 +26,13 @@ interface Props {
 
 const useStyles = makeStyles<Theme, object>((theme) => ({
   ...(theme.classes as object),
+  pageTitle: {
+    margin: '10px auto 10px auto',
+    color: theme.palette.primary.main,
+  },
+  linkColor: {
+    color: theme.palette.primary.light,
+  },
 }));
 
 function Signup(props: Props) {
@@ -167,8 +174,11 @@ function Signup(props: Props) {
           <br />
           <br />
           <small>
-            Already have an account? Click <Link to="/login">here</Link> to
-            login.
+            Already have an account? Click{' '}
+            <Link to="/login" className={classes.linkColor}>
+              here
+            </Link>{' '}
+            to login.
           </small>
         </form>
       </Grid>
