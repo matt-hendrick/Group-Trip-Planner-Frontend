@@ -2,11 +2,11 @@
 
 [Group Trip Planner](https://prototypetripplanner.web.app) is a full stack, collaborative, trip-planning web app that allows users to map, comment, and organize a trip. Users can create, join, edit, and delete groups. The app implements user and group authentication.
 
-Group Trip Planner was built with TypeScript 4.1.5, React 17.0.1, and Redux 4.0.5.
+The Group Trip Planner frontend was built with TypeScript 4.1.5, React 17.0.1, and Redux 4.0.5.
 
 ## Demo User Login
 
-// content created by this demo user account is not actively moderated or reviewed
+// content created by this demo user account is not actively moderated or reviewed.
 
 Username: demo@demo.com
 Pass: demo12345
