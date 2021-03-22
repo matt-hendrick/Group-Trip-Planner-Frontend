@@ -19,6 +19,10 @@ Pass: demo12345
 
 57% test coverage via Jest and React Testing Library unit tests.
 
+## Back End Repo Link
+
+Link to the [Group Trip Planner back end GitHub repo](https://github.com/matt-hendrick/group-trip-planner-backend)
+
 ## Installation and Setup Instructions
 
 Installation:
