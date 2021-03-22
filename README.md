@@ -15,6 +15,10 @@ Pass: demo12345
 
 [This video demo](https://youtube.com/watch?v=IYfwnjsngSc) provides a brief look at Group Trip Planner's features.
 
+## Test Coverage
+
+57% test coverage via Jest and React Testing Library unit tests.
+
 ## Installation and Setup Instructions
 
 Installation:
