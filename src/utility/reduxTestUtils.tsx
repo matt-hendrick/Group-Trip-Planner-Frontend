@@ -15,7 +15,7 @@ const reducers = combineReducers({
 });
 
 function render(
-  ui,
+  ui: React.ReactElement,
   {
     initialState,
     store = createStore(
@@ -24,9 +24,9 @@ function render(
       compose(applyMiddleware(thunk))
     ),
     ...renderOptions
-  } = {}
+  }: any = {}
 ) {
-  function Wrapper({ children }) {
+  function Wrapper({ children }: any) {
     return <Provider store={store}>{children}</Provider>;
   }
   return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
