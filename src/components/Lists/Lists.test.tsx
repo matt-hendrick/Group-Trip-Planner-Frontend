@@ -81,7 +81,7 @@ describe('Lists tests', () => {
       getByRole('tab', { name: /sights and activities/i })
     ).toBeInTheDocument();
     expect(getByRole('tab', { name: /other/i })).toBeInTheDocument();
-    expect(getByText(/4:29 pm, january 20 2021/i)).toBeInTheDocument();
+    expect(getByText(/9:29 pm, january 20 2021/i)).toBeInTheDocument();
     expect(getByText(/another thing/i)).toBeInTheDocument();
   });
 });
